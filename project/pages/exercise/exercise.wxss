@@ -1,0 +1,167 @@
+/* pages/exercise/exercise.wxss */
+.content-box{
+  position: relative;
+}
+.content-item{
+  position: absolute;
+  left: 38rpx;
+  top: 30rpx;
+  height: 203rpx;
+  padding: 38rpx 57rpx;
+  box-sizing: border-box
+}
+.content{
+  width: 678rpx;
+  background: #ffffff;
+  border-radius: 10rpx;
+  box-shadow: -1px 5px 11px 5px #fff0f2;
+}
+.main-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.black-font{
+  color: #333;
+}
+.fs-18{
+  font-size: 18rpx;
+}
+.step-num{
+  font-size: 60rpx;
+  color: #ff6f88;
+}
+.sub-title{
+  color: #ff6f88;
+  font-size: 24rpx;
+}
+.annotation{
+  font-size: 18rpx;
+  color: #a7a7a7;
+}
+.pt-20{
+  padding-top: 20rpx;
+}
+.step-norm{
+  height: 204rpx;
+  margin: 80rpx 0 0 38rpx;
+  padding-top: 50rpx;
+  box-sizing: border-box;
+}
+.mark-word{
+  font-size: 18rpx;
+  color: #ff6f88;
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+.norm-item{
+  position: absolute;
+  top: 0;
+  width: 155rpx;
+  height: 15rpx;
+  border-bottom-left-radius: 15rpx;
+  border-top-left-radius: 15rpx;
+}
+.norm-box{
+  position: relative;
+  width: 600rpx;
+  height: 15rpx;
+  border-radius: 15rpx;
+  margin: 0 auto;
+  overflow: hidden
+}
+.light-blue{
+  background: #96c7ff;
+  left: 0;
+}
+.deep-blue{
+  background: #7b9cee;
+  left: 150rpx;
+}
+.yellow{
+  background: #fcc062;
+  left: 300rpx;
+}
+.orange{
+  background: #ff8549;
+  left: 450rpx;
+}
+.norm-num-box{
+  position: relative;
+  width: 600rpx;
+  margin: 0 auto;
+  height: 40rpx;
+}
+.norm-num{
+  position: absolute;
+  top: 0;
+  line-height: 40rpx;
+  z-index: 999
+}
+.norm-content{
+  display: flex;
+  flex-direction: row;
+  width: 600rpx;
+  margin: 0 auto;
+  height: 40rpx;
+}
+.norm-content-item{
+  width: 150rpx;
+  font-size: 18rpx;
+  text-align: center;
+  line-height: 40rpx;
+}
+.norm-dot{
+  position: absolute;
+  width: 21rpx;
+  height: 33rpx;
+  top:0;
+}
+/* 运动建议 */
+.advise-box{
+  padding: 25rpx 55rpx;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.mb-30{
+  margin-bottom: 30rpx;
+}
+.main-title{
+  color: #ff6f88;
+  font-size: 30rpx;
+  margin-bottom: 5rpx;
+}
+.main-advise{
+  font-size: 24rpx;
+  color: #333;
+  line-height: 45rpx;
+}
+/*曲线  */
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+.contain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.service-btn{
+  width: 220rpx;
+  height: 70rpx;
+  margin: 60rpx auto 0;
+  border-radius: 70rpx;
+  border: 1px solid #ff6478;
+  text-align: center;
+  line-height: 70rpx;
+  background: transparent;
+  color: #ff6478;
+  font-size: 30rpx;
+}

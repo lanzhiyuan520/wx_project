@@ -1,0 +1,54 @@
+<!--pages/exercise/exercise.wxml-->
+<view style='padding-bottom:60rpx'>
+    <view class='content-box'>
+      <image src='../../images/bg.png' style='width:100%;height:171rpx' mode='scaleToFill'>
+      <view class='content-item content'>
+        <view class='black-font fs-18'>{{month}}月{{day}}日</view>
+        <view class='main-content'>
+          <view class='step-num'>{{todayStep}}<text class='sub-title'>步</text></view>
+          <view class='pt-20'>
+            <text class='sub-title'>阶段标准</text>
+            <image src='../../images/arrow.png' style='width:34rpx;height:21rpx' mode='scaleToFill'></image>
+          </view>
+        </view>
+        <view class='annotation'>来源微信运动</view>
+      </view>
+      </image>
+    </view>
+    <view class='content step-norm mb-30'>
+        <view class='mark-word'>运动过量要注意休息和营养输入哟～</view>
+        <view class='norm-num-box'>
+          <view class='annotation norm-num' style='left:130rpx'>{{nornNum-gap}}</view>
+          <view class='annotation norm-num' style='left:280rpx'>{{nornNum}}</view>
+          <view class='annotation norm-num' style='left:430rpx'>{{nornNum+gap}}</view>
+          <view class='norm-dot' animation="{{animationData}}">
+            <image src='../../images/dot.png' style='width:21rpx;height:33rpx' mode='scaleToFill'></image>
+          </view>
+        </view>
+        <view class='norm-box'>
+          <view class='norm-item light-blue'></view>
+          <view class='norm-item deep-blue'></view>
+          <view class='norm-item yellow'></view>
+          <view class='norm-item orange'></view>
+        </view>
+        <view class='norm-content'>
+          <view class='norm-content-item' style='color:#96c7ff'>偏少</view>
+          <view class='norm-content-item' style='color:#7b9cee'>标准</view>
+          <view class='norm-content-item' style='color:#fcc062'>过量</view>
+          <view class='norm-content-item' style='color:#ff8549'>超标</view>
+        </view>
+    </view>
+    <view class='content advise-box mb-30'>
+       <view class='main-title'>运动建议</view>
+       <view class='main-advise'>{{msg}}</view>
+    </view>
+    <view class='content advise-box'>
+       <view class='main-title'>运动曲线</view>
+         <view style='position: relative;width:310px;height:300px'>  
+       <view class="contain">
+          <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+        </view>
+         </view>  
+    </view>
+    <button class='service-btn' open-type="contact">进入客服会话</button>
+</view>
