@@ -1,0 +1,130 @@
+<view class='userInfo-wrap'>
+    <!--头部  -->
+    <view class='header-wrap'>
+        <view class='header-content'>
+            <view class='content'>
+                <view class='user-avatar'>
+                    <image src='http://cdn.ayi800.com/image/png/fuchong_muying%E6%9C%88%E5%AD%90%E6%9C%8D%E5%8A%A15@2x.png'></image>
+                </view>
+                <view class='birth'>
+                    <text class='birth-text family name'>Aaron</text>
+                    <text class='birth-text family'>今天距宝宝出生大约</text>
+                    <text class='birth-days family'>127</text>
+                    <text class='birth-text family'>天</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+<!--运动建议  -->
+    <view class='sports-suggest-wrap'>
+        <view class='sports-content'>
+            <swiper class='swiper-wrap' indicator-dots='{{true}}' indicator-active-color='#ff6666' duration='300'>
+                <swiper-item>
+                    <view class='play-content'>
+                        <!-- <view class='progress_box'> 
+                          <canvas disable-scroll="true" class="progress_canvas" canvas-id="canvasProgress"> 
+                              <view class='today-sports'>
+                                <text class='family'>今日运动</text>
+                            </view>
+                            <view class='walk-num'>
+                                <text class='family num'>2518</text>
+                                <text class='walk'>步</text>
+                            </view>
+                            <view class='suggest'>
+                                <text>建议指标</text>
+                                <text>8000</text>
+                            </view>
+                          </canvas> 
+                        </view> -->
+                         <view class='annular-wrap'>
+                            <view class='raduis-small'>
+                              <view class='shadow'></view>
+                              <view class='today-sports'>
+                                  <text class='family'>今日运动</text>
+                              </view>
+                              <view class='walk-num'>
+                                  <text class='family num'>2518</text>
+                                  <text class='walk'>步</text>
+                              </view>
+                              <view class='suggest'>
+                                  <text>建议指标</text>
+                                  <text>8000</text>
+                              </view>
+                            </view>
+                        </view> 
+                        <view class='sports-btn'>
+                            <navigator class='navigator-btn' hover-class="none">运动建议</navigator>          
+                        </view>
+                    </view>
+                </swiper-item>
+                <swiper-item>
+                    <view class='play-content'>
+                        <view class='annular-wrap'>
+                        <view class='shadow'></view>
+                            <view class='raduis-small'>
+                              <view class='today-sports'>
+                                  <text class='family'>当前体重</text>
+                              </view>
+                              <view class='walk-num'>
+                                  <text class='family num'>62kg</text>
+                              </view>
+                               <view class='suggest'>
+                                <navigator class='add-weight' hover-class="none">+</navigator>
+                            </view>
+                            </view>
+                        </view>
+                        <view class='sports-btn'>
+                            <navigator class='navigator-btn' hover-class="none">增长曲线</navigator>          
+                        </view>
+                    </view>
+                </swiper-item>
+            </swiper>  
+        </view>
+    </view>
+
+    <!--今日知识  -->
+    <view class='today-knowledge-wrap'>
+        <view class='today-title'>
+            <view class='today-text-content'>
+                <text class='today-text'>今日知识</text>
+            </view>
+        </view>
+        <view class='today-content-wrap'>
+            <view class='today-content' bindtap='skip_today'>
+              <view class='knowledge-body'>
+                <view class='knowledge'>
+                  <view class='knowledge-body-text'>
+                      <view class='knowledge-headline'>
+                          <text>孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好</text>
+                      </view>
+                      <view class='learn-num'>
+                          <text>1966人学习</text>
+                      </view>
+                  </view>
+                  <view class='knowledge-img'>
+                      <image src='http://www.moepan.net/uploads/2018031510134448716611.png'></image>
+                  </view>
+                </view>
+              </view>
+          </view>
+          <view class='today-content'>
+              <view class='knowledge-body'>
+                <view class='knowledge'>
+                  <view class='knowledge-body-text'>
+                      <view class='knowledge-headline'>
+                          <text>孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好</text>
+                      </view>
+                      <view class='learn-num'>
+                          <text>1966人学习</text>
+                      </view>
+                  </view>
+                  <view class='knowledge-img'>
+                      <image src='http://www.moepan.net/uploads/2018031510134448716611.png'></image>
+                  </view>
+                </view>
+              </view>
+          </view>
+        </view>
+    </view>
+</view>

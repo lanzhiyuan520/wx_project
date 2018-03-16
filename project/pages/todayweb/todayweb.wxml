@@ -1,0 +1,17 @@
+<view class='wrap'>
+    <view class='content'>
+
+    </view>
+    <view class='evaluate'>
+        <view class='nice'>
+            <image src='http://cdn.ayi800.com/image/png/xiaochengxu-nice%E5%AE%9E%E5%BF%83%E7%AE%AD%E5%A4%B4@2x.png'></image>
+            <text class='nice-num'>42</text>
+        </view>
+        <view class='difference'>
+            <image src='http://cdn.ayi800.com/image/png/xiaochengxu-cha%E7%BA%BF%E6%8F%8F%E7%AE%AD%E5%A4%B4@2x.png'></image>
+            <text class='difference-num'>17</text>
+        </view>
+    </view>
+
+
+</view>
