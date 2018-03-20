@@ -1,5 +1,5 @@
 
-<view class='userInfo-wrap' catchtouchmove="{{e}}">
+<view class='userInfo-wrap' catchtouchmove="{{event}}">
     <!--头部  -->
     <view class='header-wrap'>
         <view class='header-content'>
@@ -20,7 +20,7 @@
 <!--运动建议  -->
     <view class='sports-suggest-wrap' bind:touchstart="pageTouchStartHandler" bind:touchend="pageTouchEndHandler" bindtouchmove='move'>
         <view class='sports-content'>
-            <view class='sports' hidden='{{!h}}'>
+            <view class='sports' hidden='{{!hidden}}'>
                 <view class='play-content'>
                     <view class='progress_box'> 
                        <canvas class="progress_bg" canvas-id="canvasProgressbg"> </canvas> 
@@ -30,26 +30,24 @@
                             </view>
                             <view class='walk-num'>
                                 <text class='family num'>2518</text>
-                                <text class='walk'>步</text>
+                                <text class='walk family'>步</text>
                             </view>
                             <view class='suggest'>
-                                <text>建议指标</text>
-                                <text>8000</text>
+                                <text class="family">建议指标</text>
+                                <text class="family">8000</text>
                             </view>
                           </canvas> 
                         </view> 
-<view class='sports-btn'>
-                            <navigator class='navigator-btn' hover-class="none">运动建议</navigator>          
+                        <view class='sports-btn'>
+                            <navigator class='navigator-btn family' hover-class="none">运动建议</navigator>
                         </view>
                 </view>
             </view>
-            <view class='weight' hidden='{{h}}'>
-            
+            <view class='weight' hidden='{{hidden}}'>
                 <view class='play-content'>
                     <view class='progress_box'> 
                        <canvas class="progress_bg" canvas-id="canvasProgressbg-weight"> </canvas> 
-                          <canvas disable-scroll="true" class="progress_canvas" canvas-id="canvasProgress-weight"> 
-
+                          <canvas disable-scroll="true" class="progress_canvas" canvas-id="canvasProgress-weight">
                               <view class='today-sports'>
                                   <text class='family'>当前体重</text>
                               </view>
@@ -62,13 +60,13 @@
                           </canvas>  
                         </view> 
                 <view class='sports-btn'>
-                            <navigator class='navigator-btn' hover-class="none">增长曲线</navigator>          
-                            </view>
+                    <navigator class='navigator-btn family' hover-class="none">增长曲线</navigator>
+                </view>
                 </view>
             </view>
              <view class='circle'>
-                <view class='first {{h?"circle-active":""}}'></view>
-                <view class='last {{!h?"circle-active":""}}'></view>
+                <view class='first {{hidden?"circle-active":""}}'></view>
+                <view class='last {{!hidden?"circle-active":""}}'></view>
             </view>
         </view>
     </view>
@@ -77,40 +75,23 @@
     <view class='today-knowledge-wrap'>
         <view class='today-title'>
             <view class='today-text-content'>
-                <text class='today-text'>今日知识</text>
+                <text class='today-text family'>今日知识</text>
             </view>
         </view>
         <view class='today-content-wrap'>
-            <view class='today-content' bindtap='skip_today'>
+            <view class='today-content' bindtap='skip_today' wx:for='{{Today_know}}' wx:key="index">
               <view class='knowledge-body'>
                 <view class='knowledge'>
                   <view class='knowledge-body-text'>
                       <view class='knowledge-headline'>
-                          <text>孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好</text>
+                          <text class="family">{{item.text}}</text>
                       </view>
                       <view class='learn-num'>
-                          <text>1966人学习</text>
+                          <text class="family">{{item.learner_n}}人学习</text>
                       </view>
                   </view>
                   <view class='knowledge-img'>
-                      <image src='http://www.moepan.net/uploads/2018031510134448716611.png'></image>
-                  </view>
-                </view>
-              </view>
-          </view>
-          <view class='today-content'>
-              <view class='knowledge-body'>
-                <view class='knowledge'>
-                  <view class='knowledge-body-text'>
-                      <view class='knowledge-headline'>
-                          <text>孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好</text>
-                      </view>
-                      <view class='learn-num'>
-                          <text>1966人学习</text>
-                      </view>
-                  </view>
-                  <view class='knowledge-img'>
-                      <image src='http://www.moepan.net/uploads/2018031510134448716611.png'></image>
+                      <image src='{{item.img}}'></image>
                   </view>
                 </view>
               </view>
@@ -118,3 +99,6 @@
         </view>
     </view>
 </view>
+
+
+

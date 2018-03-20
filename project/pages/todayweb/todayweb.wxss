@@ -1,5 +1,5 @@
 .wrap{
-  padding: 0 20px;
+  padding: 60rpx 20px 0 20px;
   box-sizing: border-box;
 }
 .evaluate{
@@ -43,5 +43,24 @@
   color: #ff6666;
   font-size: 21rpx;
   margin-left: 15rpx;
+}
+.head-text{
+  font-size: 30rpx;
+}
+.image-wrap{
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: center;
+}
+.image-wrap image{
+  width: 670rpx;
+  height: 362rpx;
+}
+.content{
+  text-indent: 2rem;
+}
+.content text{
+
+  font-size: 30rpx;
 }
 

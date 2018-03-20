@@ -1,15 +1,26 @@
 <view class='wrap'>
     <view class='content'>
-
+        <view class="head-text">
+            <text class="family">今天是孕期18周，妈的母婴护理(月嫂)服务内容-6+4的"十全"服务。</text>
+        </view>
+        <view class="image-wrap">
+            <image src="http://www.moepan.net/uploads/2018032011403641210878.png"></image>
+        </view>
+        <view class="content">
+            <text class="family">当医生为你的宝宝剪断脐带，处理妥当，抱他(她)趴伏在你赤裸温暖的胸前，和你肌肤相亲时，你是不是已经暂时淡忘了刚刚的经历的那漫长而痛苦的分娩过程</text>
+        </view>
+        <view class="content">
+            <text class="family">那种奇妙的感觉是否让你终生难忘：欢喜、惊异、疼爱、恍如梦中等种种感情交织，还有几分陌生、几分不知所措。那种做了妈妈的体验变得真实而立体，因为与你血脉相连的宝宝就在你的眼前、你的怀中，触手可及。</text>
+        </view>
     </view>
     <view class='evaluate'>
         <view class='nice'>
             <image src='http://cdn.ayi800.com/image/png/xiaochengxu-nice%E5%AE%9E%E5%BF%83%E7%AE%AD%E5%A4%B4@2x.png'></image>
-            <text class='nice-num'>42</text>
+            <text class='nice-num family'>42</text>
         </view>
         <view class='difference'>
             <image src='http://cdn.ayi800.com/image/png/xiaochengxu-cha%E7%BA%BF%E6%8F%8F%E7%AE%AD%E5%A4%B4@2x.png'></image>
-            <text class='difference-num'>17</text>
+            <text class='difference-num family'>17</text>
         </view>
     </view>
 

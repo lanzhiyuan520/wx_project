@@ -2,49 +2,53 @@ var time = require('../utils/utils.js')
 const app = getApp()
 var sideBarstart
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-      h : true,
+      hidden : true,
       step : 8000,
       n: 2000,
-      a : 3000,
-      e: '',
-      Width : null
+      event: '',
+      Today_know: [{ img: 'http://www.moepan.net/uploads/2018031510134448716611.png', text: '孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好', learner_n: 1966 }, { img: 'http://www.moepan.net/uploads/2018031510134448716611.png', text: '孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好', learner_n: 1966 }]
   },
+  //跳转到今日知识页面
   skip_today : function () {
     wx.navigateTo({
       url: '../todayweb/todayweb?id=1'
     })
   },
+  //页面滚动给最外层容器添加事件
   move : function (e) {
       this.setData({
-        e: 'preventTouchMove'
+        event: 'preventTouchMove'
       }) 
   },
+  //获取滑动的触发点
   pageTouchStartHandler: function (e) {
     sideBarstart = e.changedTouches[0].pageX
   },
+  //手指抬起判断是左滑还是右滑
   pageTouchEndHandler: function (e) {
     var touchend = e.changedTouches[0].pageX
     // slip left  
     if (touchend - sideBarstart < -50) {
       this.setData({
-        h : false,
+          hidden : false,
       })
     }
     // slip right  
     if (touchend - sideBarstart > 50) {
         this.setData({
-          h : true,
+          hidden : true,
         })
     }
+    //手指抬起移除外层容器事件
     this.setData({
-      e : ''
+      event : ''
     })
   },
+  //空函数不要删,控制外边容器禁止上下滑动
   preventTouchMove : function () {
 
   },
@@ -110,13 +114,9 @@ Page({
       
   },
   onLoad: function (options) {
-    this.setData({
-      Width: wx.getSystemInfoSync().windowWidth 
-    })
       this.drawProgressbg();
       this.drawCircle(this.data.n)
       this.drawProgressbgW();
-      this.drawCircleW(this.data.n) 
-    
+      this.drawCircleW(this.data.n)
   }, 
 })
