@@ -1,4 +1,5 @@
-<view class='userInfo-wrap'>
+
+<view class='userInfo-wrap' catchtouchmove="{{e}}">
     <!--头部  -->
     <view class='header-wrap'>
         <view class='header-content'>
@@ -17,12 +18,12 @@
     </view>
 
 <!--运动建议  -->
-    <view class='sports-suggest-wrap'>
+    <view class='sports-suggest-wrap' bind:touchstart="pageTouchStartHandler" bind:touchend="pageTouchEndHandler" bindtouchmove='move'>
         <view class='sports-content'>
-            <swiper class='swiper-wrap' indicator-dots='{{true}}' indicator-active-color='#ff6666' duration='300'>
-                <swiper-item>
-                    <view class='play-content'>
-                        <!-- <view class='progress_box'> 
+            <view class='sports' hidden='{{!h}}'>
+                <view class='play-content'>
+                    <view class='progress_box'> 
+                       <canvas class="progress_bg" canvas-id="canvasProgressbg"> </canvas> 
                           <canvas disable-scroll="true" class="progress_canvas" canvas-id="canvasProgress"> 
                               <view class='today-sports'>
                                 <text class='family'>今日运动</text>
@@ -36,33 +37,19 @@
                                 <text>8000</text>
                             </view>
                           </canvas> 
-                        </view> -->
-                         <view class='annular-wrap'>
-                            <view class='raduis-small'>
-                              <view class='shadow'></view>
-                              <view class='today-sports'>
-                                  <text class='family'>今日运动</text>
-                              </view>
-                              <view class='walk-num'>
-                                  <text class='family num'>2518</text>
-                                  <text class='walk'>步</text>
-                              </view>
-                              <view class='suggest'>
-                                  <text>建议指标</text>
-                                  <text>8000</text>
-                              </view>
-                            </view>
                         </view> 
-                        <view class='sports-btn'>
+<view class='sports-btn'>
                             <navigator class='navigator-btn' hover-class="none">运动建议</navigator>          
                         </view>
-                    </view>
-                </swiper-item>
-                <swiper-item>
-                    <view class='play-content'>
-                        <view class='annular-wrap'>
-                        <view class='shadow'></view>
-                            <view class='raduis-small'>
+                </view>
+            </view>
+            <view class='weight' hidden='{{h}}'>
+            
+                <view class='play-content'>
+                    <view class='progress_box'> 
+                       <canvas class="progress_bg" canvas-id="canvasProgressbg-weight"> </canvas> 
+                          <canvas disable-scroll="true" class="progress_canvas" canvas-id="canvasProgress-weight"> 
+
                               <view class='today-sports'>
                                   <text class='family'>当前体重</text>
                               </view>
@@ -72,14 +59,17 @@
                                <view class='suggest'>
                                 <navigator class='add-weight' hover-class="none">+</navigator>
                             </view>
-                            </view>
-                        </view>
-                        <view class='sports-btn'>
+                          </canvas>  
+                        </view> 
+                <view class='sports-btn'>
                             <navigator class='navigator-btn' hover-class="none">增长曲线</navigator>          
-                        </view>
-                    </view>
-                </swiper-item>
-            </swiper>  
+                            </view>
+                </view>
+            </view>
+             <view class='circle'>
+                <view class='first {{h?"circle-active":""}}'></view>
+                <view class='last {{!h?"circle-active":""}}'></view>
+            </view>
         </view>
     </view>
 
