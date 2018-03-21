@@ -1,3 +1,4 @@
+
 const date = new Date()
 const years = []
 const months = []
@@ -76,7 +77,8 @@ Page({
     console.log(this.data.date)
     wx.navigateTo({
       // url: '../exercise/exercise',
-      url: '../weightAdvise/weightAdvise',
+      url: '../userinfo/userinfo',
     })
   }
 })
+

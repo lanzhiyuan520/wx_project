@@ -1,6 +1,8 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/userinfo/userinfo",
+    "pages/todayweb/todayweb",
     "pages/exercise/exercise",
     "pages/weightAdvise/weightAdvise"
   ],
