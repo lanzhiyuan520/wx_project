@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/exercise/exercise"
+    "pages/exercise/exercise",
+    "pages/weightAdvise/weightAdvise"
   ],
   "window":{
     "backgroundTextStyle":"light",

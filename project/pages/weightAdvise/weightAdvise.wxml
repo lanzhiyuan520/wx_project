@@ -5,18 +5,18 @@
       <view class='content-item content'>
         <view class='black-font fs-18'>{{month}}月{{day}}日</view>
         <view class='main-content'>
-          <view class='step-num'>{{todayStep}}<text class='sub-title'>步</text></view>
+          <view class='step-num'>{{weight}}<text class='sub-title'>kg</text></view>
           <view class='pt-20' bindtap='hideNorm'>
             <text class='sub-title'>阶段标准</text>
             <image animation="{{arrowAnimation}}" src='../../images/arrow.png' style='width:34rpx;height:21rpx' mode='scaleToFill'></image>
           </view>
         </view>
-        <view class='annotation'>来源微信运动</view>
+        <view class='annotation'>每周固定一天，早晨定时空腹称重</view>
       </view>
       </image>
     </view>
     <view hidden='{{progress}}' class='content step-norm mb-30'>
-        <view class='mark-word'>运动过量要注意休息和营养输入哟～</view>
+        <view class='mark-word'>当前体重偏重哟~</view>
         <view class='norm-num-box'>
           <view class='annotation norm-num' style='left:130rpx'>{{nornNum-gap}}</view>
           <view class='annotation norm-num' style='left:280rpx'>{{nornNum}}</view>
@@ -32,10 +32,10 @@
           <view class='norm-item orange'></view>
         </view>
         <view class='norm-content'>
-          <view class='norm-content-item' style='color:#96c7ff'>偏少</view>
+          <view class='norm-content-item' style='color:#96c7ff'>偏瘦</view>
           <view class='norm-content-item' style='color:#7b9cee'>标准</view>
-          <view class='norm-content-item' style='color:#fcc062'>过量</view>
-          <view class='norm-content-item' style='color:#ff8549'>超标</view>
+          <view class='norm-content-item' style='color:#fcc062'>偏重</view>
+          <view class='norm-content-item' style='color:#ff8549'>超重</view>
         </view>
     </view>
     <view class='content advise-box mb-30'>
@@ -43,10 +43,32 @@
        <view class='main-advise'>{{msg}}</view>
     </view>
     <view class='content advise-box'>
-       <view class='main-title'>运动曲线</view>
-        <view class="chart-iframe">
+       <view class='main-title'>体重统计<text style='font-size:18rpx'>/kg</text></view>
+        <view class="chart-iframe" hidden='{{show}}'>
             <canvas disable-scroll="true" style="width:{{myCanvasStyle.width}}px; height: {{myCanvasStyle.height}}px;"  bindtouchstart="myCanvasTouchStart" bindtouchmove="myCanvasTouchMove" bindtouchend="myCanvasTouchEnd" canvas-id="myCanvas"></canvas>
         </view>
     </view>
-    <button class='service-btn' open-type="contact">进入客服会话</button>
+    <view class='btn-box'>
+      <button class='record-btn' bindtap='maskShow'>记录</button>
+      <button class='service-btn' open-type="contact">咨询营养师</button>
+    </view>
+</view>
+<!--记录体重  -->
+<view class="modal-mask" catchtouchmove="preventD" bindtap='hideMask'  wx:if="{{mask}}">
+  <view class='modal-content'>
+    <view style='font-size:30rpx'>体重</view>
+    <picker-view indicator-style="height: 50px;color: #ff6f88;" class="weight-picker" value="{{value}}" bindchange="bindChange">
+      <picker-view-column>
+        <view wx:for="{{integers}}" wx:key="*this" style="line-height: 50px;text-align:center;">{{item}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{decimals}}" wx:key="*this" style="line-height: 50px;text-align:center">{{item}}kg</view>
+      </picker-view-column>
+    </picker-view>
+    <view class='mask-btn'>
+        <view>取消</view>
+        <view class='divide'></view>
+        <view style='color:#ff6478'>保存</view>
+    </view>
+  </view>
 </view>

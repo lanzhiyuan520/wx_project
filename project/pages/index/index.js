@@ -75,7 +75,8 @@ Page({
   submitBtn:function(){
     console.log(this.data.date)
     wx.navigateTo({
-      url: '../exercise/exercise',
+      // url: '../exercise/exercise',
+      url: '../weightAdvise/weightAdvise',
     })
   }
 })
