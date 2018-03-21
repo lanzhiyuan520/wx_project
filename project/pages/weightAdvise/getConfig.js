@@ -42,7 +42,7 @@ export default function(canvasConfig,labels,data){
                 var ctx = this.chart.ctx;
                 console.log(ctx.fillText)
                 ctx.font ="30px Verdana";
-                ctx.fillText(8692, 100, 10);
+                console.log()
               }
             },
             tooltips: {
