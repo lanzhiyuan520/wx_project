@@ -1,4 +1,3 @@
-
 <view class='userInfo-wrap' catchtouchmove="{{event}}">
     <!--头部  -->
     <view class='header-wrap'>
@@ -99,6 +98,7 @@
         </view>
     </view>
 </view>
+
 
 
 
