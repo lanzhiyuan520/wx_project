@@ -40,33 +40,9 @@ export default function(canvasConfig,labels,data){
             animation: {
               onComplete: function () {
                 var ctx = this.chart.ctx;
-                console.log(ctx)
-                console.log(this.chart)
+                console.log(ctx.fillText)
                 ctx.font ="30px Verdana";
-                // ctx.fillStyle = this.scale.textColor;
-                // ctx.textAlign = 'center';
-                // ctx.textBaseline = 'bottom';
-                for( var i=0;i<data.length;i++ ){
-                  console.log(data[i])
-                  if (i == 0) {
-                      ctx.fillText(8692, 10, 20);
-                    } else if (i == data.length - 1) {
-                    ctx.fillText(8692, 10, 20);
-                    } else {
-                    ctx.fillText(8692, 10, 20);
-                    }
-                }
-                // this.datasets.forEach(function (dataset) {
-                //   dataset.points.forEach(function (point, index) {
-                //     if (index == 0) {
-                //       ctx.fillText(point.value, point.x + 10, point.y - 5);
-                //     } else if (index == dataset.points.length - 1) {
-                //       ctx.fillText(point.value, point.x - 10, point.y - 5);
-                //     } else {
-                //       ctx.fillText(point.value, point.x, point.y - 5);
-                //     }
-                //   });
-                // });
+                ctx.fillText(8692, 100, 10);
               }
             },
             tooltips: {
