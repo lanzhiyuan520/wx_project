@@ -1,0 +1,104 @@
+<view class='userInfo-wrap' catchtouchmove="{{event}}">
+    <!--头部  -->
+    <view class='header-wrap'>
+        <view class='header-content'>
+            <view class='content'>
+                <view class='user-avatar'>
+                    <image src='http://cdn.ayi800.com/image/png/fuchong_muying%E6%9C%88%E5%AD%90%E6%9C%8D%E5%8A%A15@2x.png'></image>
+                </view>
+                <view class='birth'>
+                    <text class='birth-text family name'>Aaron</text>
+                    <text class='birth-text family'>今天距宝宝出生大约</text>
+                    <text class='birth-days family'>127</text>
+                    <text class='birth-text family'>天</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+<!--运动建议  -->
+    <view class='sports-suggest-wrap' bind:touchstart="pageTouchStartHandler" bind:touchend="pageTouchEndHandler" bindtouchmove='move'>
+        <view class='sports-content'>
+            <view class='sports' hidden='{{!hidden}}'>
+                <view class='play-content'>
+                    <view class='progress_box'> 
+                       <canvas class="progress_bg" canvas-id="canvasProgressbg"> </canvas> 
+                          <canvas disable-scroll="true" class="progress_canvas" canvas-id="canvasProgress"> 
+                              <view class='today-sports'>
+                                <text class='family'>今日运动</text>
+                            </view>
+                            <view class='walk-num'>
+                                <text class='family num'>2518</text>
+                                <text class='walk family'>步</text>
+                            </view>
+                            <view class='suggest'>
+                                <text class="family">建议指标</text>
+                                <text class="family">8000</text>
+                            </view>
+                          </canvas> 
+                        </view> 
+                        <view class='sports-btn'>
+                            <navigator class='navigator-btn family' url="/pages/exercise/exercise" hover-class="none">运动建议</navigator>
+                        </view>
+                </view>
+            </view>
+            <view class='weight' hidden='{{hidden}}'>
+                <view class='play-content'>
+                    <view class='progress_box'> 
+                       <canvas class="progress_bg" canvas-id="canvasProgressbg-weight"> </canvas> 
+                          <canvas disable-scroll="true" class="progress_canvas" canvas-id="canvasProgress-weight">
+                              <view class='today-sports'>
+                                  <text class='family'>当前体重</text>
+                              </view>
+                              <view class='walk-num'>
+                                  <text class='family num'>62kg</text>
+                              </view>
+                               <view class='suggest'>
+                                <navigator class='add-weight' hover-class="none">+</navigator>
+                            </view>
+                          </canvas>  
+                        </view> 
+                <view class='sports-btn'>
+                    <navigator class='navigator-btn family' url="/pages/weightAdvise/weightAdvise" hover-class="none">增长曲线</navigator>
+                </view>
+                </view>
+            </view>
+             <view class='circle'>
+                <view class='first {{hidden?"circle-active":""}}'></view>
+                <view class='last {{!hidden?"circle-active":""}}'></view>
+            </view>
+        </view>
+    </view>
+
+    <!--今日知识  -->
+    <view class='today-knowledge-wrap'>
+        <view class='today-title'>
+            <view class='today-text-content'>
+                <text class='today-text family'>今日知识</text>
+            </view>
+        </view>
+        <view class='today-content-wrap'>
+            <view class='today-content' bindtap='skip_today' wx:for='{{Today_know}}' wx:key="index">
+              <view class='knowledge-body'>
+                <view class='knowledge'>
+                  <view class='knowledge-body-text'>
+                      <view class='knowledge-headline'>
+                          <text class="family">{{item.text}}</text>
+                      </view>
+                      <view class='learn-num'>
+                          <text class="family">{{item.learner_n}}人学习</text>
+                      </view>
+                  </view>
+                  <view class='knowledge-img'>
+                      <image src='{{item.img}}'></image>
+                  </view>
+                </view>
+              </view>
+          </view>
+        </view>
+    </view>
+</view>
+
+
+
+

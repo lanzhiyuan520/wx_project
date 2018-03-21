@@ -1,3 +1,7 @@
+
+.family {
+    font-family: 'PingFang SC';
+}
 .container{
-  padding: 0 40rpx
+  padding: 0 40rpx;
 }
