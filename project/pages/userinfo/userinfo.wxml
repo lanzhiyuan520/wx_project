@@ -38,7 +38,7 @@
                           </canvas> 
                         </view> 
                         <view class='sports-btn'>
-                            <navigator class='navigator-btn family' hover-class="none">运动建议</navigator>
+                            <navigator class='navigator-btn family' url="/pages/exercise/exercise" hover-class="none">运动建议</navigator>
                         </view>
                 </view>
             </view>
@@ -59,7 +59,7 @@
                           </canvas>  
                         </view> 
                 <view class='sports-btn'>
-                    <navigator class='navigator-btn family' hover-class="none">增长曲线</navigator>
+                    <navigator class='navigator-btn family' url="/pages/weightAdvise/weightAdvise" hover-class="none">增长曲线</navigator>
                 </view>
                 </view>
             </view>

@@ -1,13 +1,15 @@
 {
   "pages":[
-    "pages/userinfo/userinfo",
     "pages/index/index",
-    "pages/todayweb/todayweb"
+    "pages/userinfo/userinfo",
+    "pages/todayweb/todayweb",
+    "pages/exercise/exercise",
+    "pages/weightAdvise/weightAdvise"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "有福妈妈",
     "navigationBarTextStyle":"black"
   }
 }

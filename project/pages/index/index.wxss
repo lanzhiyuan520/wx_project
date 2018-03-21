@@ -1,0 +1,43 @@
+.gap-wire{
+  width: 80rpx;
+  height: 8rpx;
+  background: #ff6478;
+  border-radius: 8rpx;
+}
+.title{
+  font-size: 48rpx;
+  line-height: 90rpx;
+  margin-bottom: 66rpx;
+}
+.state-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
+.state-item{
+  width: 315rpx;
+  height: 155rpx;
+  border-radius: 30rpx;
+  text-align: center;
+  line-height: 155rpx;
+  box-shadow: -2px 5px 12px 5px #fff0f2;
+  color: #ff6478;
+  font-size: 40rpx;
+}
+.state-select{
+    background: #ff6478;
+    color: #ffffff
+}
+.mb-90{
+  margin-bottom: 90rpx
+}
+.save-btn{
+  width: 550rpx;
+  height: 90rpx;
+  margin: 80rpx auto 0;
+  background: #ff6478;
+  text-align: center;
+  line-height: 90rpx;
+  color: #ffffff;
+  border-radius: 90rpx;
+}
