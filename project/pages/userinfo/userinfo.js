@@ -248,5 +248,5 @@ Page({
       this.today()
       this.drawProgressbgW();
       this.drawCircleW(this.data.step);
-  }, 
+  }
 })

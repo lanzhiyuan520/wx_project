@@ -108,7 +108,7 @@ Page({
   submitBtn:function(){
       var img = this.data.userInfo.avatarUrl;
       var name = this.data.userInfo.nickName;
-      console.log(img)
+      console.log(this.data.date)
       var data = JSON.stringify({
           status: this.data.state,
           date: this.data.date,        
