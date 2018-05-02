@@ -17,6 +17,7 @@ for (let i = 1; i < 10; i++) {
   decimals.push(i / 10)
 }
 import {encryption} from '../../utils/encryption'
+var rsa = require('../utils/rsa')
 Page({
 
   /**
@@ -169,7 +170,7 @@ Page({
     console.log(this.data.newWeight)
       var data = JSON.stringify({
           height : 0,
-          weight : 55,
+          weight :this.data.newWeight ,
           status : 1
       })
       var encStr = encryption(data)

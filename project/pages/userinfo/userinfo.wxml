@@ -54,7 +54,7 @@
                                   <text class='family num'>62kg</text>
                               </view>
                                <view class='suggest'>
-                                <navigator class='add-weight' url="/pages/weightAdvise/weightAdvise" hover-class="none">+</navigator>
+                                <view class='add-weight' url="/pages/weightAdvise/weightAdvise" hover-class="none" bindtap="show_mask">+</view>
                             </view>
                           </canvas>  
                         </view> 
@@ -99,7 +99,25 @@
             </view>
         </view>
     </scroll-view>
-
+    <!--浮层-->
+    <view class="modal-mask" catchtouchmove="preventD" bindtap='hideMask'  wx:if="{{mask}}">
+        <view class='modal-content'>
+            <view style='font-size:30rpx'>体重</view>
+            <picker-view indicator-style="height: 50px;color: #ff6f88;" class="weight-picker" value="{{value}}" bindchange="bindChange">
+                <picker-view-column>
+                    <view wx:for="{{integers}}" wx:key="*this" style="line-height: 50px;text-align:center;">{{item}}</view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view wx:for="{{decimals}}" wx:key="*this" style="line-height: 50px;text-align:center">{{item}}kg</view>
+                </picker-view-column>
+            </picker-view>
+            <view class='mask-btn'>
+                <view>取消</view>
+                <view class='divide'></view>
+                <view style='color:#ff6478' bindtap="save">保存</view>
+            </view>
+        </view>
+    </view>
 </view>
 
 
