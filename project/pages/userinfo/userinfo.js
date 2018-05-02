@@ -6,6 +6,21 @@ var appid = app.globalData.appId
 var OpenId =  JSON.parse(wx.getStorageSync('openId'))
 var userInfo = JSON.parse(wx.getStorageSync('userInfo'))
 var rsa = require('../utils/rsa')
+const integers = [];
+const decimals = [];
+const height = [];
+
+for (let i = 40; i <= 200; i++) {
+    integers.push(i)
+}
+
+for (let i = 1; i < 10; i++) {
+    decimals.push(i / 10)
+}
+
+for (let i = 100; i < 200; i++) {
+    height.push(i)
+}
 Page({
   /**
    * 页面的初始数据
@@ -20,7 +35,10 @@ Page({
       timer : null,
       userInfo:{},
       mask:false,
-      show :false
+      show :false,
+      decimals: decimals,
+      integers: integers,
+      height:height
   },
   //跳转到今日知识页面
   skip_today : function () {
@@ -88,6 +106,12 @@ Page({
         this.setData({
             mask: true,
             show: true
+        })
+    },
+    hideMask:function(){
+        this.setData({
+            mask: false,
+            show: false
         })
     },
   //运动

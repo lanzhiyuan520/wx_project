@@ -234,7 +234,7 @@
 .modal-content{
   background: #ffffff;
   width: 602rpx;
-  margin: 350rpx auto 0;
+  margin: 175rpx auto 0;
   padding: 45rpx;
   box-sizing: border-box;
   border-radius:5px;
