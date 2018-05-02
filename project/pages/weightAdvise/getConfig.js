@@ -53,7 +53,7 @@ export default function(canvasConfig,labels,data){
                 callbacks: {
                     title:function(tooltipItem){
                         //return tooltipItem[0].xLabel+':'+tooltipItem[0].yLabel;
-                        return tooltipItem[0].yLabel+"步";
+                        return tooltipItem[0].yLabel+"kg";
                     },
                     label: function(tooltipItem) {
                         console.log(tooltipItem)
@@ -88,10 +88,9 @@ export default function(canvasConfig,labels,data){
                         // hideY:false,//这是自定义参数 业务需要添加隐藏y轴
                     },
                     ticks: {
-                        maxTicksLimit: 4,
+                        maxTicksLimit: 6,
                         fontColor:'#9E9E9E',
                         fontSize:8,
-                        beginAtZero:true,
                         display:false
                     },
                     scaleLabel: {

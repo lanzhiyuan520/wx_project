@@ -121,7 +121,7 @@
 .advise-box{
   padding: 25rpx 55rpx;
   box-sizing: border-box;
-  margin: 0 auto;
+  margin: 0 auto 90rpx;
 }
 .mb-30{
   margin-bottom: 30rpx;
@@ -139,7 +139,6 @@
 .service-btn{
   width: 220rpx;
   height: 70rpx;
-  margin: 60rpx auto 0;
   border-radius: 70rpx;
   border: 1px solid #ff6478;
   text-align: center;
@@ -147,6 +146,10 @@
   background: transparent;
   color: #ff6478;
   font-size: 30rpx;
+  position: fixed;
+  bottom: 30rpx;
+  left: 50%;
+  margin-left: -110rpx;
 }
 .mb-80{
   margin-bottom: 80rpx

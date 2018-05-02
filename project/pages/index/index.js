@@ -33,8 +33,8 @@ var OpenId =  JSON.parse(wx.getStorageSync('openId'))
 var userInfo =  JSON.parse(wx.getStorageSync('userInfo'))
 var MD5 = require('../utils/md5.js')
 var rsa = require('../utils/rsa')
+var nowDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" +date.getDate();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -46,7 +46,7 @@ Page({
     days: days,
     userInfo:{},
     value: [yearVal, monthVal, dayVal],
-    date: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+    date: nowDate
   },
   onLoad: function () {
     try {

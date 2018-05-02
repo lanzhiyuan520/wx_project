@@ -76,7 +76,7 @@ Page({
     app.deviceInfo.then(function (deviceInfo) {
       console.log('设备信息', deviceInfo)
       let labels = ["11月01日", "11月02日", "11月03日", "11月04日", "11月05日", "11月06日", "11月07日"]
-      let data = [1000, 8000, 7583, 9234, 12345, 13456, 16789]
+      let data = [45, 48, 50, 51, 51, 52, 53]
       let width = Math.floor(deviceInfo.windowWidth * 0.8)//canvas宽度
       let height = Math.floor(width / 1.6)//这个项目canvas的width/height为1.6
       let canvasId = 'myCanvas'
