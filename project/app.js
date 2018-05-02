@@ -1,33 +1,12 @@
 //app.js
 App({
   onLaunch: function () {
-<<<<<<< HEAD
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.log(res.code)
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-=======
     var that = this
     var oppenId = wx.getStorageSync('openId')
     var userInfo = wx.getStorageSync('userInfo')
     if (!oppenId || !userInfo){
         // 登录
         wx.login({
->>>>>>> 95345c4d8ce3a8786a78ce3017ac6b9ee146a1fd
             success: res => {
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
                 wx.request({

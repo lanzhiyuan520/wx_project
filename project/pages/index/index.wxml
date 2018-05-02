@@ -1,7 +1,7 @@
 <view class='container'>
   <view class='mb-90'>
     <view class='gap-wire'></view>
-    <view class='title'>有福妈妈</view>
+    <view class='title'>状态选择</view>
     <view class='state-box'>
         <view class="state-item {{pregnancy?'state-select':''}}" bindtap='stateChange'>怀孕中</view>
         <view class="state-item {{pregnancy?'':'state-select'}}" bindtap='stateChange'>已出生</view>

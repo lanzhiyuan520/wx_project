@@ -37,17 +37,43 @@ Page({
    */
   data: {
     pregnancy:true,
+    state:1,
     years: years,
     months: months,
     days: days,
+    userInfo:{},
     value: [yearVal, monthVal, dayVal],
     date: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+  },
+  onLoad: function () {
+    try {
+      var value = wx.getStorageSync('userInfo')
+      if (value) {
+        // Do something with return value
+        value = JSON.parse(value)
+        this.setData({
+          userInfo:value
+        })
+      }
+    } catch (e) {
+      // Do something when catch error
+      console.log(e)
+    }
   },
   stateChange:function(){
     var that=this;
     this.setData({
       pregnancy: !that.data.pregnancy
     })
+    if (this.data.pregnancy){
+      this.setData({
+        state:1
+      })
+    }else{
+      this.setData({
+        state: 2
+      })
+    }
   },
   bindChange: function (e) {
     const val = e.detail.value
@@ -77,39 +103,41 @@ Page({
     })
   },
   submitBtn:function(){
-      var data = JSON.stringify({
-          status : 2,
-          date : '2018-01-01',
-          head_img : '1111',
-          nickname : 'test',
+      var img = this.data.userInfo.avatarUrl;
+      var name = this.data.userInfo.nickName;
+      var newArr = [];
+      console.log(img)
+      var data1 = JSON.stringify({
+          status: this.data.state,
+          date: this.data.date,        
+          nickname: name,
           b_user_id : OpenId.openid
       })
-      // var encrypt_rsa = new RSA.RSAKey();
-      // encrypt_rsa = RSA.KEYUTIL.getKey(key);
-      // encStr = encrypt_rsa.encrypt(data)
-      // encStr = RSA.hex2b64(encStr);
-      // console.log("加密结果：" + encStr)
-        console.log(OpenId)
-      var encStr = encryption(data)
+      var encStr1 = encryption(data1)
+      newArr.push(encStr1)
+      var data2 = JSON.stringify({
+        head_img: '5555'
+      })
+      console.log(img.length)
+      console.log(data2.length)
+      var encStr2 = encryption(data2)
+      newArr.push(encStr2)
+      console.log(newArr)
         wx.request({
             url:'http://dev.weixin.api.com:9090/api/users',
             method : 'POST',
-            data:{data:encStr},
+            data: { data: newArr},
             success : function(data){
                 console.log(data)
             },
             fail:function(e){
-                console.log(e)
+              console.log(e)
             }
     })
     wx.navigateTo({
       // url: '../exercise/exercise',
       url: '../userinfo/userinfo',
     })
-  },
-    onLoad:function () {
-        //console.log(app.globalData)
-    }
+  }
 })
-var key ='-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3//sR2tXw0wrC2DySx8vNGlqt3Y7ldU9+LBLI6e1KS5lfc5jlTGF7KBTSkCHBM3ouEHWqp1ZJ85iJe59aF5gIB2klBd6h4wrbbHA2XE1sq21ykja/Gqx7/IRia3zQfxGv/qEkyGOx+XALVoOlZqDwh76o2n1vP1D+tD3amHsK7QIDAQAB-----END PUBLIC KEY-----'
 
