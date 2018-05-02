@@ -30,6 +30,9 @@ for (let i = 1; i <= 31; i++) {
 import {encryption} from '../../utils/encryption'
 const app = getApp()
 var OpenId =  JSON.parse(wx.getStorageSync('openId'))
+var userInfo =  JSON.parse(wx.getStorageSync('userInfo'))
+var MD5 = require('../utils/md5.js')
+var rsa = require('../utils/rsa')
 Page({
 
   /**
@@ -80,17 +83,12 @@ Page({
       var data = JSON.stringify({
           status : 2,
           date : '2018-01-01',
-          head_img : '1111',
+          head_img : 'http://wx.qlogo.cn/mmopen/vHhB1TgjaGialia95hlZdlORG1rNfbHsQcr35T83eboAGosbKZ5XJLibMGJiaqHJI5A9eEK3EKDzUQGMaA8TV56Gb9ibrcKom0gLJ/0',
           nickname : 'test',
           b_user_id : OpenId.openid
       })
-      // var encrypt_rsa = new RSA.RSAKey();
-      // encrypt_rsa = RSA.KEYUTIL.getKey(key);
-      // encStr = encrypt_rsa.encrypt(data)
-      // encStr = RSA.hex2b64(encStr);
-      // console.log("加密结果：" + encStr)
-        console.log(OpenId)
-      var encStr = encryption(data)
+      var encStr = rsa.sign(data)
+
         wx.request({
             url:'http://dev.weixin.api.com:9090/api/users',
             method : 'POST',
