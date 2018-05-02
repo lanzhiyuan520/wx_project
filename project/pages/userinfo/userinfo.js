@@ -18,7 +18,9 @@ Page({
       Today_know: [{ img: 'http://cdn.ayi800.com/image/png/xiaochengxu_wenzhangwenzhang_07.png', text: '孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好', learner_n: 1966 },{ img: 'http://cdn.ayi800.com/image/png/xiaochengxu_wenzhangwenzhang_07.png', text: '孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好', learner_n: 1966 },{ img: 'http://cdn.ayi800.com/image/png/xiaochengxu_wenzhangwenzhang_07.png', text: '孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好', learner_n: 1966 },{ img: 'http://cdn.ayi800.com/image/png/xiaochengxu_wenzhangwenzhang_07.png', text: '孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好', learner_n: 1966 }, { img: 'http://cdn.ayi800.com/image/png/xiaochengxu_wenzhangwenzhang_07.png', text: '孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好', learner_n: 1966 }],
       count : 0,
       timer : null,
-      userInfo:{}
+      userInfo:{},
+      mask:false,
+      show :false
   },
   //跳转到今日知识页面
   skip_today : function () {
@@ -82,6 +84,12 @@ Page({
   preventTouchMove : function () {
 
   },
+    show_mask:function () {
+        this.setData({
+            mask: true,
+            show: true
+        })
+    },
   //运动
   drawProgressbg: function () {
     // 使用 wx.createContext 获取绘图上下文 context
@@ -146,111 +154,115 @@ Page({
   },
     today:function(){
         var url = `http://dev.weixin.api.com:9090/api/articles?status=2&page=1`
-        console.log(url)
         wx.request({
             url:url,
             success:function(data){
               wx.request({
                   url : `http://dev.weixin.api.com:9090/api/articles/203`,
                   success:function(data){
-                      console.log(data)
+                      //console.log(data)
                   }
               })
+            }
+        })
+    },
+    run_sports:function(){
+      var that = this
+        wx.getWeRunData({
+            success(res) {
+                var data = JSON.stringify({
+                    appid,
+                    sessionKey : OpenId.session_key,
+                    encryptedData:res.encryptedData,
+                    iv : res.iv
+                })
+                var encStr = rsa.sign(data)
+                wx.request({
+                    url : `http://dev.weixin.api.com:9090/api/run/1`,
+                    method:'POST',
+                    data:{data:encStr},
+                    success:function(res){
+                        var addedValue = res.data.data.addedValue
+                        var date = new Date().getTime()
+                        addedValue.time = date
+                        if (res.data.data.result){
+                            wx.setStorageSync('run_step',res.data.data.addedValue)
+                            that.setData({
+                                proposal_step:addedValue.proposal,
+                                step : addedValue.num
+                            })
+                            that.drawProgressbg();
+                            that.drawCircle(that.data.step);
+                        }else{
+                            that.drawProgressbg();
+                        }
+                    },
+                    fail:function(){
+                        that.drawProgressbg();
+                    }
+                })
+            },
+            fail:function(){
+                wx.showModal({
+                    title: '提示',
+                    content: '您拒绝了授权,将获取不到运动步数，点击确定重新获取',
+                    success: function (res) {
+                        if (res.confirm) {
+                            //如果用户点击确定则引导打开授权
+                            wx.openSetting({
+                                success : function (res) {
+                                    if (!res.authSetting["scope.werun"]){
+                                        //如果用户进入用户授权页面却没有授权，则再次弹出提示框
+                                        that.run_step()
+                                    }else{
+                                        //如果用户授权了则获取用户信息
+                                        that.run_step()
+                                    }
+
+                                }
+                            })
+                        } else if (res.cancel) {
+                            //如果用户点击取消，则再次弹出提示框直到用户确定授权为止
+                            that.run_step()
+                            console.log('用户点击取消')
+                        }
+                    }
+
+                })
             }
         })
     },
     run_step:function(){
         var that = this
         var p_date = new Date()
-        var run_step = JSON.parse(wx.getStorageSync('run_step'))
+        var run_step = wx.getStorageSync('run_step')
         var time = run_step.time
         var minutes = Math.floor((p_date-time)/(60*1000))
-        console.log(minutes )
-        if (minutes >= 10){
-            console.log('大于十分钟')
-            wx.getWeRunData({
-                success(res) {
-                    var data = JSON.stringify({
-                        appid,
-                        sessionKey : OpenId.session_key,
-                        encryptedData:res.encryptedData,
-                        iv : res.iv
-                    })
-                    var encStr = rsa.sign(data)
-                    wx.request({
-                        url : `http://dev.weixin.api.com:9090/api/run/1`,
-                        method:'POST',
-                        data:{data:encStr},
-                        success:function(res){
-                            console.log(res)
-                            var addedValue = res.data.data.addedValue
-                            var date = new Date().getTime()
-                            addedValue.time = date
-                            if (res.data.data.result){
-                                wx.setStorageSync('run_step',JSON.stringify(res.data.data.addedValue))
-                                that.setData({
-                                    proposal_step:addedValue.proposal,
-                                    step : addedValue.num
-                                })
-                                that.drawProgressbg();
-                                that.drawCircle(that.data.step);
-                            }else{
-                                that.drawProgressbg();
-                            }
-                        },
-                        fail:function(){
-                            that.drawProgressbg();
-                        }
-                    })
-                },
-                fail:function(){
-                    wx.showModal({
-                        title: '提示',
-                        content: '您拒绝了授权,将获取不到运动步数，点击确定重新获取',
-                        success: function (res) {
-                            if (res.confirm) {
-                                //如果用户点击确定则引导打开授权
-                                wx.openSetting({
-                                    success : function (res) {
-                                        if (!res.authSetting["scope.werun"]){
-                                            //如果用户进入用户授权页面却没有授权，则再次弹出提示框
-                                            that.run_step()
-                                        }else{
-                                            //如果用户授权了则获取用户信息
-                                            that.run_step()
-                                        }
-
-                                    }
-                                })
-                            } else if (res.cancel) {
-                                //如果用户点击取消，则再次弹出提示框直到用户确定授权为止
-                                that.run_step()
-                                console.log('用户点击取消')
-                            }
-                        }
-
-                    })
-                }
-            })
+        console.log(minutes)
+        if (!run_step){
+            that.run_sports()
         }else{
-            that.setData({
-                proposal_step : run_step.proposal,
-                step : run_step.num
-            })
-            console.log('小于十分钟')
-            that.drawProgressbg();
-            that.drawCircle(that.data.step);
+            if (minutes >= 10){
+                console.log('大于十分钟')
+                that.run_sports()
+            }else{
+                that.setData({
+                    proposal_step : run_step.proposal,
+                    step : run_step.num
+                })
+                console.log('小于十分钟')
+                that.drawProgressbg();
+                that.drawCircle(that.data.step);
+            }
         }
-
     },
   onLoad: function (options) {
       this.setData({
           userInfo
       })
-      console.log(userInfo)
       this.run_step()
       this.today()
       this.drawProgressbgW();
       this.drawCircleW(this.data.step);
-  }, 
+  }
 })

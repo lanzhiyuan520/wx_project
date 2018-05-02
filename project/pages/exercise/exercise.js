@@ -7,6 +7,7 @@ const date = new Date();
 var month = date.getMonth();
 const day = date.getDate();
 var app = getApp()
+var rsa = require('../utils/rsa')
 Page({
 
   /**
@@ -32,11 +33,19 @@ Page({
       msg:"对于准妈妈来说，蛋白质的供给不仅要充足还要优质，每天在饮食中应摄取蛋白质60-80克，其中应包含来自于多种食物如鱼、肉、蛋、奶、豆制品等的优质蛋白质以保证受精卵的正常发育。",
       dates: [1488481383, 145510091, 1495296000]
   },
-
+    run:function(){
+        wx.request({
+            url:`http://dev.weixin.api.com:9090/api/run/1`,
+            success:function(res){
+                console.log(res)
+            }
+        })
+    },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
+    this.run()
     for (var i = 0; i < 3;i++){
       var fff = util.formatTime(this.data.dates[i], 'M月D日')
     }

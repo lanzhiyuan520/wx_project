@@ -37,6 +37,7 @@ Page({
     decimals: decimals,
     integers: integers,
     value: [1, 1, 1],
+    newWeight:41.2,
     msg: "对于准妈妈来说，蛋白质的供给不仅要充足还要优质，每天在饮食中应摄取蛋白质60-80克，其中应包含来自于多种食物如鱼、肉、蛋、奶、豆制品等的优质蛋白质以保证受精卵的正常发育。",
     dates: [1488481383, 145510091, 1495296000]
   },
@@ -156,23 +157,30 @@ Page({
   },
   bindChange: function (e) {
     const val = e.detail.value
-    console.log(e)
+    console.log(55,val)
+    var bigNum = integers[val[0]];
+    var smallNum = decimals[val[1]];
+    console.log(bigNum, smallNum)
+    var weight = bigNum + smallNum
+    this.setData({
+      newWeight: weight
+    })
   },
-    save:function(){
-        var data = JSON.stringify({
-            height : 0,
-            weight : 54,
-            status : 1
-        })
-        var encStr = rsa.sign(data)
-
-        wx.request({
-            url : 'http://dev.weixin.api.com:9090/api/users/1',
-            method:'PUT',
-            data:{data:encStr},
-            success:function(res){
-              console.log(res)
-            }
-        })
-    }
+  save:function(){
+    console.log(this.data.newWeight)
+      var data = JSON.stringify({
+          height : 0,
+          weight :this.data.newWeight ,
+          status : 1
+      })
+      var encStr = encryption(data)
+      wx.request({
+          url : 'http://dev.weixin.api.com:9090/api/users/1',
+          method:'PUT',
+          data:{data:encStr},
+          success:function(res){
+            console.log(res)
+          }
+      })
+  }
 })

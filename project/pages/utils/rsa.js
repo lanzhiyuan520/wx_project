@@ -14505,6 +14505,6 @@ function sign(text) {
   //encStr = hex2b64(encStr);//不分段加密需要base64一下
   var encStr = encrypt_rsa.encryptLong(text);//分段加密
   console.log(text)
-  console.log("加密结果：" + encStr)
+  // console.log("加密结果：" + encStr)
   return encStr;
 }
