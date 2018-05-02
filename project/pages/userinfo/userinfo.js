@@ -5,6 +5,7 @@ import {encryption} from '../../utils/encryption'
 var appid = app.globalData.appId
 var OpenId =  JSON.parse(wx.getStorageSync('openId'))
 var userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+var rsa = require('../utils/rsa')
 Page({
   /**
    * 页面的初始数据
@@ -144,7 +145,7 @@ Page({
       
   },
     today:function(){
-        var url = `http://dev.weixin.api.com:9090/api/articles/1/2/1`
+        var url = `http://dev.weixin.api.com:9090/api/articles?status=2&page=1`
         console.log(url)
         wx.request({
             url:url,
@@ -152,33 +153,36 @@ Page({
               wx.request({
                   url : `http://dev.weixin.api.com:9090/api/articles/203`,
                   success:function(data){
-
+                      console.log(data)
                   }
               })
             }
         })
     },
     run_step:function(){
-      var that = this
+        var that = this
         var p_date = new Date()
         var run_step = JSON.parse(wx.getStorageSync('run_step'))
         var time = run_step.time
         var minutes = Math.floor((p_date-time)/(60*1000))
-        console.log(minutes)
+        console.log(minutes )
         if (minutes >= 10){
+            console.log('大于十分钟')
             wx.getWeRunData({
                 success(res) {
-                    var data = {
+                    var data = JSON.stringify({
                         appid,
                         sessionKey : OpenId.session_key,
                         encryptedData:res.encryptedData,
                         iv : res.iv
-                    }
+                    })
+                    var encStr = rsa.sign(data)
                     wx.request({
                         url : `http://dev.weixin.api.com:9090/api/run/1`,
                         method:'POST',
-                        data:data,
+                        data:{data:encStr},
                         success:function(res){
+                            console.log(res)
                             var addedValue = res.data.data.addedValue
                             var date = new Date().getTime()
                             addedValue.time = date
@@ -233,7 +237,7 @@ Page({
                 proposal_step : run_step.proposal,
                 step : run_step.num
             })
-            console.log('不到')
+            console.log('小于十分钟')
             that.drawProgressbg();
             that.drawCircle(that.data.step);
         }

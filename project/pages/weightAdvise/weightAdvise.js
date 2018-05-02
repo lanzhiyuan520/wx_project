@@ -17,6 +17,7 @@ for (let i = 1; i < 10; i++) {
   decimals.push(i / 10)
 }
 import {encryption} from '../../utils/encryption'
+var rsa = require('../utils/rsa')
 Page({
 
   /**
@@ -155,7 +156,7 @@ Page({
   },
   bindChange: function (e) {
     const val = e.detail.value
-    console.log(val)
+    console.log(e)
   },
     save:function(){
         var data = JSON.stringify({
@@ -163,7 +164,8 @@ Page({
             weight : 54,
             status : 1
         })
-        var encStr = encryption(data)
+        var encStr = rsa.sign(data)
+
         wx.request({
             url : 'http://dev.weixin.api.com:9090/api/users/1',
             method:'PUT',
