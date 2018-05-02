@@ -30,6 +30,9 @@ for (let i = 1; i <= 31; i++) {
 import {encryption} from '../../utils/encryption'
 const app = getApp()
 var OpenId =  JSON.parse(wx.getStorageSync('openId'))
+var userInfo =  JSON.parse(wx.getStorageSync('userInfo'))
+var MD5 = require('../utils/md5.js')
+var rsa = require('../utils/rsa')
 Page({
 
   /**
@@ -105,30 +108,21 @@ Page({
   submitBtn:function(){
       var img = this.data.userInfo.avatarUrl;
       var name = this.data.userInfo.nickName;
-      var newArr = [];
       console.log(img)
-      var data1 = JSON.stringify({
+      var data = JSON.stringify({
           status: this.data.state,
           date: this.data.date,        
           nickname: name,
+          head_img: img,
           b_user_id : OpenId.openid
       })
-      var encStr1 = encryption(data1)
-      newArr.push(encStr1)
-      var data2 = JSON.stringify({
-        head_img: '5555'
-      })
-      console.log(img.length)
-      console.log(data2.length)
-      var encStr2 = encryption(data2)
-      newArr.push(encStr2)
-      console.log(newArr)
+      var encStr = rsa.sign(data)
         wx.request({
             url:'http://dev.weixin.api.com:9090/api/users',
             method : 'POST',
-            data: { data: newArr},
+            data: { data: encStr},
             success : function(data){
-                console.log(data)
+                console.log(55,data)
             },
             fail:function(e){
               console.log(e)
