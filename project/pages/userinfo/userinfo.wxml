@@ -28,12 +28,12 @@
                                 <text class='family'>今日运动</text>
                             </view>
                             <view class='walk-num'>
-                                <text class='family num'>2518</text>
+                                <text class='family num'>{{n}}</text>
                                 <text class='walk family'>步</text>
                             </view>
                             <view class='suggest'>
                                 <text class="family">建议指标</text>
-                                <text class="family">8000</text>
+                                <text class="family">{{step}}</text>
                             </view>
                           </canvas> 
                         </view> 
@@ -54,7 +54,7 @@
                                   <text class='family num'>62kg</text>
                               </view>
                                <view class='suggest'>
-                                <navigator class='add-weight' hover-class="none">+</navigator>
+                                <navigator class='add-weight' url="/pages/weightAdvise/weightAdvise" hover-class="none">+</navigator>
                             </view>
                           </canvas>  
                         </view> 
@@ -71,32 +71,35 @@
     </view>
 
     <!--今日知识  -->
-    <view class='today-knowledge-wrap'>
-        <view class='today-title'>
-            <view class='today-text-content'>
-                <text class='today-text family'>今日知识</text>
+    <scroll-view bindscrolltolower="loadMore">
+        <view class='today-knowledge-wrap'>
+            <view class='today-title'>
+                <view class='today-text-content'>
+                    <text class='today-text family'>今日知识</text>
+                </view>
+            </view>
+            <view class='today-content-wrap'>
+                <view class='today-content' bindtap='skip_today' wx:for='{{Today_know}}' wx:key="index">
+                    <view class='knowledge-body'>
+                        <view class='knowledge'>
+                            <view class='knowledge-body-text'>
+                                <view class='knowledge-headline'>
+                                    <text class="family">{{item.text}}</text>
+                                </view>
+                                <view class='learn-num'>
+                                    <text class="family">{{item.learner_n}}人学习</text>
+                                </view>
+                            </view>
+                            <view class='knowledge-img'>
+                                <image src='{{item.img}}'></image>
+                            </view>
+                        </view>
+                    </view>
+                </view>
             </view>
         </view>
-        <view class='today-content-wrap'>
-            <view class='today-content' bindtap='skip_today' wx:for='{{Today_know}}' wx:key="index">
-              <view class='knowledge-body'>
-                <view class='knowledge'>
-                  <view class='knowledge-body-text'>
-                      <view class='knowledge-headline'>
-                          <text class="family">{{item.text}}</text>
-                      </view>
-                      <view class='learn-num'>
-                          <text class="family">{{item.learner_n}}人学习</text>
-                      </view>
-                  </view>
-                  <view class='knowledge-img'>
-                      <image src='{{item.img}}'></image>
-                  </view>
-                </view>
-              </view>
-          </view>
-        </view>
-    </view>
+    </scroll-view>
+
 </view>
 
 
