@@ -153,6 +153,7 @@
 .knowledge-img image{
   width: 203rpx;
   height: 147rpx;
+  border-radius: 5rpx;
 }
 .learn-num text{
   font-size: 12px;
@@ -184,7 +185,7 @@
 }
 .progress_canvas{ 
  width:158px;
- height: 158px; 
+ height: 158px;
 } 
 .sports,.weight{
   width: 100%;
@@ -210,7 +211,3 @@
 }
 
 
-.test{
-  width: 100%;
-  height: 100px;
-}

@@ -27,6 +27,9 @@ for (let i = 1; i <= 31; i++) {
     dayVal = i-1
   }
 }
+import {encryption} from '../../utils/encryption'
+const app = getApp()
+var OpenId =  JSON.parse(wx.getStorageSync('openId'))
 Page({
 
   /**
@@ -74,11 +77,39 @@ Page({
     })
   },
   submitBtn:function(){
-    console.log(this.data.date)
+      var data = JSON.stringify({
+          status : 2,
+          date : '2018-01-01',
+          head_img : '1111',
+          nickname : 'test',
+          b_user_id : OpenId.openid
+      })
+      // var encrypt_rsa = new RSA.RSAKey();
+      // encrypt_rsa = RSA.KEYUTIL.getKey(key);
+      // encStr = encrypt_rsa.encrypt(data)
+      // encStr = RSA.hex2b64(encStr);
+      // console.log("加密结果：" + encStr)
+        console.log(OpenId)
+      var encStr = encryption(data)
+        wx.request({
+            url:'http://dev.weixin.api.com:9090/api/users',
+            method : 'POST',
+            data:{data:encStr},
+            success : function(data){
+                console.log(data)
+            },
+            fail:function(e){
+                console.log(e)
+            }
+    })
     wx.navigateTo({
       // url: '../exercise/exercise',
       url: '../userinfo/userinfo',
     })
-  }
+  },
+    onLoad:function () {
+        //console.log(app.globalData)
+    }
 })
+var key ='-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3//sR2tXw0wrC2DySx8vNGlqt3Y7ldU9+LBLI6e1KS5lfc5jlTGF7KBTSkCHBM3ouEHWqp1ZJ85iJe59aF5gIB2klBd6h4wrbbHA2XE1sq21ykja/Gqx7/IRia3zQfxGv/qEkyGOx+XALVoOlZqDwh76o2n1vP1D+tD3amHsK7QIDAQAB-----END PUBLIC KEY-----'
 

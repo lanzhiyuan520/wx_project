@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+<<<<<<< HEAD
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -19,22 +20,75 @@ App({
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
+=======
+    var that = this
+    var oppenId = wx.getStorageSync('openId')
+    var userInfo = wx.getStorageSync('userInfo')
+    if (!oppenId || !userInfo){
+        // 登录
+        wx.login({
+>>>>>>> 95345c4d8ce3a8786a78ce3017ac6b9ee146a1fd
             success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
+                // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                wx.request({
+                    url:`https://api.weixin.qq.com/sns/jscode2session?appid=${this.globalData.appId}&secret=${this.globalData.AppSecret}&js_code=${res.code}&grant_type=authorization_code`,
+                    success:function (res) {
+                        that.globalData.openId = res.data.openid
+                        that.globalData.session_key = res.data.session_key
+                        //将openid和session_key存储
+                        wx.setStorageSync('openId',JSON.stringify(res.data))
+                        that.user()
+                    }
+                })
             }
-          })
-        }
-      }
-    })
+        })
+    }else{
+        console.log('您已经获取到openid了')
+    }
+
     this.deviceInfo = this.promise.getDeviceInfo();
   },
+    user:function(){
+      var that = this
+        // 获取用户信息
+        wx.getUserInfo({
+            lang: 'zh_CN',
+            success: res => {
+                that.globalData.userInfo = res.userInfo
+                wx.setStorageSync('userInfo',JSON.stringify(res.userInfo))
+                console.log('获取用户信息成功')
+            },
+            //如果授权失败则提示用户再次授权
+            fail:function(){
+                wx.showModal({
+                    title: '提示',
+                    content: '您拒绝了授权,将获取不到个人信息，点击确定重新获取',
+                    success: function (res) {
+                        if (res.confirm) {
+                            //如果用户点击确定则引导打开授权
+                            wx.openSetting({
+                                success : function (res) {
+                                    if (!res.authSetting["scope.userInfo"]){
+                                        //如果用户进入用户授权页面却没有授权，则再次弹出提示框
+                                        that.user()
+                                    }else{
+                                        //如果用户授权了则获取用户信息
+                                        that.user()
+                                    }
+
+                                }
+                            })
+                        } else if (res.cancel) {
+                            //如果用户点击取消，则再次弹出提示框直到用户确定授权为止
+                            that.user()
+                            console.log('用户点击取消')
+                        }
+                    }
+
+                })
+            }
+        })
+    },
   promise: {
     getDeviceInfo: function () {//获取设备信息
       let promise = new Promise((resolve, reject) => {

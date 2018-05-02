@@ -16,7 +16,7 @@ for (let i = 40; i <= 200; i++) {
 for (let i = 1; i < 10; i++) {
   decimals.push(i / 10)
 }
-
+import {encryption} from '../../utils/encryption'
 Page({
 
   /**
@@ -156,5 +156,21 @@ Page({
   bindChange: function (e) {
     const val = e.detail.value
     console.log(val)
-  }
+  },
+    save:function(){
+        var data = JSON.stringify({
+            height : 0,
+            weight : 54,
+            status : 1
+        })
+        var encStr = encryption(data)
+        wx.request({
+            url : 'http://dev.weixin.api.com:9090/api/users/1',
+            method:'PUT',
+            data:{data:encStr},
+            success:function(res){
+              console.log(res)
+            }
+        })
+    }
 })
