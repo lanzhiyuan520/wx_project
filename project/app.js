@@ -34,7 +34,7 @@ App({
             lang: 'zh_CN',
             success: res => {
                 that.globalData.userInfo = res.userInfo
-                wx.setStorageSync('userInfo',res.userInfo)
+                wx.setStorageSync('userInfo',JSON.stringify(res.userInfo))
                 console.log('获取用户信息成功')
             },
             //如果授权失败则提示用户再次授权
