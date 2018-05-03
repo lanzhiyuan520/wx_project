@@ -15,7 +15,7 @@ App({
                         that.globalData.openId = res.data.openid
                         that.globalData.session_key = res.data.session_key
                         //将openid和session_key存储
-                        wx.setStorageSync('openId',JSON.stringify(res.data))
+                        wx.setStorageSync('openId',res.data)
                         that.user()
                     }
                 })
