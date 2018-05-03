@@ -206,7 +206,7 @@ Page({
           weight :this.data.newWeight ,
           status : 1
       })
-      var encStr = encryption(data)
+      var encStr = rsa.sign(data)
       wx.request({
         url: `${URL}users/`+that.data.userId,
           method:'PUT',

@@ -237,6 +237,7 @@ Page({
         var that = this
         wx.showLoading({
             title: '加载中',
+            mask:true,
         })
         that.setData({
             page : that.data.page+1
@@ -244,7 +245,6 @@ Page({
         wx.request({
             url:`${URL}articles?status=2&page=${that.data.page}`,
             success:function(res){
-                console.log(res)
                 if (res.data.data.result){
                     wx.hideLoading()
                     var Today_know = that.data.Today_know
@@ -272,26 +272,18 @@ Page({
         wx.request({
             url:url,
             success:function(res){ //Today_know
-                console.log(res) //addedValue
                 if (res.data.data.result){
                     var Today_know = res.data.data.addedValue
                     that.setData({
                         Today_know
                     })
                 }
-              // wx.request({
-              //     //url : `${URL}articles/203`,
-              //     success:function(data){
-              //         console.log(data)
-              //     }
-              // })
             }
         })
     },
     run_sports:function(){
       var that = this
         wx.getWeRunData({
-
             success(res) {
                 var data = JSON.stringify({
                     appid,
@@ -299,14 +291,15 @@ Page({
                     encryptedData:res.encryptedData,
                     iv : res.iv
                 })
-                console.log('222',data)
                 var encStr = rsa.sign(data)
+                console.log('请求运动的数据',data)
+                console.log(encStr)
                 wx.request({
                     url : `${URL}run/1`,
                     method:'POST',
                     data:{data:encStr},
                     success:function(res){
-                        console.log(999,res)
+                        console.log('请求回来的运动数据',res)
                         var addedValue = res.data.data.addedValue
                         var date = new Date().getTime()
                         addedValue.time = date
@@ -318,12 +311,15 @@ Page({
                             })
                             that.drawProgressbg();
                             that.drawCircle(that.data.step);
+                            wx.hideLoading()
                         }else{
                             that.drawProgressbg();
+                            wx.hideLoading()
                         }
                     },
                     fail:function(){
                         that.drawProgressbg();
+                        wx.hideLoading()
                     }
                 })
             },
@@ -378,15 +374,21 @@ Page({
                 console.log('小于十分钟')
                 that.drawProgressbg();
                 that.drawCircle(that.data.step);
+                wx.hideLoading()
             }
         }
     },
   onLoad: function (options) {
+      wx.showLoading({
+          title: '加载中',
+          mask:true,
+      })
        OpenId =  wx.getStorageSync('openId')
        userInfo = JSON.parse(wx.getStorageSync('userInfo'))
-      console.log(userInfo)
+      console.log('用户信息',userInfo)
       var stateInfo = wx.getStorageSync('stateInfo')
-      console.log(stateInfo)
+      console.log('用户状态',stateInfo)
+      console.log('OpenId',OpenId)
       this.setData({
           userInfo,
           weight_val:stateInfo.weight
