@@ -35,10 +35,18 @@ Page({
       dates: [1488481383, 145510091, 1495296000]
   },
     run:function(){
+      var that=this;
         wx.request({
             url:`${URL}run/1`,
             success:function(res){
-                console.log(res)
+                var addedValue = res.data.data.addedValue;
+                var step = [];
+                var date = [];
+                for (var i = 0; i < addedValue.length;i++ ){
+                  step.push(addedValue[i].step)
+                  date.push(addedValue[i].created_at.substring(5,10))
+                }
+                that.lineChart(date, step)
             }
         })
     },
@@ -47,30 +55,6 @@ Page({
    */
   onLoad: function () {
     this.run()
-    for (var i = 0; i < 3;i++){
-      var fff = util.formatTime(this.data.dates[i], 'M月D日')
-    }
-    var that = this;
-    wx.login({
-      success: function (res) {
-        that.setData({
-          code: res.code
-        });
-        if (res.code) {
-          wx.request({
-            url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + app.globalData.appId + '&secret=' + app.globalData.AppSecret + '&js_code=' + res.code + '&grant_type=authorization_code',
-            header: {
-              'content-type': 'json'
-            },
-            success: function (res) {
-              console.log('sss',res)
-              var session_key = res.data.session_key;
-              that.getData(app.globalData.appId, session_key);
-            }
-          })
-        }
-      }
-    }) 
   },
   onShow: function () {
     var step = this.data.todayStep;
@@ -139,82 +123,6 @@ Page({
     }
     this.setData({
       arrowAnimation: this.animation.export()
-    })
-  },
-  getData: function (appid, session_key) {
-    let that = this
-    wx.getSetting({
-      success: function (res) {
-        wx.getWeRunData({
-          success: function (res) {
-            var pc = new RdWXBizDataCrypt(appid, session_key)
-            var data = pc.decryptData(res.encryptedData, res.iv)
-            var categories = [];
-            var step = [];
-            var date = new Date();
-            var day = date.getDate();
-            var month = date.getMonth();
-            var year = date.getFullYear();
-            var days = 0;
-            for (var i = 0; i < 31; i++) {
-              step.push(data.stepInfoList[i].step);
-            }
-            if (day >= 7) {
-              var arr = [];
-              for (var i = 5; i >= 0; i--) {
-                arr.push(day - i + "日")
-              }
-              var categories = [ (day - 6) + "日", ...arr]
-            } else {
-              if (month == 2) {
-                if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
-                  days = 29;
-                } else {
-                  days = 28;
-                }
-              } else {
-                if ((month == 4) || (month == 6) || (month == 9) || (month == 11)) {
-                  days = 30;
-                } else {
-                  days = 31;
-                }
-              }
-              var arr = [];
-              var newArr = [];
-              for (var i = day - 1; i >= 0; i--) {
-                arr.push(day - i + "日")
-              }
-              for (var i = days + (day - 6); i <= days; i++) {
-                newArr.push(i + "日")
-              } 
-              var categories = [...newArr, ...arr]
-            }
-            var steps = step.slice(24)
-            var windowWidth = 320;
-            try {
-              var res = wx.getSystemInfoSync();
-              windowWidth = res.windowWidth;
-            } catch (e) {
-              console.error('getSystemInfoSync failed!');
-            }
-            
-            that.setData({
-              month: month+1,
-              day: day
-            })
-            // console.log(that.data.todayStep)
-            that.lineChart(categories, steps)
-          },
-          fail: function (res) {
-            wx.showModal({
-              title: '提示',
-              content: '开发者未开通微信运动，请关注“微信运动”公众号后重试',
-              showCancel: false,
-              confirmText: '知道了'
-            })
-          }
-        })
-      }
     })
   },
   lineChart: function (labels, step) {

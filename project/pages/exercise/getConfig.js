@@ -81,10 +81,10 @@ export default function(canvasConfig,labels,data){
                         // hideY:false,//这是自定义参数 业务需要添加隐藏y轴
                     },
                     ticks: {
-                        maxTicksLimit: 4,
+                        maxTicksLimit: 5,
                         fontColor:'#9E9E9E',
                         fontSize:8,
-                        beginAtZero:true,
+                        // beginAtZero:true,
                         display:false
                     },
                     scaleLabel: {

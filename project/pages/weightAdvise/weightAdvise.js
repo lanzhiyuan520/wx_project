@@ -39,6 +39,7 @@ Page({
     integers: integers,
     value: [1, 1, 1],
     newWeight:41.2,
+    userId:null,
     msg: "对于准妈妈来说，蛋白质的供给不仅要充足还要优质，每天在饮食中应摄取蛋白质60-80克，其中应包含来自于多种食物如鱼、肉、蛋、奶、豆制品等的优质蛋白质以保证受精卵的正常发育。",
     dates: [1488481383, 145510091, 1495296000]
   },
@@ -47,13 +48,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    try {
+      var value = wx.getStorageSync('stateInfo')
+      if (value) {
+        this.setData({
+          userId: value.id
+        })
+      }
+    } catch (e) {
+      console.log(e)
+    }
+
     for (var i = 0; i < 3; i++) {
       var fff = util.formatTime(this.data.dates[i], 'M月D日')
       console.log(fff)
     }
   },
-  onShow: function () {
-    var weight = this.data.weight*2;
+  dotMove:function(){
+    var weight = this.data.weight * 2;
     this.isStandard(weight)
     var animation = wx.createAnimation({
       transformOrigin: "50% 50%",
@@ -66,19 +78,37 @@ Page({
     this.setData({
       animationData: this.animation.export()
     });
-
     setTimeout(function () {
       animation.left(this.data.playStep + "rpx").step()
       this.setData({
         animationData: animation.export()
       })
     }.bind(this), 300)
+  },
+  onShow: function () {
+    this.dotMove();
+    var that=this;
+    wx.request({
+      url: `${URL}weight/`+this.data.userId,
+      success: function (res) {
+        console.log('new',res)
+        var dataArr=[];
+        for (var i = 0; i < res.data.data.addedValue.length;i++){
+          dataArr.push(res.data.data.addedValue[i].step)
+        }
+        console.log(dataArr)
+        that.graph(dataArr)
+      }
+    })
+  },
+  graph: function (datas) {
+    console.log('data',datas)
     // 曲线
     let pageThis = this
     app.deviceInfo.then(function (deviceInfo) {
       console.log('设备信息', deviceInfo)
-      let labels = ["11月01日", "11月02日", "11月03日", "11月04日", "11月05日", "11月06日", "11月07日"]
-      let data = [45, 48, 50, 51, 51, 52, 53]
+      let labels = ["11月01日", "11月02日", "11月03日"]
+      let data = datas
       let width = Math.floor(deviceInfo.windowWidth * 0.8)//canvas宽度
       let height = Math.floor(width / 1.6)//这个项目canvas的width/height为1.6
       let canvasId = 'myCanvas'
@@ -91,7 +121,6 @@ Page({
       chartWrap.bind(pageThis)(config)
 
     })
-
   },
   // 判断运动量标准
   isStandard: function (norn) {
@@ -168,6 +197,7 @@ Page({
     })
   },
   save:function(){
+    var that=this;
     console.log(this.data.newWeight)
       var data = JSON.stringify({
           height : 0,
@@ -176,11 +206,15 @@ Page({
       })
       var encStr = encryption(data)
       wx.request({
-          url : `${URL}users/1`,
+        url: `${URL}users/`+that.data.userId,
           method:'PUT',
           data:{data:encStr},
           success:function(res){
-            console.log(res)
+            console.log('weight',res)
+            that.setData({
+              weight: res.data.data.addedValue.weight
+            })
+            that.dotMove();
           }
       })
   }

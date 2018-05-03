@@ -16,6 +16,7 @@ export default function(canvasConfig,labels,data){
                 pointHitRadius: 10,
                 pointRadius:0,
                 borderWidth: 2,
+                spanGaps:true,
                 data: data
             }]
         },
@@ -75,7 +76,6 @@ export default function(canvasConfig,labels,data){
                         labelString: ''
                     },
                     ticks: {
-                        maxTicksLimit:7,
                         fontColor:'#9E9E9E',
                         fontSize: 6
                         // beginAtZero:false
@@ -91,7 +91,8 @@ export default function(canvasConfig,labels,data){
                         maxTicksLimit: 6,
                         fontColor:'#9E9E9E',
                         fontSize:8,
-                        display:false
+                        display:false,
+                        // beginAtZero:true
                     },
                     scaleLabel: {
                         display: true,
