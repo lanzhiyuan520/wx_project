@@ -15,7 +15,7 @@ App({
                         that.globalData.openId = res.data.openid
                         that.globalData.session_key = res.data.session_key
                         //将openid和session_key存储
-                        wx.setStorageSync('openId',JSON.stringify(res.data))
+                        wx.setStorageSync('openId',res.data)
                         that.user()
                     }
                 })
@@ -34,7 +34,7 @@ App({
             lang: 'zh_CN',
             success: res => {
                 that.globalData.userInfo = res.userInfo
-                wx.setStorageSync('userInfo',JSON.stringify(res.userInfo))
+                wx.setStorageSync('userInfo',res.userInfo)
                 console.log('获取用户信息成功')
             },
             //如果授权失败则提示用户再次授权

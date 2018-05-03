@@ -29,8 +29,8 @@ for (let i = 1; i <= 31; i++) {
 }
 import {encryption} from '../../utils/encryption'
 const app = getApp()
-var OpenId =  JSON.parse(wx.getStorageSync('openId'))
-var userInfo =  JSON.parse(wx.getStorageSync('userInfo'))
+var OpenId =  wx.getStorageSync('openId')
+var userInfo =  wx.getStorageSync('userInfo')
 var MD5 = require('../utils/md5.js')
 var rsa = require('../utils/rsa')
 var nowDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" +date.getDate();
@@ -118,7 +118,7 @@ Page({
       })
       var encStr = rsa.sign(data)
         wx.request({
-            url:'http://dev.weixin.api.com:9090/api/users',
+          url:'http://test.weixin.api.ayi800.com/api/users',
             method : 'POST',
             data: { data: encStr},
             success : function(data){

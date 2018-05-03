@@ -3,8 +3,8 @@ const app = getApp()
 var sideBarstart
 import {encryption} from '../../utils/encryption'
 var appid = app.globalData.appId
-var OpenId =  JSON.parse(wx.getStorageSync('openId'))
-var userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+var OpenId =  wx.getStorageSync('openId')
+var userInfo = wx.getStorageSync('userInfo')
 var rsa = require('../utils/rsa')
 Page({
   /**
