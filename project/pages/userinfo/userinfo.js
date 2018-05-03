@@ -45,6 +45,7 @@ Page({
       weight_val:0,
       page:1,
       proposal_weight:100,
+      refresh:false
   },
   //跳转到今日知识页面
   skip_today : function (e) {
@@ -59,6 +60,16 @@ Page({
         event: 'preventTouchMove'
       }) 
   },
+    onShow:function(){
+        if (this.data.refresh){
+            console.log('刷新')
+            this.drawProgressbgW();
+            this.drawCircleW(this.data.weight_val);
+            this.setData({
+                refresh : false
+            })
+        }
+    },
     /*time : function () {
         var that = this
         var n = this.data.n

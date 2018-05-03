@@ -215,11 +215,11 @@ Page({
           success:function(res){
              var prev = pages[pages.length - 2]
               prev.setData({
-                  weight_val : res.data.data.addedValue.weight
+                  weight_val : res.data.data.addedValue.weight,
+                  refresh : true
               })
               console.log(prev)
-              prev.drawProgressbgW();
-              prev.drawCircleW(prev.data.weight_val);
+
             wx.setStorageSync('stateInfo', res.data.data.addedValue)
             that.setData({
               weight: res.data.data.addedValue.weight
