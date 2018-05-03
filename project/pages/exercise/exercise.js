@@ -8,6 +8,7 @@ var month = date.getMonth();
 const day = date.getDate();
 var app = getApp()
 var rsa = require('../utils/rsa')
+const URL = 'http://test.weixin.api.ayi800.com/api/'
 Page({
 
   /**
@@ -35,7 +36,7 @@ Page({
   },
     run:function(){
         wx.request({
-            url:`http://dev.weixin.api.com:9090/api/run/1`,
+            url:`${URL}run/1`,
             success:function(res){
                 console.log(res)
             }

@@ -8,7 +8,7 @@ var userInfo = JSON.parse(wx.getStorageSync('userInfo'))
 var rsa = require('../utils/rsa')
 const integers = [];
 const decimals = [];
-const height = [];
+const height_list = [];
 
 for (let i = 40; i <= 200; i++) {
     integers.push(i)
@@ -19,8 +19,9 @@ for (let i = 1; i < 10; i++) {
 }
 
 for (let i = 100; i < 200; i++) {
-    height.push(i)
+    height_list.push(i)
 }
+const URL = 'http://test.weixin.api.ayi800.com/api/'
 Page({
   /**
    * 页面的初始数据
@@ -38,7 +39,8 @@ Page({
       show :false,
       decimals: decimals,
       integers: integers,
-      height:height
+      height_list:height_list,
+      weight:0
   },
   //跳转到今日知识页面
   skip_today : function () {
@@ -176,15 +178,26 @@ Page({
   onReady: function () {
       
   },
+    bindChange:function(e){
+        var val = e.detail.value[0]
+        var weight = integers[val]
+        this.setData({
+            weight
+        })
+    },
+    bindheight:function(e){
+        var height = height_list[e.detail.value[0]]
+        console.log(height)
+    },
     today:function(){
-        var url = `http://dev.weixin.api.com:9090/api/articles?status=2&page=1`
+        var url = `${URL}articles?status=2&page=1`
         wx.request({
             url:url,
             success:function(data){
               wx.request({
-                  url : `http://dev.weixin.api.com:9090/api/articles/203`,
+                  url : `${URL}articles/203`,
                   success:function(data){
-                      //console.log(data)
+                      console.log('文章详情'+data)
                   }
               })
             }
@@ -202,10 +215,11 @@ Page({
                 })
                 var encStr = rsa.sign(data)
                 wx.request({
-                    url : `http://dev.weixin.api.com:9090/api/run/1`,
+                    url : `${URL}run/1`,
                     method:'POST',
                     data:{data:encStr},
                     success:function(res){
+                        console.log(res)
                         var addedValue = res.data.data.addedValue
                         var date = new Date().getTime()
                         addedValue.time = date
@@ -266,7 +280,7 @@ Page({
         if (!run_step){
             that.run_sports()
         }else{
-            if (minutes >= 10){
+            if (minutes >= 1){
                 console.log('大于十分钟')
                 that.run_sports()
             }else{
