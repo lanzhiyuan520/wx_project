@@ -1,7 +1,6 @@
 var time = require('../utils/utils.js')
 const app = getApp()
 var sideBarstart
-import {encryption} from '../../utils/encryption'
 var appid = app.globalData.appId
 var rsa = require('../utils/rsa')
 const integers = [];

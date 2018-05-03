@@ -16,7 +16,6 @@ for (let i = 40; i <= 200; i++) {
 for (let i = 1; i < 10; i++) {
   decimals.push(i / 10)
 }
-import {encryption} from '../../utils/encryption'
 var rsa = require('../utils/rsa')
 const URL = 'http://test.weixin.api.ayi800.com/api/'
 Page({
