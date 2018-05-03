@@ -53,7 +53,6 @@ Page({
       var value = wx.getStorageSync('userInfo')
       if (value) {
         // Do something with return value
-        value = JSON.parse(value)
         this.setData({
           userInfo:value
         })
@@ -123,6 +122,11 @@ Page({
             data: { data: encStr},
             success : function(data){
                 console.log(55,data)
+                try {
+                  wx.setStorageSync('stateInfo', data.data.data.addedValue)
+                } catch (e) {
+                  console.log(e)
+                }
             },
             fail:function(e){
               console.log(e)

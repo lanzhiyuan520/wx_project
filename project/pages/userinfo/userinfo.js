@@ -219,7 +219,7 @@ Page({
                     method:'POST',
                     data:{data:encStr},
                     success:function(res){
-                        console.log(res)
+                        console.log(999,res)
                         var addedValue = res.data.data.addedValue
                         var date = new Date().getTime()
                         addedValue.time = date

@@ -63,6 +63,7 @@ Page({
               'content-type': 'json'
             },
             success: function (res) {
+              console.log('sss',res)
               var session_key = res.data.session_key;
               that.getData(app.globalData.appId, session_key);
             }
