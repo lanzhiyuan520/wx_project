@@ -86,6 +86,7 @@ Page({
     }.bind(this), 300)
   },
   onShow: function () {
+
     this.dotMove();
     var that=this;
     wx.request({

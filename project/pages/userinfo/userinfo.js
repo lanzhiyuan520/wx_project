@@ -372,9 +372,6 @@ Page({
   onLoad: function (options) {
        OpenId =  wx.getStorageSync('openId')
        userInfo = JSON.parse(wx.getStorageSync('userInfo'))
-      console.log(userInfo)
-      var stateInfo = wx.getStorageSync('stateInfo')
-      console.log(stateInfo)
       this.setData({
           userInfo
       })

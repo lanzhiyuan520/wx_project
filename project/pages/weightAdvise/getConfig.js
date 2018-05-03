@@ -75,6 +75,7 @@ export default function(canvasConfig,labels,data){
                         labelString: ''
                     },
                     ticks: {
+                        maxTicksLimit: 7,
                         fontColor:'#9E9E9E',
                         fontSize: 6
                         // beginAtZero:false

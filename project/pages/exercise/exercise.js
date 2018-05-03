@@ -4,13 +4,12 @@ var RdWXBizDataCrypt = require('../../utils/RdWXBizDataCrypt.js');
 import chartWrap from '../canvas/chartWrap';
 import getConfig from './getConfig';
 const date = new Date();
-var month = date.getMonth();
+var month = date.getMonth()+1;
 const day = date.getDate();
 var app = getApp()
 var rsa = require('../utils/rsa')
 const URL = 'http://test.weixin.api.ayi800.com/api/'
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -28,8 +27,6 @@ Page({
       code: "",
       encryptedData: "",
       iv: "",
-      month:"",
-      day:"",
       arrowAnimation: {},
       msg:"对于准妈妈来说，蛋白质的供给不仅要充足还要优质，每天在饮食中应摄取蛋白质60-80克，其中应包含来自于多种食物如鱼、肉、蛋、奶、豆制品等的优质蛋白质以保证受精卵的正常发育。",
       dates: [1488481383, 145510091, 1495296000]
@@ -54,7 +51,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    this.run()
+    this.run();
+    var value = wx.getStorageSync('run_step');
+    console.log(value)
+    this.setData({
+      todayStep: value.num
+    })
   },
   onShow: function () {
     var step = this.data.todayStep;

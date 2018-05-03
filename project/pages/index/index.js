@@ -120,8 +120,7 @@ Page({
               console.log(e)
             }
     })
-    wx.navigateTo({
-      // url: '../exercise/exercise',
+      wx.redirectTo({
       url: '../userinfo/userinfo',
     })
   }
