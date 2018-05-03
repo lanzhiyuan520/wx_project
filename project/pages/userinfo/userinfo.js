@@ -22,6 +22,7 @@ for (let i = 100; i < 200; i++) {
     height_list.push(i)
 }
 const URL = 'http://test.weixin.api.ayi800.com/api/'
+var OpenId,userInfo
 Page({
   /**
    * 页面的初始数据
@@ -31,7 +32,7 @@ Page({
       proposal_step : 0,
       step: 0,
       event: '',
-      Today_know: [{ img: 'http://cdn.ayi800.com/image/png/xiaochengxu_wenzhangwenzhang_07.png', text: '孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好', learner_n: 1966 },{ img: 'http://cdn.ayi800.com/image/png/xiaochengxu_wenzhangwenzhang_07.png', text: '孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好', learner_n: 1966 },{ img: 'http://cdn.ayi800.com/image/png/xiaochengxu_wenzhangwenzhang_07.png', text: '孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好', learner_n: 1966 },{ img: 'http://cdn.ayi800.com/image/png/xiaochengxu_wenzhangwenzhang_07.png', text: '孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好', learner_n: 1966 }, { img: 'http://cdn.ayi800.com/image/png/xiaochengxu_wenzhangwenzhang_07.png', text: '孕妇运动的最佳时间是什么时候？孕妇做什么运动对胎儿好', learner_n: 1966 }],
+      Today_know: [],
       count : 0,
       timer : null,
       userInfo:{},
@@ -40,12 +41,17 @@ Page({
       decimals: decimals,
       integers: integers,
       height_list:height_list,
-      weight:0
+      weight:0,
+      value : [0,0,0],
+      height:0,
+      weight_val:0,
+      page:1
   },
   //跳转到今日知识页面
-  skip_today : function () {
+  skip_today : function (e) {
+    var id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '../todayweb/todayweb?id=1'
+      url: `../todayweb/todayweb?id=${id}`
     })
   },
   //页面滚动给最外层容器添加事件
@@ -54,9 +60,6 @@ Page({
         event: 'preventTouchMove'
       }) 
   },
-    onReachBottom:function () {
-        console.log('上拉加载')
-    },
     /*time : function () {
         var that = this
         var n = this.data.n
@@ -107,13 +110,15 @@ Page({
     show_mask:function () {
         this.setData({
             mask: true,
-            show: true
+            show: true,
+            hidden:true
         })
     },
     hideMask:function(){
         this.setData({
             mask: false,
-            show: false
+            show: false,
+            hidden:false
         })
     },
   //运动
@@ -178,6 +183,7 @@ Page({
   onReady: function () {
       
   },
+    //体重
     bindChange:function(e){
         var val = e.detail.value[0]
         var weight = integers[val]
@@ -185,27 +191,97 @@ Page({
             weight
         })
     },
+    //身高
     bindheight:function(e){
         var height = height_list[e.detail.value[0]]
-        console.log(height)
+        this.setData({
+            height
+        })
+    },
+    //修改体重
+    save:function(){
+        var that = this
+        var data = JSON.stringify({
+            height : this.data.height,
+            weight :this.data.weight ,
+            status : 1
+        })
+        var encStr = rsa.sign(data)
+        wx.request({
+            url:`${URL}users/1`,
+            method:'PUT',
+            data:{data:encStr},
+            success:function(res){
+                console.log(res)
+                if (res.data.data.result){
+                    var weight_val = res.data.data.addedValue.weight
+                    that.setData({
+                        weight_val
+                    })
+                }
+
+            }
+        })
+    },
+    onReachBottom:function () {
+        var that = this
+        wx.showLoading({
+            title: '加载中',
+        })
+        that.setData({
+            page : that.data.page+1
+        })
+        wx.request({
+            url:`${URL}articles?status=2&page=${that.data.page}`,
+            success:function(res){
+                console.log(res)
+                if (res.data.data.result){
+                    wx.hideLoading()
+                    var Today_know = that.data.Today_know
+                    var Today_list = res.data.data.addedValue
+                    Today_list.map((item,index)=>{
+                        Today_know.push(item)
+                    })
+                    that.setData({
+                        Today_know
+                    })
+                }else{
+                    wx.showToast({
+                        title: '没有更多了',
+                        icon:'none',
+                        duration: 2000
+                    })
+                    wx.hideLoading()
+                }
+            }
+        })
     },
     today:function(){
-        var url = `${URL}articles?status=2&page=1`
+        var that = this
+        var url = `${URL}articles?status=2&page=${that.data.page}`
         wx.request({
             url:url,
-            success:function(data){
-              wx.request({
-                  url : `${URL}articles/203`,
-                  success:function(data){
-                      console.log('文章详情'+data)
-                  }
-              })
+            success:function(res){ //Today_know
+                console.log(res) //addedValue
+                if (res.data.data.result){
+                    var Today_know = res.data.data.addedValue
+                    that.setData({
+                        Today_know
+                    })
+                }
+              // wx.request({
+              //     //url : `${URL}articles/203`,
+              //     success:function(data){
+              //         console.log(data)
+              //     }
+              // })
             }
         })
     },
     run_sports:function(){
       var that = this
         wx.getWeRunData({
+
             success(res) {
                 var data = JSON.stringify({
                     appid,
@@ -213,6 +289,7 @@ Page({
                     encryptedData:res.encryptedData,
                     iv : res.iv
                 })
+                console.log('111'+OpenId)
                 var encStr = rsa.sign(data)
                 wx.request({
                     url : `${URL}run/1`,
@@ -295,6 +372,9 @@ Page({
         }
     },
   onLoad: function (options) {
+       OpenId =  wx.getStorageSync('openId')
+       userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+      console.log(userInfo)
       this.setData({
           userInfo
       })

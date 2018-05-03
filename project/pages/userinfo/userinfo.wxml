@@ -51,7 +51,7 @@
                                   <text class='family'>当前体重</text>
                               </view>
                               <view class='walk-num'>
-                                  <text class='family num'>62kg</text>
+                                  <text class='family num'>{{weight_val}}kg</text>
                               </view>
                                <view class='suggest'>
                                 <view class='add-weight' url="/pages/weightAdvise/weightAdvise" hover-class="none" bindtap="show_mask">+</view>
@@ -79,19 +79,19 @@
                 </view>
             </view>
             <view class='today-content-wrap'>
-                <view class='today-content' bindtap='skip_today' wx:for='{{Today_know}}' wx:key="index">
+                <view class='today-content' bindtap='skip_today' wx:for='{{Today_know}}' wx:key="index" data-id="{{item.id}}">
                     <view class='knowledge-body'>
                         <view class='knowledge'>
                             <view class='knowledge-body-text'>
                                 <view class='knowledge-headline'>
-                                    <text class="family">{{item.text}}</text>
+                                    <text class="family">{{item.title}}</text>
                                 </view>
                                 <view class='learn-num'>
-                                    <text class="family">{{item.learner_n}}人学习</text>
+                                    <text class="family">{{item.visit_num}}人学习</text>
                                 </view>
                             </view>
                             <view class='knowledge-img'>
-                                <image src='{{item.img}}'></image>
+                                <image src='{{item.banner}}'></image>
                             </view>
                         </view>
                     </view>
@@ -100,7 +100,7 @@
         </view>
     </scroll-view>
     <!--浮层-->
-    <view class="modal-mask" catchtouchmove="preventD" bindtap='hideMask'  wx:if="{{mask}}">
+    <view class="modal-mask" bindtap='hideMask'  wx:if="{{mask}}">
         <view class='modal-content'>
             <view style='font-size:30rpx'>体重</view>
             <picker-view indicator-style="height: 50px;color: #ff6f88;" class="weight-picker" value="{{value}}" bindchange="bindChange">
