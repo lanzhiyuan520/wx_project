@@ -199,6 +199,7 @@ Page({
     })
   },
   save:function(){
+      var pages = getCurrentPages();
     var that=this;
     console.log(this.data.newWeight)
       var data = JSON.stringify({
@@ -212,7 +213,14 @@ Page({
           method:'PUT',
           data:{data:encStr},
           success:function(res){
-            console.log('weight',res)
+             var prev = pages[pages.length - 2]
+              prev.setData({
+                  weight_val : res.data.data.addedValue.weight
+              })
+              console.log(prev)
+              prev.drawProgressbgW();
+              prev.drawCircleW(prev.data.weight_val);
+            wx.setStorageSync('stateInfo', res.data.data.addedValue)
             that.setData({
               weight: res.data.data.addedValue.weight
             })

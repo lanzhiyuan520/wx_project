@@ -43,7 +43,8 @@ Page({
       value : [0,0,0],
       height:0,
       weight_val:0,
-      page:1
+      page:1,
+      proposal_weight:100,
   },
   //跳转到今日知识页面
   skip_today : function (e) {
@@ -174,7 +175,7 @@ Page({
     context.setLineCap('butt')
     context.beginPath();
     // 参数step 为绘制的圆环周长，从0到2为一周 。 -Math.PI / 2 将起始角设在12点钟位置 ，结束角 通过改变 step 的值确定
-    context.arc(80, 80, 74, -Math.PI / 2, (step / this.data.proposal_step * 2) * Math.PI - Math.PI / 2, false);
+    context.arc(80, 80, 74, -Math.PI / 2, (step / this.data.proposal_weight * 2) * Math.PI - Math.PI / 2, false);
     context.stroke();
     context.draw()
   },
@@ -210,14 +211,15 @@ Page({
             method:'PUT',
             data:{data:encStr},
             success:function(res){
-                console.log(res)
                 if (res.data.data.result){
                     var weight_val = res.data.data.addedValue.weight
+                    wx.setStorageSync('stateInfo', res.data.data.addedValue)
                     that.setData({
                         weight_val
                     })
+                    that.drawProgressbgW();
+                    that.drawCircleW(that.data.weight_val);
                 }
-
             }
         })
     },
@@ -287,7 +289,7 @@ Page({
                     encryptedData:res.encryptedData,
                     iv : res.iv
                 })
-                console.log('111'+OpenId)
+                console.log('222',data)
                 var encStr = rsa.sign(data)
                 wx.request({
                     url : `${URL}run/1`,
@@ -376,11 +378,17 @@ Page({
       var stateInfo = wx.getStorageSync('stateInfo')
       console.log(stateInfo)
       this.setData({
-          userInfo
+          userInfo,
+          weight_val:stateInfo.weight
       })
       this.run_step()
       this.today()
-      this.drawProgressbgW();
-      this.drawCircleW(this.data.step);
+      if (stateInfo.weight === 0){
+          this.drawProgressbgW();
+      }else{
+          this.drawProgressbgW();
+          this.drawCircleW(this.data.weight_val);
+      }
+
   }
 })
