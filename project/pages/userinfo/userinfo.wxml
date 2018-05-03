@@ -111,12 +111,19 @@
                     <view wx:for="{{decimals}}" wx:key="*this" style="line-height: 50px;text-align:center">{{item}}kg</view>
                 </picker-view-column>
             </picker-view>
+            <view style='font-size:30rpx'>身高</view>
+            <picker-view indicator-style="height: 50px;color: #ff6f88;" class="weight-picker" value="{{value}}" bindchange="bindheight">
+                <picker-view-column>
+                    <view wx:for="{{height_list}}" wx:key="*this" style="line-height: 50px;text-align:center;">{{item}}cm</view>
+                </picker-view-column>
+            </picker-view>
             <view class='mask-btn'>
-                <view>取消</view>
+                <view bindtap="hideMask">取消</view>
                 <view class='divide'></view>
                 <view style='color:#ff6478' bindtap="save">保存</view>
             </view>
         </view>
+
     </view>
 </view>
 

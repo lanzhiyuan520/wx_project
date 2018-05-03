@@ -18,6 +18,7 @@ for (let i = 1; i < 10; i++) {
 }
 import {encryption} from '../../utils/encryption'
 var rsa = require('../utils/rsa')
+const URL = 'http://test.weixin.api.ayi800.com/api/'
 Page({
 
   /**
@@ -175,7 +176,7 @@ Page({
       })
       var encStr = encryption(data)
       wx.request({
-          url : 'http://dev.weixin.api.com:9090/api/users/1',
+          url : `${URL}users/1`,
           method:'PUT',
           data:{data:encStr},
           success:function(res){
