@@ -16,7 +16,6 @@ export default function(canvasConfig,labels,data){
                 pointHitRadius: 10,
                 pointRadius:0,
                 borderWidth: 2,
-                spanGaps:true,
                 data: data
             }]
         },

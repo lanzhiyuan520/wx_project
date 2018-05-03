@@ -23,6 +23,9 @@ App({
         })
     }else{
         console.log('您已经获取到openid了')
+        wx.redirectTo({
+          url: './pages/userinfo/userinfo'
+        })
     }
 
     this.deviceInfo = this.promise.getDeviceInfo();

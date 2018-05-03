@@ -3,8 +3,6 @@ const app = getApp()
 var sideBarstart
 import {encryption} from '../../utils/encryption'
 var appid = app.globalData.appId
-var OpenId =  wx.getStorageSync('openId')
-var userInfo = wx.getStorageSync('userInfo')
 var rsa = require('../utils/rsa')
 const integers = [];
 const decimals = [];
@@ -375,6 +373,8 @@ Page({
        OpenId =  wx.getStorageSync('openId')
        userInfo = JSON.parse(wx.getStorageSync('userInfo'))
       console.log(userInfo)
+      var stateInfo = wx.getStorageSync('stateInfo')
+      console.log(stateInfo)
       this.setData({
           userInfo
       })

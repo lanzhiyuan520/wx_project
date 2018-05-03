@@ -93,21 +93,23 @@ Page({
       success: function (res) {
         console.log('new',res)
         var dataArr=[];
+        var labelArr=[];
         for (var i = 0; i < res.data.data.addedValue.length;i++){
-          dataArr.push(res.data.data.addedValue[i].step)
+          dataArr.push(res.data.data.addedValue[i].step);
+          labelArr.push(res.data.data.addedValue[i].created_at.substring(5, 10))
         }
-        console.log(dataArr)
-        that.graph(dataArr)
+        console.log(labelArr)
+        that.graph(labelArr,dataArr)
       }
     })
   },
-  graph: function (datas) {
+  graph: function (label,datas) {
     console.log('data',datas)
     // 曲线
     let pageThis = this
     app.deviceInfo.then(function (deviceInfo) {
       console.log('设备信息', deviceInfo)
-      let labels = ["11月01日", "11月02日", "11月03日"]
+      let labels = label
       let data = datas
       let width = Math.floor(deviceInfo.windowWidth * 0.8)//canvas宽度
       let height = Math.floor(width / 1.6)//这个项目canvas的width/height为1.6

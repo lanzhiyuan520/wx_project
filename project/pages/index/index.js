@@ -29,8 +29,6 @@ for (let i = 1; i <= 31; i++) {
 }
 import {encryption} from '../../utils/encryption'
 const app = getApp()
-var OpenId =  wx.getStorageSync('openId')
-var userInfo =  wx.getStorageSync('userInfo')
 var MD5 = require('../utils/md5.js')
 var rsa = require('../utils/rsa')
 var nowDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" +date.getDate();
@@ -47,20 +45,6 @@ Page({
     userInfo:{},
     value: [yearVal, monthVal, dayVal],
     date: nowDate
-  },
-  onLoad: function () {
-    try {
-      var value = wx.getStorageSync('userInfo')
-      if (value) {
-        // Do something with return value
-        this.setData({
-          userInfo:value
-        })
-      }
-    } catch (e) {
-      // Do something when catch error
-      console.log(e)
-    }
   },
   stateChange:function(){
     var that=this;
@@ -105,9 +89,12 @@ Page({
     })
   },
   submitBtn:function(){
-      var img = this.data.userInfo.avatarUrl;
-      var name = this.data.userInfo.nickName;
-      console.log(this.data.date)
+    var OpenId = wx.getStorageSync('openId')
+    var value = wx.getStorageSync('userInfo');
+    value=JSON.parse(value)
+    console.log(888, value)
+    var img = value.avatarUrl;
+    var name = value.nickName;
       var data = JSON.stringify({
           status: this.data.state,
           date: this.data.date,        
@@ -115,6 +102,7 @@ Page({
           head_img: img,
           b_user_id : OpenId.openid
       })
+      console.log(data)
       var encStr = rsa.sign(data)
         wx.request({
           url:'http://test.weixin.api.ayi800.com/api/users',
