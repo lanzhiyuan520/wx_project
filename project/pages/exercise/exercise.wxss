@@ -121,7 +121,7 @@
 .advise-box{
   padding: 25rpx 55rpx;
   box-sizing: border-box;
-  margin: 0 auto 90rpx;
+  margin: 0 auto;
 }
 .mb-30{
   margin-bottom: 30rpx;
@@ -146,8 +146,7 @@
   background: transparent;
   color: #ff6478;
   font-size: 30rpx;
-  position: fixed;
-  bottom: 30rpx;
+  margin-top: 50rpx;
   left: 50%;
   margin-left: -110rpx;
 }

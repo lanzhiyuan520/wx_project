@@ -121,7 +121,7 @@
 .advise-box{
   padding: 25rpx 55rpx;
   box-sizing: border-box;
-  margin: 0 auto 130rpx;
+  margin: 0 auto;
 }
 .mb-30{
   margin-bottom: 30rpx;
@@ -162,12 +162,12 @@
   margin-right: 138rpx;
 }
 .btn-box{
-  padding: 0 110rpx 60rpx;
+  padding: 0 110rpx;
    display: flex;
   flex-direction: row; 
-  margin-top: 60rpx;
-  position: fixed;
-  bottom: 0 ;
+   margin-top: 60rpx; 
+  /* position: fixed;
+  bottom: 0 ; */
 }
 .modal-mask{
   position: fixed;
