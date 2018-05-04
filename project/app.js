@@ -5,17 +5,24 @@ App({
     var oppenId = wx.getStorageSync('openId')
     var userInfo = wx.getStorageSync('userInfo')
     if (!oppenId || !userInfo){
-        // 登录
+        // // 登录
         wx.login({
             success: res => {
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
+                var data = {
+                    appid:that.globalData.appId,
+                    secret:that.globalData.AppSecret,
+                    js_code:res.code
+                }
                 wx.request({
-                    url:`https://api.weixin.qq.com/sns/jscode2session?appid=${this.globalData.appId}&secret=${this.globalData.AppSecret}&js_code=${res.code}&grant_type=authorization_code`,
+                    url:`https://weixin.youfumama.com/api/jscode2session`,
+                    method:'POST',
+                    data:data,
                     success:function (res) {
-                        that.globalData.openId = res.data.openid
-                        that.globalData.session_key = res.data.session_key
-                        //将openid和session_key存储
-                        wx.setStorageSync('openId',res.data)
+                         that.globalData.openId = res.data.openid
+                         that.globalData.session_key = res.data.session_key
+                         //将openid和session_key存储
+                         wx.setStorageSync('openId',res.data)
                     }
                 })
             }
