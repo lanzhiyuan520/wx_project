@@ -1,6 +1,6 @@
 // pages/exercise/exercise.js
 var util = require('../../utils/utils.js');
-var RdWXBizDataCrypt = require('../../utils/RdWXBizDataCrypt.js');
+// var RdWXBizDataCrypt = require('../../utils/RdWXBizDataCrypt.js');
 import chartWrap from '../canvas/chartWrap';
 import getConfig from './getConfig';
 const date = new Date();

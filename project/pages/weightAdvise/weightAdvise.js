@@ -16,7 +16,6 @@ for (let i = 40; i <= 200; i++) {
 for (let i = 1; i < 10; i++) {
   decimals.push(i / 10)
 }
-import {encryption} from '../../utils/encryption'
 var rsa = require('../utils/rsa')
 const URL = 'http://test.weixin.api.ayi800.com/api/'
 Page({
@@ -200,6 +199,7 @@ Page({
     })
   },
   save:function(){
+      var pages = getCurrentPages();
     var that=this;
     console.log(this.data.newWeight)
       var data = JSON.stringify({
@@ -207,13 +207,20 @@ Page({
           weight :this.data.newWeight ,
           status : 1
       })
-      var encStr = encryption(data)
+      var encStr = rsa.sign(data)
       wx.request({
         url: `${URL}users/`+that.data.userId,
           method:'PUT',
           data:{data:encStr},
           success:function(res){
-            console.log('weight',res)
+             var prev = pages[pages.length - 2]
+              prev.setData({
+                  weight_val : res.data.data.addedValue.weight,
+                  refresh : true
+              })
+              console.log(prev)
+
+            wx.setStorageSync('stateInfo', res.data.data.addedValue)
             that.setData({
               weight: res.data.data.addedValue.weight
             })

@@ -24,6 +24,7 @@ Page({
   article:function(){
       wx.showLoading({
           title: '加载中',
+          mask:true,
       })
       var that = this
       wx.request({

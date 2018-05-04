@@ -14504,7 +14504,7 @@ function sign(text) {
   //var encStr = encrypt_rsa.encrypt(text);//不分段的加密
   //encStr = hex2b64(encStr);//不分段加密需要base64一下
   var encStr = encrypt_rsa.encryptLong(text);//分段加密
-  console.log(text)
+  //console.log(text)
   // console.log("加密结果：" + encStr)
   return encStr;
 }

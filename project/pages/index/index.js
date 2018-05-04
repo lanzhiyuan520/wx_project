@@ -27,9 +27,7 @@ for (let i = 1; i <= 31; i++) {
     dayVal = i-1
   }
 }
-import {encryption} from '../../utils/encryption'
 const app = getApp()
-var MD5 = require('../utils/md5.js')
 var rsa = require('../utils/rsa')
 var nowDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" +date.getDate();
 Page({
