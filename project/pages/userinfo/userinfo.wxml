@@ -8,7 +8,7 @@
                 </view>
                 <view class='birth'>
                     <text class='birth-text family name'>{{userInfo.nickName}}</text>
-                    <text class='birth-text family'>今天距宝宝出生大约</text>
+                    <text class='birth-text family'>{{state_text}}</text>
                     <text class='birth-days family'>127</text>
                     <text class='birth-text family'>天</text>
                 </view>

@@ -17,7 +17,8 @@ for (let i = 1; i < 10; i++) {
   decimals.push(i / 10)
 }
 var rsa = require('../utils/rsa')
-const URL = 'http://test.weixin.api.ayi800.com/api/'
+//const URL = 'http://test.weixin.api.ayi800.com/api/'
+const URL = 'https://weixin.youfumama.com/api/'
 Page({
 
   /**

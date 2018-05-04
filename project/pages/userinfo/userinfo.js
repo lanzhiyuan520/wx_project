@@ -15,7 +15,7 @@ for (let i = 1; i < 10; i++) {
     decimals.push(i / 10)
 }
 
-for (let i = 100; i < 200; i++) {
+for (let i = 100; i < 300; i++) {
     height_list.push(i)
 }
 //const URL = 'http://test.weixin.api.ayi800.com/api/'
@@ -47,7 +47,8 @@ Page({
       proposal_weight:100,
       refresh:false,
       stateInfo:{},
-      userId:null
+      userId:null,
+      state_text:''
   },
   //跳转到今日知识页面
   skip_today : function (e) {
@@ -220,7 +221,7 @@ Page({
         })
         var encStr = rsa.sign(data)
         wx.request({
-            url:`${URL}users/1`,
+            url:`${URL}users/${that.data.userId}`,
             method:'PUT',
             data:{data:encStr},
             success:function(res){
@@ -297,14 +298,12 @@ Page({
                 var encStr = rsa.sign(data)
                 console.log('请求运动的数据',data)
                 console.log('加密之后的数据',encStr)
-                 console.log('请求运动的数据',data)
-                 console.log(encStr)
                 wx.request({
-                  url: `${URL}run/` + that.data.userId,
+                    url: `${URL}run/` + that.data.userId,
                     method:'POST',
                     data:{data:encStr},
                     success:function(res){
-                        // console.log('请求回来的运动数据',res)
+                        console.log('请求回来的运动数据',res)
                         var addedValue = res.data.data.addedValue
                         var date = new Date().getTime()
                         addedValue.time = date
@@ -329,6 +328,7 @@ Page({
                 })
             },
             fail:function(){
+                wx.hideLoading()
                 wx.showModal({
                     title: '提示',
                     content: '您拒绝了授权,将获取不到运动步数，点击确定重新获取',
@@ -400,7 +400,15 @@ Page({
           stateInfo,
           userId: stateInfo.id
       })
-      console.log(this.data)
+      if (stateInfo.status === 1){
+          this.setData({
+              state_text:'今天距宝宝出生大约'
+          })
+      }else if (stateInfo.status === 2 || stateInfo.status === 3){
+          this.setData({
+              state_text:'今天宝宝已出生'
+          })
+      }
       this.run_step()
       this.today()
       if (stateInfo.weight === 0){
