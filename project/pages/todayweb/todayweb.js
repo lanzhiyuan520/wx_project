@@ -1,7 +1,7 @@
 const app = getApp()
 var rsa = require('../utils/rsa')
 var WxParse = require('../wxParse/wxParse.js');
-const URL = 'http://test.weixin.api.ayi800.com/api/'
+const URL = 'https://weixin.youfumama.com/api/'
 Page({
 
   /**

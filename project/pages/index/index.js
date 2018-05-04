@@ -103,7 +103,7 @@ Page({
       console.log(data)
       var encStr = rsa.sign(data)
         wx.request({
-          url:'http://test.weixin.api.ayi800.com/api/users',
+          url:'https://weixin.youfumama.com/api/users',
             method : 'POST',
             data: { data: encStr},
             success : function(data){

@@ -18,7 +18,8 @@ for (let i = 1; i < 10; i++) {
 for (let i = 100; i < 200; i++) {
     height_list.push(i)
 }
-const URL = 'http://test.weixin.api.ayi800.com/api/'
+//const URL = 'http://test.weixin.api.ayi800.com/api/'
+const URL = 'https://weixin.youfumama.com/api/'
 var OpenId,userInfo
 Page({
   /**
@@ -44,7 +45,8 @@ Page({
       weight_val:0,
       page:1,
       proposal_weight:100,
-      refresh:false
+      refresh:false,
+      stateInfo:{}
   },
   //跳转到今日知识页面
   skip_today : function (e) {
@@ -243,7 +245,7 @@ Page({
             page : that.data.page+1
         })
         wx.request({
-            url:`${URL}articles?status=2&page=${that.data.page}`,
+            url:`${URL}articles?status=${that.data.stateInfo.status}&page=${that.data.page}`,
             success:function(res){
                 if (res.data.data.result){
                     wx.hideLoading()
@@ -268,7 +270,7 @@ Page({
     },
     today:function(){
         var that = this
-        var url = `${URL}articles?status=2&page=${that.data.page}`
+        var url = `${URL}articles?status=${that.data.stateInfo.status}&page=${that.data.page}`
         wx.request({
             url:url,
             success:function(res){ //Today_know
@@ -293,7 +295,7 @@ Page({
                 })
                 var encStr = rsa.sign(data)
                 console.log('请求运动的数据',data)
-                console.log(encStr)
+                console.log('加密之后的数据',encStr)
                 wx.request({
                     url : `${URL}run/1`,
                     method:'POST',
@@ -391,8 +393,10 @@ Page({
       console.log('OpenId',OpenId)
       this.setData({
           userInfo,
-          weight_val:stateInfo.weight
+          weight_val:stateInfo.weight,
+          stateInfo
       })
+      console.log(this.data)
       this.run_step()
       this.today()
       if (stateInfo.weight === 0){
