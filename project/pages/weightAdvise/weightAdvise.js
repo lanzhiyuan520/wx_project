@@ -51,7 +51,8 @@ Page({
       var value = wx.getStorageSync('stateInfo')
       if (value) {
         this.setData({
-          userId: value.id
+          userId: value.id,
+          weight: value.weight
         })
       }
     } catch (e) {

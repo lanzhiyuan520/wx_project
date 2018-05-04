@@ -46,7 +46,8 @@ Page({
       page:1,
       proposal_weight:100,
       refresh:false,
-      stateInfo:{}
+      stateInfo:{},
+      userId:null
   },
   //跳转到今日知识页面
   skip_today : function (e) {
@@ -296,12 +297,14 @@ Page({
                 var encStr = rsa.sign(data)
                 console.log('请求运动的数据',data)
                 console.log('加密之后的数据',encStr)
+                 console.log('请求运动的数据',data)
+                 console.log(encStr)
                 wx.request({
-                    url : `${URL}run/1`,
+                  url: `${URL}run/` + that.data.userId,
                     method:'POST',
                     data:{data:encStr},
                     success:function(res){
-                        console.log('请求回来的运动数据',res)
+                        // console.log('请求回来的运动数据',res)
                         var addedValue = res.data.data.addedValue
                         var date = new Date().getTime()
                         addedValue.time = date
@@ -394,7 +397,8 @@ Page({
       this.setData({
           userInfo,
           weight_val:stateInfo.weight,
-          stateInfo
+          stateInfo,
+          userId: stateInfo.id
       })
       console.log(this.data)
       this.run_step()

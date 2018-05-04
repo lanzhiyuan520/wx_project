@@ -27,14 +27,17 @@ Page({
       code: "",
       encryptedData: "",
       iv: "",
+      userId: null,
       arrowAnimation: {},
       msg:"对于准妈妈来说，蛋白质的供给不仅要充足还要优质，每天在饮食中应摄取蛋白质60-80克，其中应包含来自于多种食物如鱼、肉、蛋、奶、豆制品等的优质蛋白质以保证受精卵的正常发育。",
       dates: [1488481383, 145510091, 1495296000]
   },
     run:function(){
       var that=this;
+      var id = wx.getStorageSync('stateInfo').id
+      // console.log(id)
         wx.request({
-            url:`${URL}run/1`,
+          url: `${URL}run/` + id,
             success:function(res){
                 var addedValue = res.data.data.addedValue;
                 var step = [];
