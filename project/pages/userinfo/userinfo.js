@@ -293,14 +293,14 @@ Page({
                     iv : res.iv
                 })
                 var encStr = rsa.sign(data)
-                console.log('请求运动的数据',data)
-                console.log(encStr)
+                // console.log('请求运动的数据',data)
+                // console.log(encStr)
                 wx.request({
                   url: `${URL}run/` + that.data.userId,
                     method:'POST',
                     data:{data:encStr},
                     success:function(res){
-                        console.log('请求回来的运动数据',res)
+                        // console.log('请求回来的运动数据',res)
                         var addedValue = res.data.data.addedValue
                         var date = new Date().getTime()
                         addedValue.time = date

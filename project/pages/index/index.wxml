@@ -25,5 +25,5 @@
       </picker-view>
     </view>
   </view>
-  <view class='save-btn' bindtap='submitBtn'>保存</view>
+  <button class='save-btn' open-type="getUserInfo" bindgetuserinfo="userInfoHandler">保存</button>
 </view>

@@ -86,41 +86,54 @@ Page({
       date: year + "-" + month + "-" + day
     })
   },
+  userInfoHandler: function (value){
+    if (value.detail.errMsg =="getUserInfo:ok"){
+      wx.setStorageSync('userInfo', value.detail.rawData)
+      this.submitBtn()
+    }else{
+      wx.showToast({
+        title: '授权不成功,无法进入页面',
+        icon: 'none',
+        duration: 2000
+      }) 
+    }
+  },
   submitBtn:function(){
-    var OpenId = wx.getStorageSync('openId')
-    var value = wx.getStorageSync('userInfo');
-    value=JSON.parse(value)
-    console.log(888, value)
-    var img = value.avatarUrl;
-    var name = value.nickName;
+    var OpenId = wx.getStorageSync('openId');
+    if (OpenId){
+      var value = wx.getStorageSync('userInfo');
+      value = JSON.parse(value)
+      var img = value.avatarUrl;
+      var name = value.nickName;
       var data = JSON.stringify({
-          status: this.data.state,
-          date: this.data.date,        
-          nickname: name,
-          head_img: img,
-          b_user_id : OpenId.openid
+        status: this.data.state,
+        date: this.data.date,
+        nickname: name,
+        head_img: img,
+        b_user_id: OpenId.openid
       })
       console.log(data)
       var encStr = rsa.sign(data)
-        wx.request({
-          url:'http://test.weixin.api.ayi800.com/api/users',
-            method : 'POST',
-            data: { data: encStr},
-            success : function(data){
-                console.log(55,data)
-                try {
-                  wx.setStorageSync('stateInfo', data.data.data.addedValue)
-                } catch (e) {
-                  console.log(e)
-                }
-            },
-            fail:function(e){
-              console.log(e)
-            }
-    })
+      wx.request({
+        url: 'http://test.weixin.api.ayi800.com/api/users',
+        method: 'POST',
+        data: { data: encStr },
+        success: function (data) {
+          console.log(55, data)
+          try {
+            wx.setStorageSync('stateInfo', data.data.data.addedValue)
+          } catch (e) {
+            console.log(e)
+          }
+        },
+        fail: function (e) {
+          console.log(e)
+        }
+      })
       wx.redirectTo({
-      url: '../userinfo/userinfo',
-    })
+        url: '../userinfo/userinfo',
+      })
+    }
   }
 })
 
