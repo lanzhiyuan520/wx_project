@@ -18,14 +18,8 @@ Page({
       nice_num:0,
       difference_num:0
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
   article:function(){
-      wx.showLoading({
-          title: '加载中',
-          mask:true,
-      })
+      wx.showLoading({title: '加载中', mask:true,})
       var that = this
       wx.request({
           url:`${URL}articles/${this.data.id}`,
@@ -125,13 +119,12 @@ Page({
                 }
             }
         })
-
     },
   onLoad: function (options) {
           this.setData({
               id : options.id
           })
-        this.article()
+          this.article()
   },
  
 })

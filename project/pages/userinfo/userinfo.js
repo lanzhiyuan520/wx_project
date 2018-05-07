@@ -1,4 +1,5 @@
 var time = require('../utils/utils.js')
+var canvas = require('../utils/canvas')
 const app = getApp()
 var sideBarstart
 var appid = app.globalData.appId
@@ -31,8 +32,6 @@ Page({
       step: 0,
       event: '',
       Today_know: [],
-      count : 0,
-      timer : null,
       userInfo:{},
       mask:false,
       show :false,
@@ -65,33 +64,15 @@ Page({
   },
     onShow:function(){
         if (this.data.refresh){
-            this.drawProgressbgW();
-            this.drawCircleW(this.data.weight_val);
+            var {weight_val,proposal_weight} = this.data
+            canvas.drawProgressbgW();
+            canvas.drawCircleW(weight_val,proposal_weight);
             this.setData({
                 refresh : false
             })
             this.change_weight_val()
         }
     },
-    /*time : function () {
-        var that = this
-        var n = this.data.n
-        var c = n/10
-        this.data.timer = setInterval(function () {
-            if (that.data.count < that.data.n){
-                that.setData({
-                    count : that.data.count + c
-                })
-                if (that.data.count <= that.data.n){
-                    that.drawCircle(that.data.count)
-                }
-            }else {
-                that.setData({
-                    timer : null
-                })
-            }
-        },100)
-    },*/
   //获取滑动的触发点
   pageTouchStartHandler: function (e) {
     sideBarstart = e.changedTouches[0].pageX
@@ -121,92 +102,21 @@ Page({
 
   },
     show_mask:function () {
-        this.setData({
-            mask: true,
-            show: true,
-            hidden:true
-        })
+        this.setData({mask: true, show: true, hidden:true})
     },
     hideMask:function(){
-        this.setData({
-            mask: false,
-            show: false,
-            hidden:false
-        })
+        this.setData({mask: false, show: false, hidden:false})
     },
-  //运动
-  drawProgressbg: function () {
-    // 使用 wx.createContext 获取绘图上下文 context
-    var ctx = wx.createCanvasContext('canvasProgressbg')
-    ctx.setLineWidth(4);// 设置圆环的宽度
-    ctx.setStrokeStyle('#eee'); // 设置圆环的颜色
-    ctx.setLineCap('butt') // 设置圆环端点的形状
-    ctx.beginPath();//开始一个新的路径
-    ctx.arc(80, 80, 74, 0, 2 * Math.PI, false);
-    //设置一个原点(100,100)，半径为90的圆的路径到当前路径
-    ctx.stroke();//对当前路径进行描边
-    ctx.draw();
-  },
-  drawCircle: function (step) {
-    var context = wx.createCanvasContext('canvasProgress');
-    // 设置渐变
-    var gradient = context.createLinearGradient(100, 100, 40, 10);
-    gradient.addColorStop("0", "#ff8094");
-    gradient.addColorStop("1", "#ffaba4");
-    context.setLineWidth(5);
-    context.setStrokeStyle(gradient);
-    context.setLineCap('butt')
-    context.beginPath();
-    // 参数step 为绘制的圆环周长，从0到2为一周 。 -Math.PI / 2 将起始角设在12点钟位置 ，结束角 通过改变 step 的值确定
-    context.arc(80, 80, 74, -Math.PI / 2, (step / this.data.proposal_step * 2) * Math.PI - Math.PI / 2, false);
-    context.stroke();
-    context.draw()
-
-  },
-
-//体重
-  drawProgressbgW: function () {
-    // 使用 wx.createContext 获取绘图上下文 context
-    var ctx = wx.createCanvasContext('canvasProgressbg-weight')
-    ctx.setLineWidth(4);// 设置圆环的宽度
-    ctx.setStrokeStyle('#eee'); // 设置圆环的颜色
-    ctx.setLineCap('butt') // 设置圆环端点的形状
-    ctx.beginPath();//开始一个新的路径
-    ctx.arc(80, 80, 74, 0, 2 * Math.PI, false);
-    //设置一个原点(100,100)，半径为90的圆的路径到当前路径
-    ctx.stroke();//对当前路径进行描边
-    ctx.draw();
-  },
-  drawCircleW: function (step) {
-    var context = wx.createCanvasContext('canvasProgress-weight');
-    // 设置渐变
-    var gradient = context.createLinearGradient(100, 100, 40, 10);
-    gradient.addColorStop("0", "#ff8094");
-    gradient.addColorStop("1", "#ffaba4");
-
-    context.setLineWidth(5);
-    context.setStrokeStyle(gradient);
-    context.setLineCap('butt')
-    context.beginPath();
-    // 参数step 为绘制的圆环周长，从0到2为一周 。 -Math.PI / 2 将起始角设在12点钟位置 ，结束角 通过改变 step 的值确定
-    context.arc(80, 80, 74, -Math.PI / 2, (step / this.data.proposal_weight * 2) * Math.PI - Math.PI / 2, false);
-    context.stroke();
-    context.draw()
-  },
     //体重
     bindChange:function(e){
         var val = e.detail.value[0]
         var weight = integers[val]
-        this.setData({
-            weight
-        })
+        this.setData({weight})
     },
     //身高
     bindheight:function(e){
         var height = height_list[e.detail.value[0]]
-        this.setData({
-            height
-        })
+        this.setData({height})
     },
     //修改体重
     save:function(){
@@ -216,6 +126,7 @@ Page({
             weight :this.data.weight ,
             status : 1
         })
+        var {weight_val,proposal_weight} = that.data
         var encStr = rsa.sign(data)
         wx.request({
             url:`${URL}users/${that.data.userId}`,
@@ -230,11 +141,9 @@ Page({
                     })
                     var weight_val = res.data.data.addedValue.weight
                     wx.setStorageSync('stateInfo', res.data.data.addedValue)
-                    that.setData({
-                        weight_val
-                    })
-                    that.drawProgressbgW();
-                    that.drawCircleW(that.data.weight_val);
+                    that.setData({weight_val})
+                    canvas.drawProgressbgW()
+                    canvas.drawCircleW(weight_val,proposal_weight)
                     that.change_weight_val()
                 }
             }
@@ -259,9 +168,7 @@ Page({
                     Today_list.map((item,index)=>{
                         Today_know.push(item)
                     })
-                    that.setData({
-                        Today_know
-                    })
+                    that.setData({Today_know})
                 }else{
                     wx.showToast({
                         title: '没有更多了',
@@ -278,12 +185,10 @@ Page({
         var url = `${URL}articles?status=${that.data.stateInfo.status}&page=${that.data.page}`
         wx.request({
             url:url,
-            success:function(res){ //Today_know
+            success:function(res){
                 if (res.data.data.result){
                     var Today_know = res.data.data.addedValue
-                    that.setData({
-                        Today_know
-                    })
+                    that.setData({Today_know})
                 }
             }
         })
@@ -316,16 +221,16 @@ Page({
                                 proposal_step:addedValue.proposal,
                                 step : addedValue.num
                             })
-                            that.drawProgressbg();
-                            that.drawCircle(that.data.step);
+                            canvas.drawProgressbg()
+                            canvas.drawCircle(that.data.step,that.data.proposal_step)
                             wx.hideLoading()
                         }else{
-                            that.drawProgressbg();
+                            canvas.drawProgressbg()
                             wx.hideLoading()
                         }
                     },
                     fail:function(){
-                        that.drawProgressbg();
+                        canvas.drawProgressbg()
                         wx.hideLoading()
                     }
                 })
@@ -344,10 +249,9 @@ Page({
                                         //如果用户进入用户授权页面却没有授权，则再次弹出提示框
                                         that.run_step()
                                     }else{
-                                        //如果用户授权了则获取用户信息
+                                        //如果用户授权了则获取运动步数
                                         that.run_step()
                                     }
-
                                 }
                             })
                         } else if (res.cancel) {
@@ -380,8 +284,8 @@ Page({
                     step : run_step.num
                 })
                 console.log('小于十分钟')
-                that.drawProgressbg();
-                that.drawCircle(that.data.step);
+                canvas.drawProgressbg()
+                canvas.drawCircle(that.data.step,that.data.proposal_step)
                 wx.hideLoading()
             }
         }
@@ -410,10 +314,10 @@ Page({
             })
         }
         if (stateInfo.weight === 0){
-            this.drawProgressbgW();
+            canvas.drawProgressbgW()
         }else{
-            this.drawProgressbgW();
-            this.drawCircleW(this.data.weight_val);
+            canvas.drawProgressbgW()
+            canvas.drawCircleW(this.data.weight_val,this.data.proposal_weight)
         }
     },
     change_weight_val:function(){

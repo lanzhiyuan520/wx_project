@@ -220,8 +220,6 @@ Page({
                   weight_val : res.data.data.addedValue.weight,
                   refresh : true
               })
-              console.log(prev)
-
             wx.setStorageSync('stateInfo', res.data.data.addedValue)
             that.setData({
               weight: res.data.data.addedValue.weight
