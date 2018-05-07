@@ -40,7 +40,7 @@ Page({
       integers: integers,
       height_list:height_list,
       weight:0,
-      value : [0,0,0],
+      value : [10],
       height:0,
       weight_val:0,
       page:1,
@@ -65,12 +65,12 @@ Page({
   },
     onShow:function(){
         if (this.data.refresh){
-            console.log('刷新')
             this.drawProgressbgW();
             this.drawCircleW(this.data.weight_val);
             this.setData({
                 refresh : false
             })
+            this.change_weight_val()
         }
     },
     /*time : function () {
@@ -193,9 +193,6 @@ Page({
     context.stroke();
     context.draw()
   },
-  onReady: function () {
-      
-  },
     //体重
     bindChange:function(e){
         var val = e.detail.value[0]
@@ -226,6 +223,11 @@ Page({
             data:{data:encStr},
             success:function(res){
                 if (res.data.data.result){
+                    wx.showToast({
+                        title: '修改成功',
+                        icon: 'success',
+                        duration: 2000
+                    })
                     var weight_val = res.data.data.addedValue.weight
                     wx.setStorageSync('stateInfo', res.data.data.addedValue)
                     that.setData({
@@ -233,6 +235,7 @@ Page({
                     })
                     that.drawProgressbgW();
                     that.drawCircleW(that.data.weight_val);
+                    that.change_weight_val()
                 }
             }
         })
@@ -383,40 +386,51 @@ Page({
             }
         }
     },
+    getdata:function(){
+        OpenId =  wx.getStorageSync('openId')
+        userInfo = JSON.parse(wx.getStorageSync('userInfo'))
+        console.log('用户信息',userInfo)
+        var stateInfo = wx.getStorageSync('stateInfo')
+        console.log('用户状态',stateInfo)
+        console.log('OpenId',OpenId)
+        this.setData({
+            userInfo,
+            weight_val:stateInfo.weight,
+            stateInfo,
+            userId: stateInfo.id
+        })
+        this.change_weight_val()
+        if (stateInfo.status === 1){
+            this.setData({
+                state_text:'今天距宝宝出生大约'
+            })
+        }else if (stateInfo.status === 2 || stateInfo.status === 3){
+            this.setData({
+                state_text:'今天宝宝已出生'
+            })
+        }
+        if (stateInfo.weight === 0){
+            this.drawProgressbgW();
+        }else{
+            this.drawProgressbgW();
+            this.drawCircleW(this.data.weight_val);
+        }
+    },
+    change_weight_val:function(){
+        var value = []
+        var val = integers.indexOf(this.data.weight_val)
+        value[0] = val
+        this.setData({
+            value
+        })
+    },
   onLoad: function (options) {
       wx.showLoading({
           title: '加载中',
           mask:true,
       })
-       OpenId =  wx.getStorageSync('openId')
-       userInfo = JSON.parse(wx.getStorageSync('userInfo'))
-      console.log('用户信息',userInfo)
-      var stateInfo = wx.getStorageSync('stateInfo')
-      console.log('用户状态',stateInfo)
-      console.log('OpenId',OpenId)
-      this.setData({
-          userInfo,
-          weight_val:stateInfo.weight,
-          stateInfo,
-          userId: stateInfo.id
-      })
-      if (stateInfo.status === 1){
-          this.setData({
-              state_text:'今天距宝宝出生大约'
-          })
-      }else if (stateInfo.status === 2 || stateInfo.status === 3){
-          this.setData({
-              state_text:'今天宝宝已出生'
-          })
-      }
+      this.getdata()
       this.run_step()
       this.today()
-      if (stateInfo.weight === 0){
-          this.drawProgressbgW();
-      }else{
-          this.drawProgressbgW();
-          this.drawCircleW(this.data.weight_val);
-      }
-
   }
 })
