@@ -1,5 +1,6 @@
 var time = require('../utils/utils.js')
 var canvas = require('../utils/canvas')
+var request = require('../utils/request')
 const app = getApp()
 var sideBarstart
 var appid = app.globalData.appId
@@ -28,6 +29,8 @@ Page({
    */
   data: {
       hidden : true,
+      hidden_s : false,
+      hidden_empty : true,
       proposal_step : 0,
       step: 0,
       event: '',
@@ -47,7 +50,8 @@ Page({
       refresh:false,
       stateInfo:{},
       userId:null,
-      state_text:''
+      state_text:'',
+      pullrefresh:false
   },
   //跳转到今日知识页面
   skip_today : function (e) {
@@ -85,12 +89,14 @@ Page({
     if (touchend - sideBarstart < -50) {
       this.setData({
           hidden : false,
+          hidden_s : true,
       })
     }
     // slip right  
     if (touchend - sideBarstart > 50) {
         this.setData({
           hidden : true,
+          hidden_s : false,
         })
     }
     //手指抬起移除外层容器事件
@@ -104,11 +110,11 @@ Page({
   },
     //显示提示框
     show_mask:function () {
-        this.setData({mask: true, show: true, hidden:true})
+        this.setData({mask: true, show: true, hidden:true,hidden_s:true,hidden_empty:false,event:'preventTouchMove'})
     },
     //隐藏提示框
     hideMask:function(){
-        this.setData({mask: false, show: false, hidden:false})
+        this.setData({mask: false, show: false, hidden:false,hidden_s:true,hidden_empty:true,event:''})
     },
     //体重
     bindChange:function(e){
@@ -124,6 +130,7 @@ Page({
     //修改体重
     save:function(){
         var that = this
+        var url  = `${URL}users/${that.data.userId}`
         var data = JSON.stringify({
             height : this.data.height,
             weight :this.data.weight ,
@@ -131,11 +138,8 @@ Page({
         })
         var {weight_val,proposal_weight} = that.data
         var encStr = rsa.sign(data)
-        wx.request({
-            url:`${URL}users/${that.data.userId}`,
-            method:'PUT',
-            data:{data:encStr},
-            success:function(res){
+        request.request(url,'PUT',encStr)
+            .then((res)=>{
                 if (res.data.data.result){
                     wx.showToast({
                         title: '修改成功',
@@ -149,20 +153,26 @@ Page({
                     canvas.drawCircleW(weight_val,proposal_weight)
                     that.change_weight_val()
                 }
-            }
-        })
+            })
+            .catch((e)=>{
+                wx.showToast({
+                    title: '修改失败',
+                    icon: 'none',
+                    duration: 2000
+                })
+            })
     },
     //上拉加载
     onReachBottom:function () {
         var that = this
+        var url = `${URL}articles?status=${that.data.stateInfo.status}&page=${that.data.page}`
         wx.showLoading({
             title: '加载中',
             mask:true,
         })
         that.setData({page : that.data.page+1})
-        wx.request({
-            url:`${URL}articles?status=${that.data.stateInfo.status}&page=${that.data.page}`,
-            success:function(res){
+        request.request(url,'GET',{})
+            .then((res)=>{
                 if (res.data.data.result){
                     wx.hideLoading()
                     var Today_know = that.data.Today_know
@@ -179,28 +189,50 @@ Page({
                     })
                     wx.hideLoading()
                 }
-            }
-        })
+            })
+            .catch((e)=>{
+
+            })
+    },
+    //下拉刷新
+    onPullDownRefresh:function(){
+        console.log('下拉刷新')
+        this.setData({pullrefresh:true,page:1})
+        this.getdata()
+        this.run_step()
+        this.today()
     },
     //今日知识
     today:function(){
+        console.log(this.data.page)
         var that = this
         var url = `${URL}articles?status=${that.data.stateInfo.status}&page=${that.data.page}`
-        wx.request({
-            url:url,
-            success:function(res){
+        request.request(url,'GET',{})
+            .then((res)=>{
                 if (res.data.data.result){
                     var Today_know = res.data.data.addedValue
+                    if (that.data.pullrefresh){
+                        wx.stopPullDownRefresh()
+                        that.setData({pullrefresh:false})
+                        wx.showToast({
+                            title: '刷新成功',
+                            icon:'none',
+                            duration: 1000
+                        })
+                    }
                     that.setData({Today_know})
                 }
-            }
-        })
+            })
+            .catch((e)=>{
+                console.log(e)
+            })
     },
     //获取运动步数
     run_sports:function(){
       var that = this
         wx.getWeRunData({
             success(res) {
+                var url = `${URL}run/` + that.data.userId
                 var data = JSON.stringify({
                     appid,
                     sessionKey : OpenId.session_key,
@@ -208,14 +240,9 @@ Page({
                     iv : res.iv
                 })
                 var encStr = rsa.sign(data)
-                console.log('请求运动的数据',data)
-                console.log('加密之后的数据',encStr)
-                wx.request({
-                    url: `${URL}run/` + that.data.userId,
-                    method:'POST',
-                    data:{data:encStr},
-                    success:function(res){
-                        console.log('请求回来的运动数据',res)
+                request.request(url,'POST',encStr)
+                    .then((res)=>{
+                        console.log(res)
                         var addedValue = res.data.data.addedValue
                         var date = new Date().getTime()
                         addedValue.time = date
@@ -232,12 +259,11 @@ Page({
                             canvas.drawProgressbg()
                             wx.hideLoading()
                         }
-                    },
-                    fail:function(){
+                    })
+                    .catch((e)=>{
                         canvas.drawProgressbg()
                         wx.hideLoading()
-                    }
-                })
+                    })
             },
             fail:function(){
                 wx.hideLoading()

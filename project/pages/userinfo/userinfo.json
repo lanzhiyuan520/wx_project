@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText" : "有福妈妈"
+  "navigationBarTitleText" : "有福妈妈",
+  "enablePullDownRefresh":true,
+  "backgroundTextStyle": "dark"
 }
