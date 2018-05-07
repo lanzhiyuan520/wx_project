@@ -220,7 +220,7 @@ Page({
         })
         var encStr = rsa.sign(data)
         wx.request({
-            url:`${URL}users/1`,
+          url: `${URL}users/` + that.data.userId,
             method:'PUT',
             data:{data:encStr},
             success:function(res){
@@ -304,7 +304,7 @@ Page({
                     method:'POST',
                     data:{data:encStr},
                     success:function(res){
-                        // console.log('请求回来的运动数据',res)
+                        console.log('请求回来的运动数据',res)
                         var addedValue = res.data.data.addedValue
                         var date = new Date().getTime()
                         addedValue.time = date

@@ -4,6 +4,7 @@ App({
     var that = this
     var oppenId = wx.getStorageSync('openId')
     var userInfo = wx.getStorageSync('userInfo')
+    console.log(userInfo)
     if (!oppenId || !userInfo){
         // // 登录
         wx.login({

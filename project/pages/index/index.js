@@ -98,7 +98,25 @@ Page({
       }) 
     }
   },
+  CompareDate:function(d1,d2){
+    return ((new Date(d1.replace(/-/g, "\/"))) > (new Date(d2.replace(/-/g, "\/"))));
+  },
   submitBtn:function(){
+    if (this.data.state==1 && this.CompareDate(nowDate, this.data.date)){
+      wx.showToast({
+        title: '预产期不能小于当前日期',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    } if (this.data.state == 2 && this.CompareDate(this.data.date, nowDate)){
+      wx.showToast({
+        title: '宝宝生日不得大于当前日期',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
     var OpenId = wx.getStorageSync('openId');
     if (OpenId){
       var value = wx.getStorageSync('userInfo');
