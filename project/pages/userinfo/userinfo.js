@@ -62,6 +62,7 @@ Page({
         event: 'preventTouchMove'
       }) 
   },
+    //判断goback之前是否修改了体重
     onShow:function(){
         if (this.data.refresh){
             var {weight_val,proposal_weight} = this.data
@@ -101,9 +102,11 @@ Page({
   preventTouchMove : function () {
 
   },
+    //显示提示框
     show_mask:function () {
         this.setData({mask: true, show: true, hidden:true})
     },
+    //隐藏提示框
     hideMask:function(){
         this.setData({mask: false, show: false, hidden:false})
     },
@@ -149,15 +152,14 @@ Page({
             }
         })
     },
+    //上拉加载
     onReachBottom:function () {
         var that = this
         wx.showLoading({
             title: '加载中',
             mask:true,
         })
-        that.setData({
-            page : that.data.page+1
-        })
+        that.setData({page : that.data.page+1})
         wx.request({
             url:`${URL}articles?status=${that.data.stateInfo.status}&page=${that.data.page}`,
             success:function(res){
@@ -180,6 +182,7 @@ Page({
             }
         })
     },
+    //今日知识
     today:function(){
         var that = this
         var url = `${URL}articles?status=${that.data.stateInfo.status}&page=${that.data.page}`
@@ -193,6 +196,7 @@ Page({
             }
         })
     },
+    //获取运动步数
     run_sports:function(){
       var that = this
         wx.getWeRunData({
@@ -265,6 +269,7 @@ Page({
             }
         })
     },
+    //判断第二次进入页面是否大于十分钟 大于的话重新获取运动步数
     run_step:function(){
         var that = this
         var p_date = new Date()
@@ -290,6 +295,7 @@ Page({
             }
         }
     },
+    //获取用户信息、状态、openid等
     getdata:function(){
         OpenId =  wx.getStorageSync('openId')
         userInfo = JSON.parse(wx.getStorageSync('userInfo'))
@@ -320,6 +326,7 @@ Page({
             canvas.drawCircleW(this.data.weight_val,this.data.proposal_weight)
         }
     },
+    //更改当前体重值
     change_weight_val:function(){
         var value = []
         var val = integers.indexOf(this.data.weight_val)
