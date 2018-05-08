@@ -2,6 +2,7 @@
 var util = require('../../utils/utils.js');
 import chartWrap from '../canvas/chartWrap';
 import getConfig from './getConfig';
+var request = require('../utils/request');
 const date = new Date();
 var month = date.getMonth();
 const day = date.getDate();
@@ -48,19 +49,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    try {
-      var value = wx.getStorageSync('stateInfo')
-      if (value) {
-        this.setData({
-          userId: value.id,
-          weight: value.weight
-        })
-      }
-    } catch (e) {
-      console.log(e)
+    var value = wx.getStorageSync('stateInfo')
+    if (value) {
+      this.setData({
+        userId: value.id,
+        weight: value.weight
+      })
     }
-
-    for (var i = 0; i < 3; i++) {
+   for (var i = 0; i < 3; i++) {
       var fff = util.formatTime(this.data.dates[i], 'M月D日')
       console.log(fff)
     }
@@ -86,24 +82,48 @@ Page({
       })
     }.bind(this), 300)
   },
-  onShow: function () {
-
-    this.dotMove();
-    var that=this;
-    wx.request({
-      url: `${URL}weight/`+this.data.userId,
-      success: function (res) {
-        console.log('new',res)
-        var dataArr=[];
-        var labelArr=[];
-        for (var i = 0; i < res.data.data.addedValue.length;i++){
+  // 获取体重曲线数据
+  getWeightData:function(){
+    var that = this;
+    var url = `${URL}weight/` + this.data.userId;
+    request.request(url, 'GET')
+      .then((res) => {
+        console.log('new', res)
+        if (that.data.pullrefresh) {
+          wx.stopPullDownRefresh()
+          that.setData({ pullrefresh: false })
+          wx.showToast({
+            title: '刷新成功',
+            icon: 'none',
+            duration: 1000
+          })
+        }
+        var dataArr = [];
+        var labelArr = [];
+        for (var i = 0; i < res.data.data.addedValue.length; i++) {
           dataArr.push(res.data.data.addedValue[i].step);
           labelArr.push(res.data.data.addedValue[i].created_at.substring(5, 10))
         }
         console.log(labelArr)
-        that.graph(labelArr,dataArr)
-      }
+        that.graph(labelArr, dataArr)
     })
+    .catch((e) => {
+      wx.showToast({
+        title: '尝试下拉刷新试试～',
+        icon: 'none',
+        duration: 2000
+      })
+    })
+  },
+  //下拉刷新
+  onPullDownRefresh: function () {
+    console.log('下拉刷新');
+    this.setData({ pullrefresh: true })
+    this.getWeightData();
+  },
+  onShow: function () {
+    this.dotMove();
+    this.getWeightData();
   },
   graph: function (label,datas) {
     console.log('data',datas)
@@ -123,7 +143,6 @@ Page({
       }
       let config = getConfig(canvasConfig, labels, data)
       chartWrap.bind(pageThis)(config)
-
     })
   },
   // 判断运动量标准

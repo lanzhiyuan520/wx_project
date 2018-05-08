@@ -7,7 +7,8 @@ const date = new Date();
 var month = date.getMonth()+1;
 const day = date.getDate();
 var app = getApp()
-var rsa = require('../utils/rsa')
+var rsa = require('../utils/rsa');
+var request = require('../utils/request');
 // const URL = 'http://test.weixin.api.ayi800.com/api/'
 const URL = 'https://weixin.youfumama.com/api/'
 Page({
@@ -30,16 +31,26 @@ Page({
       iv: "",
       userId: null,
       arrowAnimation: {},
+      pullrefresh: false,
       msg:"对于准妈妈来说，蛋白质的供给不仅要充足还要优质，每天在饮食中应摄取蛋白质60-80克，其中应包含来自于多种食物如鱼、肉、蛋、奶、豆制品等的优质蛋白质以保证受精卵的正常发育。",
       dates: [1488481383, 145510091, 1495296000]
   },
+  // 获取曲线部分的数据
     run:function(){
       var that=this;
-      var id = wx.getStorageSync('stateInfo').id
-      // console.log(id)
-        wx.request({
-          url: `${URL}run/` + id,
-            success:function(res){
+      var id = wx.getStorageSync('stateInfo').id;
+      var url = `${URL}run/` + id;
+      request.request(url, 'GET')
+              .then((res) => {
+              if (that.data.pullrefresh) {
+                wx.stopPullDownRefresh()
+                that.setData({ pullrefresh: false })
+                wx.showToast({
+                  title: '刷新成功',
+                  icon: 'none',
+                  duration: 1000
+                })
+              }
                 var addedValue = res.data.data.addedValue;
                 var step = [];
                 var date = [];
@@ -48,19 +59,28 @@ Page({
                   date.push(addedValue[i].created_at.substring(5,10))
                 }
                 that.lineChart(date, step)
-            }
         })
+        .catch((e) => {
+          wx.showToast({
+            title: '尝试下拉刷新试试～',
+            icon: 'none',
+            duration: 2000
+          })
+        })
+    },
+    getSave:function(){
+      var value = wx.getStorageSync('run_step');
+      console.log(value)
+      this.setData({
+        todayStep: value.num
+      })
     },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
     this.run();
-    var value = wx.getStorageSync('run_step');
-    console.log(value)
-    this.setData({
-      todayStep: value.num
-    })
+    this.getSave();
   },
   onShow: function () {
     var step = this.data.todayStep;
@@ -83,6 +103,13 @@ Page({
         animationData: animation.export()
       })
     }.bind(this), 300)
+  },
+  //下拉刷新
+  onPullDownRefresh: function () {
+    console.log('下拉刷新');
+    this.setData({ pullrefresh: true })
+    this.run();
+    this.getSave();
   },
   // 判断运动量标准
   isStandard:function(norn){
