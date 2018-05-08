@@ -8,7 +8,8 @@ var month = date.getMonth()+1;
 const day = date.getDate();
 var app = getApp()
 var rsa = require('../utils/rsa')
-const URL = 'http://test.weixin.api.ayi800.com/api/'
+// const URL = 'http://test.weixin.api.ayi800.com/api/'
+const URL = 'https://weixin.youfumama.com/api/'
 Page({
   /**
    * 页面的初始数据

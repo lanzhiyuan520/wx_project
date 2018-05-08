@@ -1,4 +1,4 @@
-<view class='userInfo-wrap' catchtouchmove="{{event}}">
+<view class='userInfo-wrap' catchtouchmove="{{event}}" >
     <!--头部  -->
     <view class='header-wrap'>
         <view class='header-content'>
@@ -8,7 +8,7 @@
                 </view>
                 <view class='birth'>
                     <text class='birth-text family name'>{{userInfo.nickName}}</text>
-                    <text class='birth-text family'>今天距宝宝出生大约</text>
+                    <text class='birth-text family'>{{state_text}}</text>
                     <text class='birth-days family'>127</text>
                     <text class='birth-text family'>天</text>
                 </view>
@@ -19,7 +19,7 @@
 <!--运动建议  -->
     <view class='sports-suggest-wrap' bind:touchstart="pageTouchStartHandler" bind:touchend="pageTouchEndHandler" bindtouchmove='move'>
         <view class='sports-content'>
-            <view class='sports' hidden='{{!hidden}}'>
+            <view class='sports' hidden='{{hidden_s}}'>
                 <view class='play-content'>
                     <view class='progress_box'> 
                        <canvas class="progress_bg" canvas-id="canvasProgressbg"> </canvas> 
@@ -63,6 +63,7 @@
                 </view>
                 </view>
             </view>
+            <view style="width: 100%;height: 355rpx" hidden="{{hidden_empty}}"></view>
              <view class='circle'>
                 <view class='first {{hidden?"circle-active":""}}'></view>
                 <view class='last {{!hidden?"circle-active":""}}'></view>
