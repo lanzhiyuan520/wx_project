@@ -10,7 +10,7 @@ const decimals = [];
 const height_list = [];
 var OpenId,userInfo
 
-for (let i = 40; i <= 200; i++) {
+for (let i = 30; i <= 200; i++) {
     integers.push(i)
 }
 
