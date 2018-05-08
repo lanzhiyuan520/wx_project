@@ -1,13 +1,14 @@
-var time = require('../utils/utils.js')
 var canvas = require('../utils/canvas')
 var request = require('../utils/request')
+var rsa = require('../utils/rsa')
+
 const app = getApp()
 var sideBarstart
 var appid = app.globalData.appId
-var rsa = require('../utils/rsa')
 const integers = [];
 const decimals = [];
 const height_list = [];
+var OpenId,userInfo
 
 for (let i = 40; i <= 200; i++) {
     integers.push(i)
@@ -22,7 +23,6 @@ for (let i = 100; i < 300; i++) {
 }
 //const URL = 'http://test.weixin.api.ayi800.com/api/'
 const URL = 'https://weixin.youfumama.com/api/'
-var OpenId,userInfo
 Page({
   /**
    * 页面的初始数据
@@ -134,7 +134,7 @@ Page({
         var data = JSON.stringify({
             height : this.data.height,
             weight :this.data.weight ,
-            status : 1
+            status : this.data.stateInfo.status
         })
         var {weight_val,proposal_weight} = that.data
         var encStr = rsa.sign(data)
@@ -144,7 +144,8 @@ Page({
                     wx.showToast({
                         title: '修改成功',
                         icon: 'success',
-                        duration: 2000
+                        duration: 2000,
+                        mask:true,
                     })
                     var weight_val = res.data.data.addedValue.weight
                     wx.setStorageSync('stateInfo', res.data.data.addedValue)
@@ -158,7 +159,8 @@ Page({
                 wx.showToast({
                     title: '修改失败',
                     icon: 'none',
-                    duration: 2000
+                    duration: 2000,
+                    mask:true,
                 })
             })
     },
@@ -197,6 +199,7 @@ Page({
     //下拉刷新
     onPullDownRefresh:function(){
         console.log('下拉刷新')
+        wx.showNavigationBarLoading();
         this.setData({pullrefresh:true,page:1})
         this.getdata()
         this.run_step()
@@ -213,6 +216,7 @@ Page({
                     var Today_know = res.data.data.addedValue
                     if (that.data.pullrefresh){
                         wx.stopPullDownRefresh()
+                        wx.hideNavigationBarLoading();
                         that.setData({pullrefresh:false})
                         wx.showToast({
                             title: '刷新成功',
@@ -243,7 +247,13 @@ Page({
                 request.request(url,'POST',encStr)
                     .then((res)=>{
                         console.log(res)
-                        var addedValue = res.data.data.addedValue
+                        try{
+                            var addedValue = res.data.data.addedValue
+                        }catch (e){
+                            canvas.drawProgressbg()
+                            wx.hideLoading()
+                            return false
+                        }
                         var date = new Date().getTime()
                         addedValue.time = date
                         if (res.data.data.result){
