@@ -29,7 +29,9 @@ for (let i = 1; i <= 31; i++) {
 }
 const app = getApp()
 var rsa = require('../utils/rsa')
+var request = require('../utils/request');
 var nowDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" +date.getDate();
+const URL = 'https://weixin.youfumama.com/api/'
 Page({
   /**
    * 页面的初始数据
@@ -131,23 +133,20 @@ Page({
         b_user_id: OpenId.openid
       })
       console.log(data)
-      var encStr = rsa.sign(data)
-        wx.request({
-          url:'https://weixin.youfumama.com/api/users',
-            method : 'POST',
-            data: { data: encStr},
-            success : function(data){
-                console.log(55,data)
-                try {
-                  wx.setStorageSync('stateInfo', data.data.data.addedValue)
-                } catch (e) {
-                  console.log(e)
-                }
-            },
-            fail:function(e){
-              console.log(e)
-            }
-    })
+      var encStr = rsa.sign(data);
+      var url = `${URL}users`;
+      request.request(url, 'POST',encStr)
+        .then((res) => {
+            console.log(55,res)
+            wx.setStorageSync('stateInfo', res.data.data.addedValue)
+        })
+        .catch((e) => {
+          wx.showToast({
+            title: '登录不成功',
+            icon: 'none',
+            duration: 2000
+          })
+        })
       wx.redirectTo({
         url: '../userinfo/userinfo',
       })
