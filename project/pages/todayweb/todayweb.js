@@ -2,6 +2,7 @@ const app = getApp()
 var rsa = require('../utils/rsa')
 var WxParse = require('../wxParse/wxParse.js');
 var request = require('../utils/request')
+var toast = require('../utils/toast')
 const URL = 'https://weixin.youfumama.com/api/'
 Page({
 
@@ -37,7 +38,7 @@ Page({
               }
           })
           .catch((e)=>{
-
+              toast.toast('请求超时','none')
           })
   },
   nice:function(){
@@ -59,23 +60,15 @@ Page({
                         nice_num:res.data.data.addedValue.better_num,
                         difference_num:res.data.data.addedValue.unbetter_num
                     })
-                    wx.showToast({
-                        title: '点赞成功',
-                        icon: 'success',
-                        duration: 2000
-                    })
+                    toast.toast('点赞成功','success')
                 }else{
                     if (res.data.code === 2 && res.data.message==='不能重复点赞'){
-                        wx.showToast({
-                            title: '不能重复点赞',
-                            icon: 'none',
-                            duration: 2000
-                        })
-                    }
+                        toast.toast('不能重复点赞','none')
+                        }
                     }
             })
             .catch((e)=>{
-
+                toast.toast('请求超时','none')
             })
   },
     difference:function(){
@@ -97,22 +90,15 @@ Page({
                         nice_num:res.data.data.addedValue.better_num,
                         difference_num:res.data.data.addedValue.unbetter_num
                     })
-                    wx.showToast({
-                        title: '踩成功',
-                        icon: 'success',
-                        duration: 2000
-                    })
+                    toast.toast('踩成功','success')
                 }else{
                     if (res.data.code === 2 && res.data.message==='不能重复踩'){
-                        wx.showToast({
-                            title: '不能重复踩',
-                            icon: 'none',
-                            duration: 2000
-                        })}
+                            toast.toast('不能重复踩','none')
+                        }
                     }
             })
             .catch((e)=>{
-
+                toast.toast('请求超时','none')
             })
     },
   onLoad: function (options) {

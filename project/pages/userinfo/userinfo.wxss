@@ -25,9 +25,12 @@
   display: flex;
 }
 .birth{
-  display: flex;
-  align-items: center;
   margin-left: 23rpx;
+  width: 573rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  line-height: 140rpx;
 }
 .birth-text{
   font-size: 16px;
@@ -214,8 +217,6 @@
 .circle-active{
   background-color: #ff6478;
 }
-
-
 .modal-mask{
   position: fixed;
   top: 0;
@@ -232,7 +233,7 @@
 }
 .weight-picker{
   width: 90%;
-  height: 150px;
+  height: 300rpx;
   background: #ffffff;
   margin: 0 auto;
 }

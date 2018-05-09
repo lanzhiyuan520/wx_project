@@ -1,15 +1,16 @@
-var time = require('../utils/utils.js')
 var canvas = require('../utils/canvas')
 var request = require('../utils/request')
+var rsa = require('../utils/rsa')
+var toast = require('../utils/toast')
 const app = getApp()
 var sideBarstart
 var appid = app.globalData.appId
-var rsa = require('../utils/rsa')
 const integers = [];
 const decimals = [];
 const height_list = [];
+var OpenId,userInfo
 
-for (let i = 40; i <= 200; i++) {
+for (let i = 30; i <= 200; i++) {
     integers.push(i)
 }
 
@@ -22,7 +23,6 @@ for (let i = 100; i < 300; i++) {
 }
 //const URL = 'http://test.weixin.api.ayi800.com/api/'
 const URL = 'https://weixin.youfumama.com/api/'
-var OpenId,userInfo
 Page({
   /**
    * 页面的初始数据
@@ -134,18 +134,14 @@ Page({
         var data = JSON.stringify({
             height : this.data.height,
             weight :this.data.weight ,
-            status : 1
+            status : this.data.stateInfo.status
         })
         var {weight_val,proposal_weight} = that.data
         var encStr = rsa.sign(data)
         request.request(url,'PUT',encStr)
             .then((res)=>{
                 if (res.data.data.result){
-                    wx.showToast({
-                        title: '修改成功',
-                        icon: 'success',
-                        duration: 2000
-                    })
+                    toast.toast('修改成功','success')
                     var weight_val = res.data.data.addedValue.weight
                     wx.setStorageSync('stateInfo', res.data.data.addedValue)
                     that.setData({weight_val})
@@ -155,11 +151,7 @@ Page({
                 }
             })
             .catch((e)=>{
-                wx.showToast({
-                    title: '修改失败',
-                    icon: 'none',
-                    duration: 2000
-                })
+                toast.toast('修改失败','none')
             })
     },
     //上拉加载
@@ -182,21 +174,17 @@ Page({
                     })
                     that.setData({Today_know})
                 }else{
-                    wx.showToast({
-                        title: '没有更多了',
-                        icon:'none',
-                        duration: 2000
-                    })
+                    toast.toast('没有更多了','none')
                     wx.hideLoading()
                 }
             })
             .catch((e)=>{
-
+                toast.toast('请求超时','none')
             })
     },
     //下拉刷新
     onPullDownRefresh:function(){
-        console.log('下拉刷新')
+        wx.showNavigationBarLoading();
         this.setData({pullrefresh:true,page:1})
         this.getdata()
         this.run_step()
@@ -204,7 +192,6 @@ Page({
     },
     //今日知识
     today:function(){
-        console.log(this.data.page)
         var that = this
         var url = `${URL}articles?status=${that.data.stateInfo.status}&page=${that.data.page}`
         request.request(url,'GET',{})
@@ -213,18 +200,15 @@ Page({
                     var Today_know = res.data.data.addedValue
                     if (that.data.pullrefresh){
                         wx.stopPullDownRefresh()
+                        wx.hideNavigationBarLoading();
                         that.setData({pullrefresh:false})
-                        wx.showToast({
-                            title: '刷新成功',
-                            icon:'none',
-                            duration: 1000
-                        })
+                        toast.toast('刷新成功','none')
                     }
                     that.setData({Today_know})
                 }
             })
             .catch((e)=>{
-                console.log(e)
+                toast.toast('请求超时','none')
             })
     },
     //获取运动步数
@@ -243,7 +227,13 @@ Page({
                 request.request(url,'POST',encStr)
                     .then((res)=>{
                         console.log(res)
-                        var addedValue = res.data.data.addedValue
+                        try{
+                            var addedValue = res.data.data.addedValue
+                        }catch (e){
+                            canvas.drawProgressbg()
+                            wx.hideLoading()
+                            return false
+                        }
                         var date = new Date().getTime()
                         addedValue.time = date
                         if (res.data.data.result){
@@ -263,6 +253,7 @@ Page({
                     .catch((e)=>{
                         canvas.drawProgressbg()
                         wx.hideLoading()
+                        toast.toast('请求超时','none')
                     })
             },
             fail:function(){
@@ -287,7 +278,6 @@ Page({
                         } else if (res.cancel) {
                             //如果用户点击取消，则再次弹出提示框直到用户确定授权为止
                             that.run_step()
-                            console.log('用户点击取消')
                         }
                     }
 
@@ -364,7 +354,7 @@ Page({
   onLoad: function (options) {
       wx.showLoading({
           title: '加载中',
-          mask:true,
+          mask:true
       })
       this.getdata()
       this.run_step()
