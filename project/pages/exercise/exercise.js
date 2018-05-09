@@ -30,6 +30,7 @@ Page({
       encryptedData: "",
       iv: "",
       userId: null,
+      today:date,
       arrowAnimation: {},
       pullrefresh: false,
       msg:"对于准妈妈来说，蛋白质的供给不仅要充足还要优质，每天在饮食中应摄取蛋白质60-80克，其中应包含来自于多种食物如鱼、肉、蛋、奶、豆制品等的优质蛋白质以保证受精卵的正常发育。",
@@ -37,6 +38,17 @@ Page({
   },
   // 获取曲线部分的数据
     run:function(){
+      var myDate = new Date(); //获取今天日期
+      myDate.setDate(myDate.getDate() - 6);
+      console.log('myDate', myDate)
+      var dateArray = [];
+      var dateTemp;
+      var flag = 1;
+      for (var i = 0; i < 7; i++) {
+        dateTemp = ((myDate.getMonth() + 1) < 10 ? '0' + (myDate.getMonth() + 1) : (myDate.getMonth() + 1)) + "-" + (myDate.getDate() < 10 ? '0' + myDate.getDate() : myDate.getDate());
+        dateArray.push(dateTemp);
+        myDate.setDate(myDate.getDate() + flag);
+      }
       var that=this;
       var id = wx.getStorageSync('stateInfo').id;
       var url = `${URL}run/` + id;
@@ -54,11 +66,20 @@ Page({
                 var addedValue = res.data.data.addedValue;
                 var step = [];
                 var date = [];
+                var stepArr = [];
                 for (var i = 0; i < addedValue.length;i++ ){
                   step.push(addedValue[i].step)
                   date.push(addedValue[i].created_at.substring(5,10))
                 }
-                that.lineChart(date, step)
+                for (var i = 0; i < dateArray.length;i++){
+                  if (date.indexOf(dateArray[i])>-1){
+                    var index = date.indexOf(dateArray[i])
+                    stepArr.push(step[index])
+                  }else{
+                    stepArr.push(0)
+                  }
+                }
+                that.lineChart(dateArray, stepArr)
         })
         .catch((e) => {
           wx.showToast({

@@ -58,7 +58,6 @@ Page({
     }
    for (var i = 0; i < 3; i++) {
       var fff = util.formatTime(this.data.dates[i], 'M月D日')
-      console.log(fff)
     }
   },
   dotMove:function(){
@@ -88,7 +87,6 @@ Page({
     var url = `${URL}weight/` + this.data.userId;
     request.request(url, 'GET')
       .then((res) => {
-        console.log('new', res)
         if (that.data.pullrefresh) {
           wx.stopPullDownRefresh()
           that.setData({ pullrefresh: false })
@@ -100,11 +98,11 @@ Page({
         }
         var dataArr = [];
         var labelArr = [];
-        for (var i = 0; i < res.data.data.addedValue.length; i++) {
-          dataArr.push(res.data.data.addedValue[i].step);
-          labelArr.push(res.data.data.addedValue[i].created_at.substring(5, 10))
+        var addedValue = res.data.data.addedValue;
+        for (var i in addedValue) {
+          dataArr.push(addedValue[i]);
+          labelArr.push(i + '周')
         }
-        console.log(labelArr)
         that.graph(labelArr, dataArr)
     })
     .catch((e) => {

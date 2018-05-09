@@ -94,7 +94,7 @@ Page({
       this.submitBtn()
     }else{
       wx.showToast({
-        title: '授权不成功,无法进入页面',
+        title: '请尝试一下允许授权～',
         icon: 'none',
         duration: 2000
       }) 
