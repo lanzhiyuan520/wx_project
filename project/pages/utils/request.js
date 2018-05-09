@@ -4,6 +4,9 @@
             url,
             method,
             data:{data},
+            header: {
+                'content-type': 'application/json'
+            },
             success:function(res){
                 resolve(res)
             },
