@@ -22,7 +22,7 @@ for (let i = 100; i < 300; i++) {
     height_list.push(i)
 }
 //const URL = 'http://test.weixin.api.ayi800.com/api/'
-const URL = 'https://weixin.youfumama.com/api/'
+const URL = app.globalData.url;
 Page({
   /**
    * 页面的初始数据
