@@ -10,7 +10,7 @@ var app = getApp()
 var rsa = require('../utils/rsa');
 var request = require('../utils/request');
 // const URL = 'http://test.weixin.api.ayi800.com/api/'
-const URL = 'https://weixin.youfumama.com/api/'
+const URL = app.globalData.url;
 Page({
   /**
    * 页面的初始数据
@@ -54,6 +54,7 @@ Page({
       var url = `${URL}run/` + id;
       request.request(url, 'GET')
               .then((res) => {
+                console.log('run',res)
               if (that.data.pullrefresh) {
                 wx.stopPullDownRefresh()
                 that.setData({ pullrefresh: false })
@@ -63,22 +64,22 @@ Page({
                   duration: 1000
                 })
               }
-                var addedValue = res.data.data.addedValue;
-                var step = [];
-                var date = [];
-                var stepArr = [];
-                for (var i = 0; i < addedValue.length;i++ ){
-                  step.push(addedValue[i].step)
-                  date.push(addedValue[i].created_at.substring(5,10))
+              var addedValue = res.data.data.addedValue;
+              var step = [];
+              var date = [];
+              var stepArr = [];
+              for (var i = 0; i < addedValue.length;i++ ){
+                step.push(addedValue[i].step)
+                date.push(addedValue[i].created_at.substring(5,10))
+              }
+              for (var i = 0; i < dateArray.length;i++){
+                if (date.indexOf(dateArray[i])>-1){
+                  var index = date.indexOf(dateArray[i])
+                  stepArr.push(step[index])
+                }else{
+                  stepArr.push(0)
                 }
-                for (var i = 0; i < dateArray.length;i++){
-                  if (date.indexOf(dateArray[i])>-1){
-                    var index = date.indexOf(dateArray[i])
-                    stepArr.push(step[index])
-                  }else{
-                    stepArr.push(0)
-                  }
-                }
+              }
                 that.lineChart(dateArray, stepArr)
         })
         .catch((e) => {

@@ -31,7 +31,7 @@ const app = getApp()
 var rsa = require('../utils/rsa')
 var request = require('../utils/request');
 var nowDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" +date.getDate();
-const URL = 'https://weixin.youfumama.com/api/'
+const URL = app.globalData.url;
 Page({
   /**
    * 页面的初始数据
@@ -89,6 +89,7 @@ Page({
     })
   },
   userInfoHandler: function (value){
+    console.log('value',value)
     if (value.detail.errMsg =="getUserInfo:ok"){
       wx.setStorageSync('userInfo', value.detail.rawData)
       this.submitBtn()
@@ -125,31 +126,37 @@ Page({
       value = JSON.parse(value)
       var img = value.avatarUrl;
       var name = value.nickName;
-      var data = JSON.stringify({
-        status: this.data.state,
-        date: this.data.date,
-        nickname: name,
-        head_img: img,
-        b_user_id: OpenId.openid
-      })
+      var data = {
+        'status': this.data.state,
+        'date': this.data.date,
+        'nickname': name,
+        'head_img': img,
+        'b_user_id': OpenId.openid
+      }
       console.log(data)
-      var encStr = rsa.sign(data);
+      //var encStr = rsa.sign(data);
       var url = `${URL}users`;
-      request.request(url, 'POST',encStr)
+      request.request(url, 'POST',data)
         .then((res) => {
             console.log(55,res)
-            wx.setStorageSync('stateInfo', res.data.data.addedValue)
+            try {
+              wx.setStorageSync('stateInfo', res.data.data.addedValue)
+              wx.redirectTo({
+                url: '../userinfo/userinfo'
+              })
+            } catch (e) {
+              console.log(e)
+            }
+            
         })
         .catch((e) => {
+          console.log(e)
           wx.showToast({
             title: '登录不成功',
             icon: 'none',
             duration: 2000
           })
         })
-      wx.redirectTo({
-        url: '../userinfo/userinfo',
-      })
     }
   }
 })

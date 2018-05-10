@@ -19,7 +19,7 @@ for (let i = 1; i < 10; i++) {
 }
 var rsa = require('../utils/rsa')
 //const URL = 'http://test.weixin.api.ayi800.com/api/'
-const URL = 'https://weixin.youfumama.com/api/'
+const URL = app.globalData.url;
 Page({
 
   /**
@@ -49,11 +49,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var value = wx.getStorageSync('stateInfo')
+    var value = wx.getStorageSync('stateInfo');
+    var index = integers.indexOf(value.weight);
     if (value) {
       this.setData({
         userId: value.id,
-        weight: value.weight
+        weight: value.weight,
+        value: [index, 1, 1],
       })
     }
    for (var i = 0; i < 3; i++) {

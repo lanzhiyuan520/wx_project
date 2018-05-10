@@ -3,7 +3,7 @@ var rsa = require('../utils/rsa')
 var WxParse = require('../wxParse/wxParse.js');
 var request = require('../utils/request')
 var toast = require('../utils/toast')
-const URL = 'https://weixin.youfumama.com/api/'
+const URL = app.globalData.url;
 Page({
 
   /**
