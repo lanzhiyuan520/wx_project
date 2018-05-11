@@ -213,50 +213,56 @@ Page({
     },
     //获取运动步数
     run_sports:function(){
-      var that = this
-        wx.getWeRunData({
-            success(res) {
-                var url = `${URL}run/` + that.data.userId
-                var data = JSON.stringify({
-                    appid,
-                    sessionKey : OpenId.session_key,
-                    encryptedData:res.encryptedData,
-                    iv : res.iv
-                })
-                var encStr = rsa.sign(data)
-                request.request(url,'POST',encStr)
-                    .then((res)=>{
-                        console.log(res)
-                        try{
-                            var addedValue = res.data.data.addedValue
-                        }catch (e){
-                            canvas.drawProgressbg()
-                            wx.hideLoading()
-                            return false
-                        }
-                        var date = new Date().getTime()
-                        addedValue.time = date
-                        if (res.data.data.result){
-                            wx.setStorageSync('run_step',res.data.data.addedValue)
-                            that.setData({
-                                proposal_step:addedValue.proposal,
-                                step : addedValue.num
+        var that = this
+        wx.authorize({
+            scope: 'scope.werun',
+            success: function() {
+                wx.getWeRunData({
+                    success:function (res) {
+                        var url = `${URL}run/` + that.data.userId
+                        var data = JSON.stringify({
+                            appid,
+                            sessionKey : OpenId.session_key,
+                            encryptedData:res.encryptedData,
+                            iv : res.iv
+                        })
+                        var encStr = rsa.sign(data)
+                        request.request(url,'POST',encStr)
+                            .then((res)=>{
+                                console.log(res)
+                                try{
+                                    var addedValue = res.data.data.addedValue
+                                }catch (e){
+                                    canvas.drawProgressbg()
+                                    wx.hideLoading()
+                                    return false
+                                }
+                                var date = new Date().getTime()
+                                addedValue.time = date
+                                if (res.data.data.result){
+                                    wx.setStorageSync('run_step',res.data.data.addedValue)
+                                    that.setData({
+                                        proposal_step:addedValue.proposal,
+                                        step : addedValue.num
+                                    })
+                                    canvas.drawProgressbg()
+                                    canvas.drawCircle(that.data.step,that.data.proposal_step)
+                                    wx.hideLoading()
+                                }else{
+                                    canvas.drawProgressbg()
+                                    wx.hideLoading()
+                                }
                             })
-                            canvas.drawProgressbg()
-                            canvas.drawCircle(that.data.step,that.data.proposal_step)
-                            wx.hideLoading()
-                        }else{
-                            canvas.drawProgressbg()
-                            wx.hideLoading()
-                        }
-                    })
-                    .catch((e)=>{
-                        canvas.drawProgressbg()
-                        wx.hideLoading()
-                        toast.toast('请求超时','none')
-                    })
+                            .catch((e)=>{
+                                canvas.drawProgressbg()
+                                wx.hideLoading()
+                                toast.toast('请求超时','none')
+                            })
+                    }
+                })
+
             },
-            fail:function(){
+            fail: function () {
                 wx.hideLoading()
                 wx.showModal({
                     title: '提示',
@@ -266,6 +272,7 @@ Page({
                             //如果用户点击确定则引导打开授权
                             wx.openSetting({
                                 success : function (res) {
+                                    console.log(res)
                                     if (!res.authSetting["scope.werun"]){
                                         //如果用户进入用户授权页面却没有授权，则再次弹出提示框
                                         that.run_step()
@@ -284,6 +291,78 @@ Page({
                 })
             }
         })
+
+        // wx.getWeRunData({
+        //     success(res) {
+        //         var url = `${URL}run/` + that.data.userId
+        //         var data = JSON.stringify({
+        //             appid,
+        //             sessionKey : OpenId.session_key,
+        //             encryptedData:res.encryptedData,
+        //             iv : res.iv
+        //         })
+        //         var encStr = rsa.sign(data)
+        //         request.request(url,'POST',encStr)
+        //             .then((res)=>{
+        //                 console.log(res)
+        //                 try{
+        //                     var addedValue = res.data.data.addedValue
+        //                 }catch (e){
+        //                     canvas.drawProgressbg()
+        //                     wx.hideLoading()
+        //                     return false
+        //                 }
+        //                 var date = new Date().getTime()
+        //                 addedValue.time = date
+        //                 if (res.data.data.result){
+        //                     wx.setStorageSync('run_step',res.data.data.addedValue)
+        //                     that.setData({
+        //                         proposal_step:addedValue.proposal,
+        //                         step : addedValue.num
+        //                     })
+        //                     canvas.drawProgressbg()
+        //                     canvas.drawCircle(that.data.step,that.data.proposal_step)
+        //                     wx.hideLoading()
+        //                 }else{
+        //                     canvas.drawProgressbg()
+        //                     wx.hideLoading()
+        //                 }
+        //             })
+        //             .catch((e)=>{
+        //                 canvas.drawProgressbg()
+        //                 wx.hideLoading()
+        //                 toast.toast('请求超时','none')
+        //             })
+        //     },
+        //     fail:function(e){
+        //         wx.hideLoading()
+        //         wx.showModal({
+        //             title: '提示',
+        //             content: '您拒绝了授权,将获取不到运动步数，点击确定重新获取',
+        //             success: function (res) {
+        //                 if (res.confirm) {
+        //                     //如果用户点击确定则引导打开授权
+        //                     wx.openSetting({
+        //                         success : function (res) {
+        //                             console.log(res)
+        //                             if (!res.authSetting["scope.werun"]){
+        //                                 //如果用户进入用户授权页面却没有授权，则再次弹出提示框
+        //                                 that.run_step()
+        //                             }else{
+        //                                 //如果用户授权了则获取运动步数
+        //                                 that.run_step()
+        //                             }
+        //                         }
+        //                     })
+        //                 } else if (res.cancel) {
+        //                     //如果用户点击取消，则再次弹出提示框直到用户确定授权为止
+        //                     //that.run_step()
+        //                 }
+        //             }
+        //
+        //         })
+        //     }
+        // })
     },
     //判断第二次进入页面是否大于十分钟 大于的话重新获取运动步数
     run_step:function(){
