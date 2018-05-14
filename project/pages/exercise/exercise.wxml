@@ -44,9 +44,17 @@
     </view>
     <view class='content advise-box'>
        <view class='main-title'>运动曲线</view>
+       <view>
         <view class="chart-iframe">
-            <canvas disable-scroll="true" style="width:{{myCanvasStyle.width}}px; height: {{myCanvasStyle.height}}px;"  bindtouchstart="myCanvasTouchStart" bindtouchmove="myCanvasTouchMove" bindtouchend="myCanvasTouchEnd" canvas-id="myCanvas"></canvas>
+          <canvas disable-scroll="true" style="width:{{myCanvasStyle.width}}px; height: {{myCanvasStyle.height}}px;"  bindtouchstart="myCanvasTouchStart" bindtouchmove="myCanvasTouchMove" bindtouchend="myCanvasTouchEnd" canvas-id="myCanvas"></canvas>
         </view>
+        </view>
+         <!-- <view hidden>
+          <view class="chart-iframe">
+            <canvas disable-scroll="true" style="width:{{myCanvasStyle.width}}px; height: {{myCanvasStyle.height}}px;"  bindtouchstart="myCanvasTouchStart" bindtouchmove="myCanvasTouchMove" bindtouchend="myCanvasTouchEnd" canvas-id="myCanvas"></canvas>
+          </view>
+        </view>  -->
+
     </view>
     <button class='service-btn' open-type="contact">进入客服会话</button>
 </view>

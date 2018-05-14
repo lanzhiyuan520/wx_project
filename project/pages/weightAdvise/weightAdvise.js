@@ -2,6 +2,7 @@
 var util = require('../../utils/utils.js');
 import chartWrap from '../canvas/chartWrap';
 import getConfig from './getConfig';
+var request = require('../utils/request');
 const date = new Date();
 var month = date.getMonth();
 const day = date.getDate();
@@ -16,7 +17,9 @@ for (let i = 40; i <= 200; i++) {
 for (let i = 1; i < 10; i++) {
   decimals.push(i / 10)
 }
-
+var rsa = require('../utils/rsa')
+//const URL = 'http://test.weixin.api.ayi800.com/api/'
+const URL = app.globalData.url;
 Page({
 
   /**
@@ -36,6 +39,8 @@ Page({
     decimals: decimals,
     integers: integers,
     value: [1, 1, 1],
+    newWeight:41.2,
+    userId:null,
     msg: "对于准妈妈来说，蛋白质的供给不仅要充足还要优质，每天在饮食中应摄取蛋白质60-80克，其中应包含来自于多种食物如鱼、肉、蛋、奶、豆制品等的优质蛋白质以保证受精卵的正常发育。",
     dates: [1488481383, 145510091, 1495296000]
   },
@@ -44,13 +49,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    for (var i = 0; i < 3; i++) {
+    var value = wx.getStorageSync('stateInfo');
+    var index = integers.indexOf(value.weight);
+    if (value) {
+      this.setData({
+        userId: value.id,
+        weight: value.weight,
+        value: [index, 1, 1],
+      })
+    }
+   for (var i = 0; i < 3; i++) {
       var fff = util.formatTime(this.data.dates[i], 'M月D日')
-      console.log(fff)
     }
   },
-  onShow: function () {
-    var weight = this.data.weight*2;
+  dotMove:function(){
+    var weight = this.data.weight * 2;
     this.isStandard(weight)
     var animation = wx.createAnimation({
       transformOrigin: "50% 50%",
@@ -63,19 +76,63 @@ Page({
     this.setData({
       animationData: this.animation.export()
     });
-
     setTimeout(function () {
       animation.left(this.data.playStep + "rpx").step()
       this.setData({
         animationData: animation.export()
       })
     }.bind(this), 300)
+  },
+  // 获取体重曲线数据
+  getWeightData:function(){
+    var that = this;
+    var url = `${URL}weight/` + this.data.userId;
+    request.request(url, 'GET')
+      .then((res) => {
+        if (that.data.pullrefresh) {
+          wx.stopPullDownRefresh()
+          that.setData({ pullrefresh: false })
+          wx.showToast({
+            title: '刷新成功',
+            icon: 'none',
+            duration: 1000
+          })
+        }
+        var dataArr = [];
+        var labelArr = [];
+        var addedValue = res.data.data.addedValue;
+        for (var i in addedValue) {
+          dataArr.push(addedValue[i]);
+          labelArr.push(i + '周')
+        }
+        that.graph(labelArr, dataArr)
+    })
+    .catch((e) => {
+      wx.showToast({
+        title: '尝试下拉刷新试试～',
+        icon: 'none',
+        duration: 2000
+      })
+    })
+  },
+  //下拉刷新
+  onPullDownRefresh: function () {
+    console.log('下拉刷新');
+    this.setData({ pullrefresh: true })
+    this.getWeightData();
+  },
+  onShow: function () {
+    this.dotMove();
+    this.getWeightData();
+  },
+  graph: function (label,datas) {
+    console.log('data',datas)
     // 曲线
     let pageThis = this
     app.deviceInfo.then(function (deviceInfo) {
       console.log('设备信息', deviceInfo)
-      let labels = ["11月01日", "11月02日", "11月03日", "11月04日", "11月05日", "11月06日", "11月07日"]
-      let data = [1000, 8000, 7583, 9234, 12345, 13456, 16789]
+      let labels = label
+      let data = datas
       let width = Math.floor(deviceInfo.windowWidth * 0.8)//canvas宽度
       let height = Math.floor(width / 1.6)//这个项目canvas的width/height为1.6
       let canvasId = 'myCanvas'
@@ -86,9 +143,7 @@ Page({
       }
       let config = getConfig(canvasConfig, labels, data)
       chartWrap.bind(pageThis)(config)
-
     })
-
   },
   // 判断运动量标准
   isStandard: function (norn) {
@@ -155,6 +210,41 @@ Page({
   },
   bindChange: function (e) {
     const val = e.detail.value
-    console.log(val)
+    console.log(55,val)
+    var bigNum = integers[val[0]];
+    var smallNum = decimals[val[1]];
+    console.log(bigNum, smallNum)
+    var weight = bigNum + smallNum
+    this.setData({
+      newWeight: weight
+    })
+  },
+  save:function(){
+      var pages = getCurrentPages();
+    var that=this;
+    console.log(this.data.newWeight)
+      var data = JSON.stringify({
+          height : 0,
+          weight :this.data.newWeight ,
+          status : 1
+      })
+      var encStr = rsa.sign(data)
+      wx.request({
+        url: `${URL}users/`+that.data.userId,
+          method:'PUT',
+          data:{data:encStr},
+          success:function(res){
+             var prev = pages[pages.length - 2]
+              prev.setData({
+                  weight_val : res.data.data.addedValue.weight,
+                  refresh : true
+              })
+            wx.setStorageSync('stateInfo', res.data.data.addedValue)
+            that.setData({
+              weight: res.data.data.addedValue.weight
+            })
+            that.dotMove();
+          }
+      })
   }
 })

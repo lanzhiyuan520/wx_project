@@ -11,5 +11,8 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "有福妈妈",
     "navigationBarTextStyle":"black"
+  },
+  "networkTimeout":{
+    "request":5000
   }
 }

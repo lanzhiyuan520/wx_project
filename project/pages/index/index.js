@@ -27,24 +27,39 @@ for (let i = 1; i <= 31; i++) {
     dayVal = i-1
   }
 }
+const app = getApp()
+var rsa = require('../utils/rsa')
+var request = require('../utils/request');
+var nowDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" +date.getDate();
+const URL = app.globalData.url;
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     pregnancy:true,
+    state:1,
     years: years,
     months: months,
     days: days,
+    userInfo:{},
     value: [yearVal, monthVal, dayVal],
-    date: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+    date: nowDate
   },
   stateChange:function(){
     var that=this;
     this.setData({
       pregnancy: !that.data.pregnancy
     })
+    if (this.data.pregnancy){
+      this.setData({
+        state:1
+      })
+    }else{
+      this.setData({
+        state: 2
+      })
+    }
   },
   bindChange: function (e) {
     const val = e.detail.value
@@ -73,12 +88,76 @@ Page({
       date: year + "-" + month + "-" + day
     })
   },
+  userInfoHandler: function (value){
+    console.log('value',value)
+    if (value.detail.errMsg =="getUserInfo:ok"){
+      wx.setStorageSync('userInfo', value.detail.rawData)
+      this.submitBtn()
+    }else{
+      wx.showToast({
+        title: '请尝试一下允许授权～',
+        icon: 'none',
+        duration: 2000
+      }) 
+    }
+  },
+  CompareDate:function(d1,d2){
+    return ((new Date(d1.replace(/-/g, "\/"))) > (new Date(d2.replace(/-/g, "\/"))));
+  },
   submitBtn:function(){
-    console.log(this.data.date)
-    wx.navigateTo({
-      // url: '../exercise/exercise',
-      url: '../userinfo/userinfo',
-    })
+    if (this.data.state==1 && this.CompareDate(nowDate, this.data.date)){
+      wx.showToast({
+        title: '预产期不能小于当前日期',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    } if (this.data.state == 2 && this.CompareDate(this.data.date, nowDate)){
+      wx.showToast({
+        title: '宝宝生日不得大于当前日期',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    var OpenId = wx.getStorageSync('openId');
+    if (OpenId){
+      var value = wx.getStorageSync('userInfo');
+      value = JSON.parse(value)
+      var img = value.avatarUrl;
+      var name = value.nickName;
+      var data = {
+        'status': this.data.state,
+        'date': this.data.date,
+        'nickname': name,
+        'head_img': img,
+        'b_user_id': OpenId.openid
+      }
+      console.log(data)
+      //var encStr = rsa.sign(data);
+      var url = `${URL}users`;
+      request.request(url, 'POST',data)
+        .then((res) => {
+            console.log(55,res)
+            try {
+              wx.setStorageSync('stateInfo', res.data.data.addedValue)
+              wx.redirectTo({
+                url: '../userinfo/userinfo'
+              })
+            } catch (e) {
+              console.log(e)
+            }
+            
+        })
+        .catch((e) => {
+          console.log(e)
+          wx.showToast({
+            title: '登录不成功',
+            icon: 'none',
+            duration: 2000
+          })
+        })
+    }
   }
 })
 

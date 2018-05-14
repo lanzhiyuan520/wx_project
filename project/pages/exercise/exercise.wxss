@@ -139,7 +139,6 @@
 .service-btn{
   width: 220rpx;
   height: 70rpx;
-  margin: 60rpx auto 0;
   border-radius: 70rpx;
   border: 1px solid #ff6478;
   text-align: center;
@@ -147,6 +146,9 @@
   background: transparent;
   color: #ff6478;
   font-size: 30rpx;
+  margin-top: 50rpx;
+  left: 50%;
+  margin-left: -110rpx;
 }
 .mb-80{
   margin-bottom: 80rpx

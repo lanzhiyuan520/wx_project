@@ -3,5 +3,6 @@
   "navigationBarBackgroundColor": "#ff6f88",
   "navigationBarTitleText": "运动建议",
   "navigationBarTextStyle": "#ffffff",
-  "backgroundColorTop":"#ff6f88"
+  "backgroundColorTop":"#ff6f88",
+  "enablePullDownRefresh": true
 }

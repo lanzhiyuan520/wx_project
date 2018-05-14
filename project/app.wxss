@@ -1,4 +1,4 @@
-
+@import "/pages/wxParse/wxParse.wxss";
 .family {
     font-family: 'PingFang SC';
 }

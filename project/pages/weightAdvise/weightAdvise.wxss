@@ -159,12 +159,15 @@
   font-size: 30rpx;
   text-align: center;
   line-height: 70rpx;
+  margin-right: 138rpx;
 }
 .btn-box{
-  padding: 0 110rpx 60rpx;
-  display: flex;
-  flex-direction: row;
-  margin-top: 60rpx
+  padding: 0 110rpx;
+   display: flex;
+  flex-direction: row; 
+   margin-top: 60rpx; 
+  /* position: fixed;
+  bottom: 0 ; */
 }
 .modal-mask{
   position: fixed;

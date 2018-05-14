@@ -16,6 +16,7 @@ export default function(canvasConfig,labels,data){
                 pointHitRadius: 10,
                 pointRadius:0,
                 borderWidth: 2,
+                // datasetFill:true,
                 data: data
             }]
         },
@@ -42,7 +43,8 @@ export default function(canvasConfig,labels,data){
                 var ctx = this.chart.ctx;
                 console.log(ctx.fillText)
                 ctx.font ="30px Verdana";
-                ctx.fillText(8692, 100, 10);
+                ctx.fillText("hello",100,10)
+                console.log(ctx)
               }
             },
             tooltips: {
@@ -52,7 +54,7 @@ export default function(canvasConfig,labels,data){
                 callbacks: {
                     title:function(tooltipItem){
                         //return tooltipItem[0].xLabel+':'+tooltipItem[0].yLabel;
-                        return tooltipItem[0].yLabel+"步";
+                        return tooltipItem[0].yLabel+"kg";
                     },
                     label: function(tooltipItem) {
                         console.log(tooltipItem)
@@ -74,7 +76,7 @@ export default function(canvasConfig,labels,data){
                         labelString: ''
                     },
                     ticks: {
-                        maxTicksLimit:7,
+                        maxTicksLimit: 7,
                         fontColor:'#9E9E9E',
                         fontSize: 6
                         // beginAtZero:false
@@ -87,11 +89,11 @@ export default function(canvasConfig,labels,data){
                         // hideY:false,//这是自定义参数 业务需要添加隐藏y轴
                     },
                     ticks: {
-                        maxTicksLimit: 4,
+                        maxTicksLimit: 6,
                         fontColor:'#9E9E9E',
                         fontSize:8,
-                        beginAtZero:true,
-                        display:false
+                        display:false,
+                        // beginAtZero:true
                     },
                     scaleLabel: {
                         display: true,

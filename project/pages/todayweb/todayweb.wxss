@@ -3,7 +3,7 @@
   box-sizing: border-box;
 }
 .evaluate{
-  margin-top: 58rpx;
+  margin-top: 20rpx;
   display: flex;
   justify-content: center;
 }
@@ -11,12 +11,14 @@
   width: 134rpx;
   height: 45rpx;
 }
+.nice_active{
+  margin-right: 80rpx;
+}
 .nice{
   background-color: #ff6666;
   border-radius: 15px;
   display: flex;
   align-items: center;
-  margin-right: 80rpx;
 }
 .nice image{
   width: 17rpx;
@@ -44,6 +46,11 @@
   font-size: 21rpx;
   margin-left: 15rpx;
 }
+.difference-num2{
+  color: #fff;
+  font-size: 21rpx;
+  margin-left: 15rpx;
+}
 .head-text{
   font-size: 30rpx;
 }
@@ -59,8 +66,8 @@
 .content{
   text-indent: 2rem;
 }
-.content text{
-
-  font-size: 30rpx;
+image{
+  display: block;
 }
+
 
