@@ -9,7 +9,7 @@
         </view>
         <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
     </view>
-    <view class='evaluate' style="padding-bottom: 100rpx">
+    <view class='evaluate' style="padding-bottom: 100rpx" hidden="{{hidden}}">
         <view class=' nice_active {{nice_active?"difference":"nice"}}' bindtap="nice">
             <image src='{{nice_img}}'></image>
             <text class=' {{nice_active?"difference-num":"nice-num"}} family'>{{nice_num}}</text>

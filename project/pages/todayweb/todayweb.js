@@ -18,7 +18,8 @@ Page({
       nice_img:'http://cdn.ayi800.com/image/png/weixin_niceshang@2x.png',
       difference_img:'http://cdn.ayi800.com/image/png/xiaochengxu-cha%E7%BA%BF%E6%8F%8F%E7%AE%AD%E5%A4%B4@2x.png',
       nice_num:0,
-      difference_num:0
+      difference_num:0,
+      hidden:true
   },
   article:function(){
       wx.showLoading({title: '加载中', mask:true,})
@@ -31,7 +32,8 @@ Page({
                   that.setData({
                       article_detailed : res.data.data.addedValue,
                       nice_num:res.data.data.addedValue.better_num,
-                      difference_num:res.data.data.addedValue.unbetter_num
+                      difference_num:res.data.data.addedValue.unbetter_num,
+                      hidden : false
                   })
                   WxParse.wxParse('article', 'html', article, that,0);
                   wx.hideLoading()
@@ -107,5 +109,4 @@ Page({
           })
           this.article()
   },
- 
 })

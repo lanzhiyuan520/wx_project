@@ -21,7 +21,6 @@ for (let i = 1; i < 10; i++) {
 for (let i = 100; i < 300; i++) {
     height_list.push(i)
 }
-//const URL = 'http://test.weixin.api.ayi800.com/api/'
 const URL = app.globalData.url;
 Page({
   /**
@@ -301,7 +300,7 @@ Page({
         if (!run_step){
             that.run_sports()
         }else{
-            if (minutes >= 1){
+            if (minutes >= 10){
                 console.log('大于十分钟')
                 that.run_sports()
             }else{
