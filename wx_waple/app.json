@@ -1,0 +1,36 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/waiter/waiter",
+    "pages/my/my"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#9da2a2",
+    "selectedColor": "#ff7683",
+    "borderStyle": "black" ,
+    "backgroundColor":"#fff",
+    "list": [{
+      "selectedIconPath": "./img/index_s.png",
+      "iconPath": "./img/index_n.png",
+      "pagePath": "pages/index/index",
+      "text": "首页"
+    }, {
+      "selectedIconPath": "./img/waiter_s.png",
+      "iconPath": "./img/waiter_n.png",
+      "pagePath": "pages/waiter/waiter",
+      "text": "月嫂"
+    },{
+      "selectedIconPath": "./img/my_s.png",
+      "iconPath": "./img/my_n.png",
+      "pagePath": "pages/my/my",
+      "text": "我的"
+    }
+      ]
+  }
+}
