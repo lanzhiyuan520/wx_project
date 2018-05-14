@@ -1,3 +1,85 @@
 <view>
-  <text>首页</text>
+    <view class="banner_wrap"></view>
+    <view class="server_nav">
+       <view class="server_item" wx:for="{{server_list}}">
+          <view class="server_nav_img">
+            <image src="{{item.img}}"></image>
+            <text class="yuesao_text">{{item.text}}</text>
+          </view>
+       </view>
+    </view>
+    <view class="leval"></view>
+    <view class="waiter_recommend">
+      <view class="waiter_recommend_title">
+        <view>
+          <text class="title_text font_ping">月嫂推荐</text>
+        </view>
+        <view>
+          <text class="more">更多></text>
+        </view>
+      </view>
+      <view class="waiter_list">
+        <scroll-view scroll-x style="white-space: nowrap; height: 350rpx">
+          <view class="waiter_item {{index===0?'first_list':''}}" wx:for="{{waiter_list}}">
+            <view class="waiter_content {{index}}">
+              <image src="{{item.img}}"></image>
+              <text class="waiter_name">{{item.name}}</text>
+              <view class="leval2"></view>
+              <text class="price">{{item.price}}</text>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <view class="leval"></view>
+    <view>
+      <view class="comment_title">
+        <text class="title_text font_ping">用户点评</text>
+      </view>
+      <view class="comment_list">
+        <view class="comment_item">
+          <view class="user_info">
+            <view class="user_head">
+              <image src="http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg"></image>
+            </view>
+            <view class="info">
+              <view class="user_name_wrap">
+                <text class="user_name">李什么梅</text>
+              </view>
+              <view class="comment_star">
+                <view class="star">
+                  <image src="http://cdn.ayi800.com/image/png/wx_waple_star%E6%98%9F@2x.png"></image>
+                  <image src="http://cdn.ayi800.com/image/png/wx_waple_star%E6%98%9F@2x.png"></image>
+                  <image src="http://cdn.ayi800.com/image/png/wx_waple_star%E6%98%9F@2x.png"></image>
+                  <image src="http://cdn.ayi800.com/image/png/wx_waple_star%E6%98%9F@2x.png"></image>
+                  <image src="http://cdn.ayi800.com/image/png/wx_waple_star%E6%98%9F@2x.png"></image>
+                </view>
+                <view class="time">
+                  <text style="font-size: 24rpx;color: #818181;">4月15日</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="comment_content">
+            <view class="comment_text">
+              <text class="comment_text_content">马东什么阿姨很不错，照顾新生儿很有经验照顾新生儿很有经验，烧的催乳汤巨好喝，符合口味很耐思，月子餐什么啊的</text>
+            </view>
+            <view class="comment_img">
+              <image src="http://cdn.ayi800.com/image/png/fuchong_chanhou%E8%90%A5%E5%85%BB%E5%B8%884@2x.png"></image>
+              <image src="http://cdn.ayi800.com/image/png/fuchong_chanhou%E8%90%A5%E5%85%BB%E5%B8%884@2x.png"></image>
+              <image src="http://cdn.ayi800.com/image/png/fuchong_chanhou%E8%90%A5%E5%85%BB%E5%B8%884@2x.png"></image>
+            </view>
+          </view>
+          <view class="leval" style="width: 662rpx;height:12rpx;position: relative;left: -21rpx;"></view>
+          <view class="waiter_user">
+            <view class="waiter_head">
+              <image src="http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg"></image>
+            </view>
+            <view class="waiter_name">
+              <text style="font-size: 24rpx">李什么阿姨</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
 </view>
