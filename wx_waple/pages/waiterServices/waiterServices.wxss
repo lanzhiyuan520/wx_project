@@ -51,9 +51,10 @@
 }
 .server-list{
     background: linear-gradient(to right,#ff8a6c,#ff6794);
-    border-radius: 10rpx;
+    border-radius: 20rpx;
     display: inline-flex;
     margin-right: 40rpx;
+    margin-left: 35rpx;
 }
 .first{
     margin-left: 115rpx;
@@ -65,4 +66,8 @@
 .width_select{
     transition: all .5s linear;
     transform: scale(1.1);
+}
+.swiper_{
+    display: flex;
+    align-items: center;
 }

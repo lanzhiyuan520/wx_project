@@ -20,8 +20,13 @@
         <view class="work-title">
             <text>每日工作</text>
         </view>
-        <view class="list" style="display: inline-flex;flex-wrap: nowrap;align-items: center;position: relative;left: {{left}}rpx;transition: all .5s linear" bind:touchstart="pageTouchStartHandler" bind:touchend="pageTouchEndHandler">
-            <view class="server-list width_active {{index==0?'first':''}} {{active-1==index?'width_select':''}}"   wx:for="{{work_list}}" data-idx="{{index}}" wx:key="{{index}}"></view>
-        </view>
+        <!--<view class="list" style="display: inline-flex;flex-wrap: nowrap;align-items: center;position: relative;left: {{left}}rpx;transition: all .5s linear" bind:touchstart="pageTouchStartHandler" bind:touchend="pageTouchEndHandler">-->
+            <!--<view class="server-list width_active {{index==0?'first':''}} {{active-1==index?'width_select':''}}"   wx:for="{{work_list}}" data-idx="{{index}}" wx:key="{{index}}"></view>-->
+        <!--</view>-->
+        <swiper circular="true" previous-margin="140rpx" next-margin="100rpx" current="{{current}}" bindchange="change_c">
+            <swiper-item class="swiper_ {{current}}" wx:for="{{work_list}}" wx:key="{{index}}">
+                <view class="width_active server-list {{current==index?'width_select':''}}"></view>
+            </swiper-item>
+        </swiper>
     </view>
 </view>
