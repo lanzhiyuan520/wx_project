@@ -1,0 +1,47 @@
+<import src="../template/consult.wxml"/>
+<view>
+    <view class="banner">
+        <image src="http://cdn.ayi800.com/image/png/wx_waple_service_banner%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C_02.png"></image>
+    </view>
+    <view class="service_list">
+        <view class="server_five_title">
+            <text>五大服务项目</text>
+        </view>
+        <view style="margin-top: 15rpx">
+            <scroll-view scroll-x style="white-space: nowrap;height: 240rpx">
+                <view class="service-item {{index==0?'first-item':''}}" wx:for="{{server_five_list}}" wx:key="{{index}}">
+                    <view class="server-item-img">
+                        <image src="{{item.img}}"></image>
+                    </view>
+                    <view class="server-item-text">
+                        <text>{{item.text}}</text>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+    <view>
+        <view class="project-item" wx:for="{{service_list}}">
+            <view class="project-title">
+                <text>{{item.title}}</text>
+            </view>
+            <view class="project_content">
+                <text>{{item.content}}</text>
+            </view>
+            <view>
+                <scroll-view scroll-x style="white-space: nowrap;">
+                    <view class="project {{index==0?'first-project':''}}"  wx:for="{{item.img_list}}" wx:for-item="project" >
+                        <view class='project-img'>
+                            <image src="{{project.img}}"></image>
+                        </view>
+                        <view class="project-text">
+                            <text>{{project.text}}</text>
+                            <text>{{project.text2}}</text>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+    </view>
+    <template is="consult"></template>
+</view>

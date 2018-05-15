@@ -1,0 +1,13 @@
+<template name="consult">
+    <view class="wrap">
+        <view class="left">
+            <view class="content">
+                <image src="http://cdn.ayi800.com/image/png/wx_waple_service_consult_icon%E5%92%A8%E8%AF%A21@2x.png"></image>
+                <text>咨询</text>
+            </view>
+        </view>
+        <view class="right">
+            <text>我要预约</text>
+        </view>
+    </view>
+</template>

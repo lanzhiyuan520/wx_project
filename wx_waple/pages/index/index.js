@@ -17,7 +17,13 @@ Page({
           {img:'http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg',name:"马冬梅",price:'19200元/26天'}
       ]
   },
-
+    service:function(e){
+      if (e.currentTarget.dataset.idx == 0){
+          wx.navigateTo({
+              url: '../waiterServices/waiterServices'
+          })
+      }
+    },
   onLoad: function () {
 
   }

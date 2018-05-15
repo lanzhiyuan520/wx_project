@@ -1,0 +1,68 @@
+.banner image{
+    width: 100%;
+    height: 300rpx;
+}
+.server-explain{
+    height: 80rpx;
+    box-sizing: border-box;
+    padding-left: 44rpx;
+    display: flex;
+    align-items: center;
+}
+.server-explain text{
+    font-size: 34rpx;
+}
+.price-server{
+    box-sizing: border-box;
+    padding: 0 44rpx;
+    height: 80rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e9e9e9;
+}
+.text{
+    font-size: 28rpx;
+    color: #353535;
+}
+.server-time{
+    height: 86rpx;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 44rpx;
+    align-items: center;
+    justify-content: space-between;
+}
+.leval{
+    width: 100%;
+    height: 12rpx;
+    background-color: #fff5f9;
+}
+.work-title{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 44rpx;
+}
+.work-title text{
+    font-size: 34rpx;
+    color: #353535;
+    padding: 30rpx 0 22rpx;
+}
+.server-list{
+    background: linear-gradient(to right,#ff8a6c,#ff6794);
+    border-radius: 10rpx;
+    display: inline-flex;
+    margin-right: 40rpx;
+}
+.first{
+    margin-left: 115rpx;
+}
+.width_active{
+    width: 487rpx;
+    height: 235rpx;
+}
+.width_select{
+    transition: all .5s linear;
+    transform: scale(1.1);
+}

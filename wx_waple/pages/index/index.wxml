@@ -2,8 +2,8 @@
 <view>
     <view class="banner_wrap"></view>
     <view class="server_nav">
-       <view class="server_item" wx:for="{{server_list}}">
-          <view class="server_nav_img">
+       <view class="server_item" wx:for="{{server_list}}" bindtap="service" data-idx="{{index}}">
+          <view class="server_nav_img" >
             <image src="{{item.img}}"></image>
             <text class="yuesao_text">{{item.text}}</text>
           </view>
