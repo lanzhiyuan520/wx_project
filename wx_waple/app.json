@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/service/service",
     "pages/index/index",
     "pages/waiter/waiter",
     "pages/my/my"
