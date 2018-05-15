@@ -1,0 +1,38 @@
+.waiter-box{
+  padding: 40rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.waiter-item{
+  width: 320rpx;
+  height: 490rpx;
+  box-shadow: -2px 5px 12px 5px #f7f7f7;
+  border-radius: 20rpx;
+  margin-bottom: 40rpx;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+.waiter-img-box{
+  display:flex;
+  justify-content:center;
+  margin-bottom: 20rpx;
+}
+.waiter-img{
+  width: 172rpx;
+  height: 172rpx;
+  border-radius: 50%;
+}
+.waiter-info{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 20rpx 0;
+}
+.evaluate-box{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

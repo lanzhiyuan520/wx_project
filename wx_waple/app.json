@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/waiter/waiter",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/waiterDetail/waiterDetail"
   ],
   "window":{
     "backgroundTextStyle":"light",

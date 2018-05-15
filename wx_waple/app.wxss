@@ -1,0 +1,41 @@
+.text-center{
+  text-align: center;
+}
+.fs-30{
+  font-size: 30rpx
+}
+.fs-32{
+  font-size: 32rpx
+}
+.fs-28{
+  font-size: 28rpx
+}
+.fs-26{
+  font-size: 26rpx
+}
+.fs-24{
+  font-size: 24rpx
+}
+.fs-22{
+  font-size: 22rpx
+}
+.pink-text{
+  color: #ff7683;
+}
+.gray-text{
+  color: #a3a3a3;
+}
+ .evaluate-item{
+  display: inline-block; 
+  background: url('http://cdn.ayi800.com/wx_wap/pingjia_bg.png') no-repeat;
+  background-size: 100% 100%; 
+  padding: 0 15rpx;
+  margin-bottom: 15rpx;
+  line-height: 40rpx
+} 
+.text-gradient {  
+    display: inline-block;
+    background-image:  -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(255,161,137, 1)), to(rgba(255,105,145, 1)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
