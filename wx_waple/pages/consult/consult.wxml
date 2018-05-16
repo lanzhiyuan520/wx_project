@@ -1,0 +1,26 @@
+<view class="wrap">
+    <view class="left">
+        <view class="content">
+            <image src="http://cdn.ayi800.com/image/png/wx_waple_service_consult_icon%E5%92%A8%E8%AF%A21@2x.png"></image>
+            <text>咨询</text>
+        </view>
+    </view>
+    <view class="right" bindtap='order'>
+        <text>我要预约</text>
+    </view>
+</view>
+<view>
+    <view class="order-model">
+        <view class="waiter-name">
+            <text>预约阿姨：马冬梅</text>
+        </view>
+        <view style="background-color: yellow">
+            <view class="input-text">
+                <view>
+                    <image src="http://cdn.ayi800.com/image/png/wx_waple_order_icon1%E6%97%B6%E9%97%B4@2x.png"></image>
+                </view>
+                <input type="text"/>
+            </view>
+        </view>
+    </view>
+</view>

@@ -35,45 +35,7 @@
     padding-bottom: 40rpx;
 }
 /*底部预约公共*/
-.wrap{
-    height: 110rpx;
-    display: flex;
-    box-shadow: 0 0 20rpx rgba(0,0,0,.1) ;
-}
-.left{
-    height: 100%;
-    width: 35%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.right{
-    height: 100%;
-    width: 65%;
-    background: linear-gradient(to right,#ff6794,#ff8a6c);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.content{
-    display: flex;
-    align-items: center;
-}
-.content image{
-    width: 50rpx;
-    height: 35rpx;
-    margin-right: 16rpx;
-}
-.content text{
-    font-size: 30rpx;
-    background: linear-gradient(to right,#ff6794,#ff8a6c);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-.right text{
-    font-size: 30rpx;
-    color: #fff;
-}
+
 
 /*服务保障公共*/
 .service_item{

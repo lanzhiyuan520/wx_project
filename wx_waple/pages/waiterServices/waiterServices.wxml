@@ -57,7 +57,7 @@
         </view>
     </view>
     <view class="leval"></view>
-    <view>
+    <view style="padding-bottom: 100rpx">
         <view class="server-baozhang">
             <text>服务保障</text>
         </view>
@@ -66,6 +66,7 @@
         </view>
     </view>
     <view>
-        <template is="consult"></template>
+        <!--<template is="consult"></template>-->
+        <consult></consult>
     </view>
 </view>

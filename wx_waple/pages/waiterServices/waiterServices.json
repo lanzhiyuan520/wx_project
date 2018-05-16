@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "月嫂服务"
+  "navigationBarTitleText": "月嫂服务",
+  "usingComponents": {
+    "consult": "../consult/consult"
+  }
 }
