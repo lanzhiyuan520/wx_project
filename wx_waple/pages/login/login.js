@@ -3,10 +3,17 @@
 const app = getApp()
 Page({
   data: {
-    hasWarn: false
+    hasWarn: false,
+    hasMargin:false
   },
   onLoad: function () {
-  
+    var res = wx.getSystemInfoSync();
+    if (res.model.indexOf('iPhone X')!==-1){
+      this.setData({
+        hasMargin: true
+      })
+    }
+    console.log(res.model)
   },
   // 登录按钮
   searchBox: function (e) {

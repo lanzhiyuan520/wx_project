@@ -1,16 +1,16 @@
 <template name="msgItem">
-  <view class='footerbox'>
-  <view bindtap='goIndex'>
+  <view class='footerbox {{hasMargin?"b-65":""}}'>
+  <view class='bar-item' bindtap='goIndex'>
     <image class='icon-pic' mode='aspectFit' src='../../img/index_n.png'></image>
-    <view class='fs-20'>首页</view>
+    <text class='fs-20 text-center footer-text'>首页</text>
   </view>
-  <view bindtap='goWaiter'>
+  <view class='bar-item' bindtap='goWaiter'>
     <image class='icon-pic' mode='aspectFit' src='../../img/waiter_n.png'></image>
-    <view class='fs-20'>月嫂</view>
+    <text class='fs-20 text-center footer-text'>月嫂</text>
   </view>
-  <view>
+  <view class='bar-item'>
     <image class='icon-pic' mode='aspectFit' src='../../img/my_s.png'></image>
-    <view class='fs-20'>我的</view>
+    <text class='fs-20 text-center pink-text'>我的</text>
   </view>
   </view>
 </template>
