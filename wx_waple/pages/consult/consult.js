@@ -4,7 +4,8 @@ Component({
         time:'',
         name:'',
         phone:'',
-        hidden_input_model:true
+        success_model:true,
+        offset:100
     },
     methods: {
         // 这里是一个自定义方法
@@ -24,16 +25,25 @@ Component({
             })
         },
         submit:function(){
-
+            this.setData({
+                success_model : false,
+                offset : 100
+            })
         },
         order:function(){
             this.setData({
-                hidden_input_model : false
+                offset : 0
             })
         },
         close:function(){
             this.setData({
-                hidden_input_model : true
+                offset : 100
+            })
+        },
+        close_success_model:function(){
+            this.setData({
+                success_model : true,
+                offset : 100
             })
         }
     }

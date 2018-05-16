@@ -20,7 +20,7 @@
             </scroll-view>
         </view>
     </view>
-    <view>
+    <view style="padding-bottom: 105rpx">
         <view class="project-item" wx:for="{{service_list}}">
             <view class="project-title">
                 <text>{{item.title}}</text>
@@ -43,5 +43,5 @@
             </view>
         </view>
     </view>
-    <template is="consult"></template>
+    <consult></consult>
 </view>

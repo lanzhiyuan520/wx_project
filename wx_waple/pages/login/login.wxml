@@ -20,5 +20,5 @@
    </form>
    
 </view>
-<template is="msgItem" bindTap='test'/>
+<template is="msgItem" data="{{hasMargin}}" bindTap='test'/>
 <!--bindtap='goPersonal'  -->

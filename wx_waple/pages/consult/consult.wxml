@@ -9,7 +9,7 @@
         <text>我要预约</text>
     </view>
 </view>
-<view hidden="{{hidden_input_model}}">
+<view  class="user_info" style="transform: translateY({{offset}}%);" catchtouchmove='true' >
     <view class="order-model">
         <view class="waiter-name">
             <text>预约阿姨：马冬梅</text>
@@ -45,5 +45,20 @@
             <text>提交</text>
         </view>
     </view>
-
+</view>
+<view class="order-success " catchtouchmove='true' hidden="{{success_model}}">
+    <view class="success-model">
+        <view class="success-icon">
+            <image src="http://cdn.ayi800.com/image/png/wx_waple_order_success_icon%E5%AF%B9%E5%8F%B7@2x.png"></image>
+        </view>
+        <view class="success-text">
+            <text>预约提交成功</text>
+        </view>
+        <view class="inform">
+            <text>请耐心等待，客户经理会尽快电话和您沟通！</text>
+        </view>
+        <view class="know" bindtap="close_success_model">
+            <text>知道啦</text>
+        </view>
+    </view>
 </view>

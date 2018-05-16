@@ -3,12 +3,23 @@
   flex-direction: row;
   justify-content: space-around;
   position: fixed;
-  bottom: 0;
+  bottom:0rpx;
   width: 100%;
-  border-top: 1rpx solid #dcdcdc;
-  padding-top: 5rpx;
+  border-top: 1rpx solid #8b9090;
+  padding-top: 8rpx;
 }
 .icon-pic{
-  width: 50rpx;
-  height: 50rpx;
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 3rpx;
+}
+.b-65{
+  bottom:65rpx;
+} 
+.bar-item{
+  display: flex;
+  flex-direction: column;
+}
+.footer-text{
+  color: #8b9090;
 }

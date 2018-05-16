@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "福宠套餐"
+  "navigationBarTitleText": "福宠套餐",
+  "usingComponents": {
+    "consult": "../consult/consult"
+  }
 }
