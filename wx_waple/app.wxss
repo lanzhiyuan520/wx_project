@@ -74,3 +74,31 @@
     font-size: 30rpx;
     color: #fff;
 }
+
+/*服务保障公共*/
+.service_item{
+    display: flex;
+}
+.service_img image{
+    display: block;
+    width: 120rpx;
+    height: 90rpx;
+    padding: 45rpx 60rpx 45rpx 40rpx;
+}
+.service_content{
+    width: auto;
+    box-sizing: border-box;
+    padding-right: 40rpx;
+}
+.service_title{
+    padding-top: 30rpx;
+}
+.service_title text{
+    font-size: 28rpx;
+}
+.service_text{
+    line-height: 38rpx;
+}
+.service_text text{
+    font-size: 24rpx;
+}

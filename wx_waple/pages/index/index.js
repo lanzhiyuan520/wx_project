@@ -15,14 +15,36 @@ Page({
           {img:'http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg',name:"马冬梅",price:'19200元/26天'},
           {img:'http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg',name:"马冬梅",price:'19200元/26天'},
           {img:'http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg',name:"马冬梅",price:'19200元/26天'}
-      ]
+      ],
+      city_list:[{name:'北京'},{name:'广州'},{name:'深圳'}],
+      city_list_height:true,
+      city_name:'北京'
   },
     service:function(e){
       if (e.currentTarget.dataset.idx == 0){
           wx.navigateTo({
               url: '../waiterServices/waiterServices'
           })
+      }else if (e.currentTarget.dataset.idx == 1){
+          wx.navigateTo({
+              url: '../fuchong/fuchong'
+          })
+      }else if (e.currentTarget.dataset.idx == 2){
+          wx.navigateTo({
+              url: '../service/service'
+          })
       }
+    },
+    city_model:function(){
+        this.setData({
+            city_list_height : !this.data.city_list_height
+        })
+    },
+    change_city:function(e){
+        this.setData({
+            city_name : e.currentTarget.dataset.name
+        })
+        console.log(e.currentTarget.dataset.name)
     },
   onLoad: function () {
 

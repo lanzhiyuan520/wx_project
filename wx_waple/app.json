@@ -1,9 +1,9 @@
 {
   "pages":[
-    "pages/waiterServices/waiterServices",
     "pages/index/index",
-    "pages/fuchong/fuchong",
+    "pages/waiterServices/waiterServices",
     "pages/service/service",
+    "pages/fuchong/fuchong",
     "pages/waiter/waiter",
     "pages/my/my"
   ],

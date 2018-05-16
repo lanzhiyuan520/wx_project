@@ -45,19 +45,15 @@
     padding-left: 44rpx;
 }
 .work-title text{
-    font-size: 34rpx;
+    font-size: 43rpx;
     color: #353535;
     padding: 30rpx 0 22rpx;
 }
 .server-list{
     background: linear-gradient(to right,#ff8a6c,#ff6794);
-    border-radius: 20rpx;
-    display: inline-flex;
+    border-radius: 10rpx;
     margin-right: 40rpx;
     margin-left: 35rpx;
-}
-.first{
-    margin-left: 115rpx;
 }
 .width_active{
     width: 487rpx;
@@ -70,4 +66,69 @@
 .swiper_{
     display: flex;
     align-items: center;
+}
+.time-icon{
+    height: 29rpx;
+    display: flex;
+    align-items: center;
+    padding-top: 18rpx;
+}
+.time-icon image{
+    display: block;
+    width: 30rpx;
+    height: 29rpx;
+    margin: 0 24rpx;
+}
+.time-icon text{
+    font-size: 26rpx;
+    color: #fff;
+}
+.work-content{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 0 25rpx;
+}
+.work-content text{
+    font-size: 28rpx;
+    color: #fff;
+}
+.server-flow-title{
+    box-sizing: border-box;
+    padding: 30rpx 0 30rpx 44rpx;
+}
+.server-flow-title text{
+    font-size: 43rpx;
+    color: #353535;
+}
+.server-text{
+    width: auto;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 32rpx;
+}
+.server-text image{
+    display: block;
+    width: 55rpx;
+    height: 57rpx;
+}
+.server-text text{
+    font-size: 24rpx;
+    color: #353535;
+    margin-top: 28rpx;
+}
+.arrow image{
+    width: 26rpx;
+    height: 17rpx;
+    margin: 0 7rpx ;
+}
+.server-baozhang{
+    box-sizing: border-box;
+    padding-left: 44rpx;
+    padding-top: 30rpx;
+}
+.server-baozhang text{
+    font-size: 43rpx;
+    color: #353535;
 }

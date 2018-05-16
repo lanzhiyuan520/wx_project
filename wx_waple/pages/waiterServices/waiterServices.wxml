@@ -1,3 +1,5 @@
+<import src="../template/serverBaozhang.wxml"/>
+<import src="../template/consult.wxml"/>
 <view style="overflow: hidden">
     <view class="banner">
         <image src="http://cdn.ayi800.com/image/png/wx_waple_service_banner%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C_02.png"></image>
@@ -20,13 +22,50 @@
         <view class="work-title">
             <text>每日工作</text>
         </view>
-        <!--<view class="list" style="display: inline-flex;flex-wrap: nowrap;align-items: center;position: relative;left: {{left}}rpx;transition: all .5s linear" bind:touchstart="pageTouchStartHandler" bind:touchend="pageTouchEndHandler">-->
-            <!--<view class="server-list width_active {{index==0?'first':''}} {{active-1==index?'width_select':''}}"   wx:for="{{work_list}}" data-idx="{{index}}" wx:key="{{index}}"></view>-->
-        <!--</view>-->
         <swiper circular="true" previous-margin="140rpx" next-margin="100rpx" current="{{current}}" bindchange="change_c">
             <swiper-item class="swiper_ {{current}}" wx:for="{{work_list}}" wx:key="{{index}}">
-                <view class="width_active server-list {{current==index?'width_select':''}}"></view>
+                <view class="width_active server-list {{current==index?'width_select':''}}">
+                    <view class="time-icon">
+                        <image src="http://cdn.ayi800.com/image/png/wx_waple_service_time_icon%E6%97%B6%E9%97%B4-2@2x.png"></image>
+                        <text>06:00-07:00</text>
+                    </view>
+                    <view class="work-content">
+                        <text>月嫂起床洗漱，准备早餐</text>
+                        <text>清理宝宝卫生、测体温、喂奶、拍嗝</text>
+                        <text>与宝宝亲子互动</text>
+                        <text>收拾厨房用具、产妇用具</text>
+                    </view>
+                </view>
             </swiper-item>
         </swiper>
+    </view>
+    <view class="leval"></view>
+    <view>
+        <view class="server-flow-title">
+            <text>服务流程</text>
+        </view>
+        <view style="padding:0 44rpx;box-sizing: border-box;display: flex">
+            <view style="display: flex" wx:for="{{server_flow}}" wx:key="{{index}}">
+                <view class="server-text">
+                    <image src="{{item.img}}"></image>
+                    <text>{{item.text}}</text>
+                </view>
+                <view class="arrow">
+                    <image src="{{item.arrow}}" wx:if="{{item.arrow}}"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="leval"></view>
+    <view>
+        <view class="server-baozhang">
+            <text>服务保障</text>
+        </view>
+        <view style="padding-bottom: 60rpx">
+            <template is="server" data="{{service_list}}"></template>
+        </view>
+    </view>
+    <view>
+        <template is="consult"></template>
     </view>
 </view>

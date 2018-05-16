@@ -11,7 +11,6 @@ Page({
             {img:'http://cdn.ayi800.com/image/png/wx_waple_service_item4icon4@2x.png',title:'智能督导，确保无虞',content:'独创智能管控系统，全程监督，全程保证上户品质和突发问题处理。'}
         ]
     },
-
     onLoad: function () {
 
     }

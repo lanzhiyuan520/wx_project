@@ -1,21 +1,10 @@
+<import src="../template/serverBaozhang.wxml"/>
 <view>
     <view class="banner">
         <image src="http://cdn.ayi800.com/image/png/wx_waple_service_banner%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C_02.png"></image>
     </view>
     <view>
-        <view class="service_item" wx:for="{{service_list}}">
-            <view class="service_img">
-                <image src="{{item.img}}"></image>
-            </view>
-            <view class="service_content">
-                <view class="service_title">
-                    <text>{{item.title}}</text>
-                </view>
-                <view class="service_text">
-                    <text>{{item.content}}</text>
-                </view>
-            </view>
-        </view>
+        <template is="server" data="{{service_list}}"></template>
     </view>
     <view class="btn_wrap">
         <view class="button ipone">

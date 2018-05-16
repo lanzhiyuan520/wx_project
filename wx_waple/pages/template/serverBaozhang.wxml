@@ -1,0 +1,15 @@
+<template name="server">
+    <view class="service_item" wx:for="{{service_list}}">
+        <view class="service_img">
+            <image src="{{item.img}}"></image>
+        </view>
+        <view class="service_content">
+            <view class="service_title">
+                <text>{{item.title}}</text>
+            </view>
+            <view class="service_text">
+                <text>{{item.content}}</text>
+            </view>
+        </view>
+    </view>
+</template>
