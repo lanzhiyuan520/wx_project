@@ -1,0 +1,14 @@
+.footerbox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1rpx solid #dcdcdc;
+  padding-top: 5rpx;
+}
+.icon-pic{
+  width: 50rpx;
+  height: 50rpx;
+}

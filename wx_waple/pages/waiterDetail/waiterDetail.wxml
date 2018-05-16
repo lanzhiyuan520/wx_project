@@ -1,0 +1,117 @@
+
+<view class='plr-30-box mb-10'>
+  <view class='nanny-info-box'>
+    <image src='http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg' mode="scaleToFill"  class='nanny-pic'></image>
+    <view class='nanny-info'>
+      <text class='fs-32'>马冬梅</text>
+      <text class='fs-28'>12800元／26天</text>
+      <text class='fs-28'>39岁 来自山东</text>
+    </view>
+  </view>
+  <view class='intro'>
+    <text class='fs-26'>自我简介：我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良，我很开朗，我很</text>
+    <text class='fs-22 pink-text text-show-btn'>展开></text>
+    </view>
+</view>
+<view class='cut-off'></view>
+<view class='ptb-55-box safe-pic-box mb-10'>
+  <view class='safe-pic-item'>
+    <image src='http://cdn.ayi800.com/wx_wap/baozhang_1.png' class='safe-pic' mode="aspectFit"></image>
+    <text class='fs-24'>实名认证</text>
+  </view>
+  <view class='safe-pic-item'>
+    <image src='http://cdn.ayi800.com/wx_wap/baozhang_2.png' class='safe-pic' mode="aspectFit"></image>
+    <text class='fs-24'>母婴护理证</text>
+  </view>
+  <view class='safe-pic-item'>
+    <image src='http://cdn.ayi800.com/wx_wap/baozhang_3.png' class='safe-pic' mode="aspectFit"></image>
+    <text class='fs-24'>慈铭体检</text>
+  </view>
+  <view class='safe-pic-item'>
+    <image src='http://cdn.ayi800.com/wx_wap/baozhang_4.png' class='safe-pic' mode="aspectFit"></image>
+    <text class='fs-24'>无犯罪证明</text>
+  </view>
+</view>
+<view class='cut-off'></view>
+<view class='ptb-35-box mb-10'>
+  <text class='model-title'>工作照片</text>
+  <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex;margin-top:35rpx" >
+  <image bindtap='picShow' class='job-pic' wx:for="{{[1,2,3,4,5]}}" wx:key="*this" src="http://cdn.ayi800.com/image/b8993ca7059a9f6a83e4072f17777330.jpg" mode='aspectFill'></image>
+</scroll-view>
+</view>
+<view class='cut-off'></view>
+<view class='ptb-35-box mb-10'>
+  <text class='model-title'>印象标签</text>
+  <view class='impress-lable'>
+      <view class='evaluate-item mr-30'>
+        <text class='fs-22 text-gradient'>催乳好 1</text>
+      </view>
+      <view class='evaluate-item mr-30'>
+        <text class='fs-22 text-gradient'>月子餐很棒 4</text>
+      </view>
+      <view class='evaluate-item mr-30'>
+        <text class='fs-22 text-gradient'>干净 2</text>
+      </view>
+      <view class='evaluate-item mr-30'>
+        <text class='fs-22 text-gradient'>儿歌歌神 4</text>
+      </view>
+      <view class='evaluate-item mr-30'>
+        <text class='fs-22 text-gradient'>月子餐很棒 4</text>
+      </view>
+      <view class='evaluate-item mr-30'>
+        <text class='fs-22 text-gradient'>干净 2</text>
+      </view>
+      <view class='evaluate-item mr-30'>
+        <text class='fs-22 text-gradient'>儿歌歌神 4</text>
+      </view>
+      <text class='fs-22 gray-text table-show-btn'>展开></text>
+  </view>
+</view>
+<view class='cut-off'></view>
+<view class='ptb-35-box mb-10'>
+  <text class='model-title'>客户点评(8)</text>
+  <view class='review-item' wx:for="{{[1,2]}}" wx:key="*this">
+    <view class='safe-pic-box'>
+      <view class='start-box'>
+        <image class='customer-pic' src='http://cdn.ayi800.com/timg-10.jpeg'></image>
+        <view class='customer-info'>
+          <text class='fs-30'>杨珍珠</text>
+          <view class='start-box'>
+            <image  wx:for="{{[1,2,3,4,5]}}" wx:key="*this" class='start-pic' src='http://cdn.ayi800.com/wx_wap/start.png'></image>
+          </view>
+        </view>
+      </view>
+      <view style='padding-top:30rpx'>
+        <text class='fs-24 gray-text'>2017-8-16</text>
+      </view>
+    </view>
+    <view class='line-50 ptb-25'>
+      <text class='review-text fs-28'>李永梅阿姨很不错，照顾新生儿很有经验，烧的催乳汤巨好喝，符合口味很耐思，月子餐巨好耐思，月子餐巨</text>
+    </view>
+    <view class='review-pic-box'>
+      <image  wx:for="{{[1,2,3]}}" wx:key="*this" src='http://cdn.ayi800.com/ayi800_1520930902yszl_103304922922ZWpI4mN1.jpg' class='review-pic' mode='aspectFill'></image>
+    </view>
+  </view>
+  <view class='btn-box'>
+    <view class='more-btn'>
+      <text class='fs-22 gray-text'>展开更多</text>
+    </view>
+  </view>
+</view>
+<view class='cut-off'></view>
+<view class='ptb-35-box mb-10'>
+  <text class='model-title'>猜你喜欢</text>
+</view>
+
+ <!--工作照片滑动  -->
+ <view class='mask' bindtap='picHide' wx:if="{{hasMask}}" catchtouchmove="myCatchTouch">
+  <!-- <view class='mask-pic-box'> -->
+   <swiper indicator-dots="{{indicatorDots}}" class='mask-pic-box'>
+      <block wx:for="{{[1,2,3,4,5]}}" wx:key="*this">
+        <swiper-item class="center-pic">
+          <image src="http://cdn.ayi800.com/image/b8993ca7059a9f6a83e4072f17777330.jpg" class="slide-image" mode='widthFix'/>
+        </swiper-item>
+      </block>
+   </swiper>
+ <!-- </view> -->
+ </view>

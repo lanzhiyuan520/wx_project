@@ -6,7 +6,10 @@
     "pages/service/service",
     "pages/fuchong/fuchong",
     "pages/waiter/waiter",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/waiterDetail/waiterDetail",
+    "pages/private/private",
+    "pages/login/login"
   ],
   "window":{
     "backgroundTextStyle":"light",
