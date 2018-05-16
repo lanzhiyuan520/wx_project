@@ -44,7 +44,6 @@ Page({
         this.setData({
             city_name : e.currentTarget.dataset.name
         })
-        console.log(e.currentTarget.dataset.name)
     },
   onLoad: function () {
 

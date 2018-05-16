@@ -112,17 +112,6 @@
     padding-top: 34rpx;
     padding-bottom: 31rpx;
 }
-
-.first_list{
-    margin-left: 67rpx;
-}
-
-.waiter_name{
-    font-size: 28rpx;
-    padding:15rpx 0;
-}
-
-
 .comment_title{
     box-sizing: border-box;
     padding-top: 30rpx;
@@ -233,7 +222,6 @@
     align-items: center;
     margin-left: 23rpx;
 }
-
 .waiter_price{
     height: 100%;
     display: flex;

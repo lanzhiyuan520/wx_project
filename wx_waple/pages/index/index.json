@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "有福妈妈",
+  "usingComponents": {
+    "waiterlist": "../waiterList/waiterList"
+  }
+}

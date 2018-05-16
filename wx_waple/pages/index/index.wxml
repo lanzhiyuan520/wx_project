@@ -1,4 +1,3 @@
-<import src="../template/waiterList.wxml"/>
 <view>
     <view class="banner_wrap">
       <image src="http://cdn.ayi800.com/image/png/wx_waple_index_bannerbanner@2x.png"></image>
@@ -29,7 +28,7 @@
           </view>
       </view>
       <view class="waiter_list">
-        <template is="waiterList" data="{{waiter_list}}"></template>
+        <waiterlist waiter_list="{{waiter_list}}"></waiterlist>
       </view>
     </view>
     <view class="leval"></view>

@@ -1,0 +1,39 @@
+.waiter_item{
+    width: 213rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+    margin-right: 48rpx;
+    display: inline-block;
+    text-align: center;
+    margin-top: 10rpx;
+    box-shadow: 0 0 20rpx rgba(0,0,0,.1) ;
+}
+.waiter_name{
+    font-size: 28rpx;
+    padding:15rpx 0;
+}
+.first_list{
+    margin-left: 67rpx;
+}
+.waiter_content image{
+    padding-top: 25rpx;
+    display: inline-block;
+    width: 138rpx;
+    height: 138rpx;
+    border-radius: 50%;
+}
+.waiter_content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.leval2{
+    width: 60rpx;
+    height: 4rpx;
+    background: linear-gradient(#ff957a,#ff779e);
+}
+.price{
+    font-size: 26rpx;
+    padding-top: 17rpx;
+    padding-bottom: 40rpx;
+}
