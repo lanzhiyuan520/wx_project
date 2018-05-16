@@ -61,6 +61,9 @@
 .gray-text{
   color: #a3a3a3;
 }
+.color-53{
+
+}
  .evaluate-item{
   display: inline-block; 
   background: url('http://cdn.ayi800.com/wx_wap/pingjia_bg.png') no-repeat;

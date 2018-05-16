@@ -23,7 +23,7 @@
         <view>
           <text class="title_text font_ping">月嫂推荐</text>
         </view>
-          <view>
+          <view bindtap="more">
             <text class="more">更多></text>
           </view>
       </view>

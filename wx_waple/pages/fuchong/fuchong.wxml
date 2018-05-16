@@ -20,7 +20,7 @@
         </view>
     </view>
     <view style="padding-bottom: 105rpx">
-        <view class="project-item" wx:for="{{service_list}}">
+        <view class="project-item" wx:for="{{service_list}}" wx:key="{{index}}">
             <view class="project-title">
                 <text>{{item.title}}</text>
             </view>
@@ -29,7 +29,7 @@
             </view>
             <view>
                 <scroll-view scroll-x style="white-space: nowrap;">
-                    <view class="project {{index==0?'first-project':''}}"  wx:for="{{item.img_list}}" wx:for-item="project" >
+                    <view class="project {{index==0?'first-project':''}}"  wx:for="{{item.img_list}}" wx:for-item="project" wx:key="{{index}}" >
                         <view class='project-img'>
                             <image src="{{project.img}}"></image>
                         </view>

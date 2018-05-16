@@ -45,6 +45,11 @@ Page({
             city_name : e.currentTarget.dataset.name
         })
     },
+    more:function(){
+        wx.switchTab({
+            url: '../waiter/waiter'
+        })
+    },
   onLoad: function () {
 
   }

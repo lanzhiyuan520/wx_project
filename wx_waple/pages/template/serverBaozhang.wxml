@@ -1,5 +1,5 @@
 <template name="server">
-    <view class="service_item" wx:for="{{service_list}}">
+    <view class="service_item" wx:for="{{service_list}}" wx:key="{{index}}">
         <view class="service_img">
             <image src="{{item.img}}"></image>
         </view>

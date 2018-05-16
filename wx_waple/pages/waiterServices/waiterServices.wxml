@@ -26,13 +26,13 @@
                 <view class="width_active server-list {{current==index?'width_select':''}}">
                     <view class="time-icon">
                         <image src="http://cdn.ayi800.com/image/png/wx_waple_service_time_icon%E6%97%B6%E9%97%B4-2@2x.png"></image>
-                        <text>06:00-07:00</text>
+                        <text>{{item.time}}</text>
                     </view>
                     <view class="work-content">
-                        <text>月嫂起床洗漱，准备早餐</text>
-                        <text>清理宝宝卫生、测体温、喂奶、拍嗝</text>
-                        <text>与宝宝亲子互动</text>
-                        <text>收拾厨房用具、产妇用具</text>
+                        <text>{{item.text1}}</text>
+                        <text>{{item.text2}}</text>
+                        <text>{{item.text3}}</text>
+                        <text>{{item.text4}}</text>
                     </view>
                 </view>
             </swiper-item>
