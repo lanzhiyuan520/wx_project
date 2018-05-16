@@ -1,0 +1,24 @@
+<import src ="../template/footer.wxml"/>
+<view class='contain'>
+   <form bindsubmit='searchBox'>
+     <view class="section mb-60">
+      <view class='mb-30' wx:if="{{hasWarn}}">
+       <label class='fs-22 pink-text'>*请输入正确的手机号</label>
+     </view> 
+      <view class="phone-titles fs-32">手机号</view>
+      <input type="text" name='phone' maxlength='11' class='phone' placeholder-class='fs-30 text-gray' placeholder="手机号" />
+      </view>
+      <view class="section">
+      <view class="phone-titles fs-32">验证码</view>
+      <input type="text" name='code' class='code' placeholder-class='fs-30 text-gray' maxlength='4' placeholder="4位数字" />
+      <view class='evaluate-item code-btn'>
+        <text class='fs-30 text-gradient'>验证码</text>
+      </view>
+      </view>
+      <text class='fs-20 deep-gray-color'>*首次登陆即默认注册</text>
+      <button class='sub-btn fs-32' form-type='submit'>登录</button>
+   </form>
+   
+</view>
+<template is="msgItem" bindTap='test'/>
+<!--bindtap='goPersonal'  -->

@@ -19,6 +19,9 @@
 .fs-22{
   font-size: 22rpx
 }
+.fs-20{
+  font-size: 20rpx
+}
 .pink-text{
   color: #ff7683;
 }

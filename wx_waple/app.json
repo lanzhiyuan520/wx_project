@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/waiter/waiter",
     "pages/my/my",
-    "pages/waiterDetail/waiterDetail"
+    "pages/waiterDetail/waiterDetail",
+    "pages/private/private",
+    "pages/login/login"
   ],
   "window":{
     "backgroundTextStyle":"light",
