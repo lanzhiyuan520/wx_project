@@ -6,7 +6,10 @@
   bottom:0rpx;
   width: 100%;
   border-top: 1rpx solid #8b9090;
-  padding-top: 8rpx;
+  padding-top: 8rpx; 
+  /* height: 100rpx; */
+  box-sizing: border-box;
+  background: #ffffff;
 }
 .icon-pic{
   width: 60rpx;
@@ -23,3 +26,4 @@
 .footer-text{
   color: #8b9090;
 }
+

@@ -1,0 +1,19 @@
+@import "../template/footer.wxss";
+.pay-item{
+  width: 670rpx;
+  height: 160rpx;
+  box-shadow: -2px 5px 12px 5px #f7f7f7;
+  border-radius: 20rpx;
+  padding: 30rpx 40rpx;
+  box-sizing: border-box;
+  margin-bottom: 50rpx;
+}
+.pt-35{
+  padding-top: 35rpx;
+}
+.fs-46{
+  font-size: 46rpx;
+}
+.center-layout{
+  align-items: center;
+}

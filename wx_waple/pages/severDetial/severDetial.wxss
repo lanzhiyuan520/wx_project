@@ -1,0 +1,88 @@
+@import "../template/footer.wxss";
+.item-shade{
+  box-shadow: -2px 5px 12px 5px #f7f7f7;
+  border-radius: 20rpx;
+  margin-bottom: 45rpx;
+  padding: 30rpx 30rpx 35rpx;
+  box-sizing: border-box;
+}
+.pt-35{
+  padding-top: 35rpx;
+}
+.server-state{
+  width: 670rpx;
+  height: 265rpx;
+}
+.state-pic{
+  width: 66rpx;
+  height: 66rpx;
+}
+.state-symbol-box{
+  display: flex;
+  flex-direction: row;
+}
+.pic-symbol{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.down-wire{
+  width: 200rpx;
+  height: 4rpx;
+  background: linear-gradient(to right, #ff85a9 , #ffa189);
+  margin-top: 33rpx;
+}
+.light-bg{
+  opacity: 0.3
+}
+.mt-20{
+  margin-top: 20rpx;
+}
+.mt-45{
+  margin-top: 45rpx;
+}
+.server-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  line-height: 62rpx;
+}
+.mr-80{
+  margin-right: 80rpx;
+}
+.colours{
+  background: linear-gradient(to right,  #ff85a9 , #ffa189);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.bd-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.bd-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bd-img{
+  width: 110rpx;
+  height: 110rpx;
+}
+.call-btn{
+  width: 132rpx;
+  height: 42rpx;
+  background: linear-gradient(to right,  #ff85a9 , #ffa189);
+  color: #ffffff;
+  text-align: center;
+  line-height: 42rpx;
+  border-radius: 42rpx;
+}
+.server-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.mr-47{
+  margin-right: 47rpx;
+}

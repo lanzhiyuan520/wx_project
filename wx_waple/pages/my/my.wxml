@@ -1,5 +1,45 @@
 
-<view class='contain'>
-  <text>sdfs</text>   
+<view>
+   <view class='person-info'>
+     <image src='http://cdn.ayi800.com/timg-10.jpeg' class='head-img'></image>
+     <view>13264241374</view>
+   </view>
+   <view style='padding:0 50rpx'>
+    <navigator url="../myServer/myServer">
+      <view class='list-item'>
+        <view class='fs-34'>我的服务</view>
+        <view>
+          <text class='fs-36 text-gradient'>1</text>
+          <image src='http://cdn.ayi800.com/wx_wap/arrow.png' class='arr-pic'></image>
+        </view>
+      </view>
+      </navigator>
+      <navigator url="../myTicket/myTicket">
+        <view class='list-item'>
+          <view class='fs-34'>优惠券</view>
+          <view>
+            <text class='fs-36 text-gradient'>1</text>
+            <image src='http://cdn.ayi800.com/wx_wap/arrow.png' class='arr-pic'></image>
+          </view>
+        </view>
+      </navigator>
+      <navigator url="../myPay/myPay">
+      <view class='list-item'>
+        <view class='fs-34'>付款记录</view>
+        <view>
+          <text class='fs-36 text-gradient'>1</text>
+          <image src='http://cdn.ayi800.com/wx_wap/arrow.png' class='arr-pic'></image>
+        </view>
+      </view>
+      </navigator>
+      <view class='list-item'>
+        <view class='fs-34'>客服热线</view>
+        <view>
+          <text class='fs-36 text-gradient'>400-6625-800</text>
+        </view>
+      </view>
+      <view class='list-item'>
+        <view class='fs-34'>退出登录</view>
+      </view>
+   </view>
 </view>
-<!--bindtap='goPersonal'  -->

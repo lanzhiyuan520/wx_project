@@ -4,16 +4,10 @@ const app = getApp()
 Page({
   data: {
     hasWarn: false,
-    hasMargin:false
+    hasMargin: app.globalData.hasMargin
   },
   onLoad: function () {
-    var res = wx.getSystemInfoSync();
-    if (res.model.indexOf('iPhone X')!==-1){
-      this.setData({
-        hasMargin: true
-      })
-    }
-    console.log(res.model)
+    
   },
   // 登录按钮
   searchBox: function (e) {
@@ -39,7 +33,8 @@ Page({
     })
     console.log(myreg.test(phone))
   },
-    goIndex: function () {
+  //底部跳转 
+  goIndex: function () {
     console.log(1)
     wx.switchTab({
       url: '../index/index',

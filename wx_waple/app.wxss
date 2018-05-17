@@ -40,6 +40,12 @@
 .fs-32{
   font-size: 32rpx
 }
+.fs-34{
+  font-size: 34rpx
+}
+.fs-36{
+  font-size: 36rpx
+}
 .fs-28{
   font-size: 28rpx
 }
@@ -61,8 +67,12 @@
 .gray-text{
   color: #a3a3a3;
 }
-.color-35{
+
+.color-35 {
     color: #353535;
+}
+.white-text{
+  color: #ffffff;
 }
  .evaluate-item{
   display: inline-block; 
@@ -77,5 +87,19 @@
     background-image:  -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(255,161,137, 1)), to(rgba(255,105,145, 1)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.between-layout{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.sub-contain{
+  padding: 0 40rpx 120rpx;
+  box-sizing: border-box;
+}
+.sub-contain-X{
+  padding: 0 40rpx 170rpx;
+  box-sizing: border-box;
 }
 

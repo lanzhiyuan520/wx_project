@@ -1,0 +1,67 @@
+<import src ="../template/footer.wxml"/>
+<view wx:if="{{hasData}}" class='{{hasMargin?"sub-contain-X":"sub-contain"}}'>
+  <view class='ticket-item odd-bg'>
+    <view class='between-layout'>
+      <text class='fs-28'>育儿嫂服务优惠券</text>
+      <text class='fs-20'>券码：234567</text>
+    </view>
+    <view class='mt-54'>
+      <text style='font-size:40rpx'>¥</text>
+      <text style='font-size:100rpx'>200</text>
+    </view>
+    <view class='between-layout bottom-text'>
+      <text class='fs-24'>有效期:2018-7-30</text>
+      <view class='use-btn fs-28'>立即使用</view>
+    </view>
+  </view>
+  <view class='ticket-item even-bg'>
+    <view class='between-layout'>
+      <text class='fs-28'>育儿嫂服务优惠券</text>
+      <text class='fs-20'>券码：234567</text>
+    </view>
+    <view class='mt-54'>
+      <text style='font-size:40rpx'>¥</text>
+      <text style='font-size:100rpx'>500</text>
+    </view>
+    <view class='between-layout bottom-text'>
+      <text class='fs-24'>有效期:2018-7-30</text>
+      <view class='use-btn fs-28'>立即使用</view>
+    </view>
+  </view>
+   <view class='ticket-item even-bg'>
+    <view class='between-layout'>
+      <text class='fs-28'>育儿嫂服务优惠券</text>
+      <text class='fs-20'>券码：234567</text>
+    </view>
+    <view class='mt-54'>
+      <text style='font-size:40rpx'>¥</text>
+      <text style='font-size:100rpx'>500</text>
+    </view>
+    <view class='between-layout bottom-text'>
+      <text class='fs-24'>有效期:2018-7-30</text>
+      <view class='use-btn fs-28'>立即使用</view>
+    </view>
+  </view>
+  <view class='ticket-item light-gray-color no-bg'>
+    <view class='between-layout'>
+      <text class='fs-28'>育儿嫂服务优惠券</text>
+      <text class='fs-20'>券码：234567</text>
+    </view>
+    <view class='mt-54'>
+      <text style='font-size:40rpx'>¥</text>
+      <text style='font-size:100rpx'>200</text>
+    </view>
+    <view class='between-layout bottom-text'>
+      <text class='fs-24'>有效期:2018-7-30</text>
+      <view class='use-btn gray-border fs-28'>立即使用</view>
+    </view>
+  </view>
+</view>  
+<view wx:else class='scale-box'>
+   <view> 
+    <image class='scale-pic'  src='http://cdn.ayi800.com/wx_wap/no%20_sale.png'></image>
+     <view class='light-gray-color fs-28 text-center'>暂无优惠券</view> 
+  </view>  
+ </view> 
+<!--http://cdn.ayi800.com/wx_wap/no%20_sale.png  -->
+<template is="msgItem" data="{{hasMargin}}" bindTap='test'/>
