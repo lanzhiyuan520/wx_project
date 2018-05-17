@@ -126,5 +126,5 @@
     padding-top: 30rpx;
 }
 .server-baozhang text{
-    font-size: 34rpx;
+    font-size: rpx;
 }

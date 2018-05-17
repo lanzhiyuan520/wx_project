@@ -6,7 +6,9 @@
     display: inline-block;
     text-align: center;
     margin-top: 10rpx;
-    box-shadow: 0 0 20rpx rgba(0,0,0,.1) ;
+    /*box-shadow: 0 0 20rpx rgba(0,0,0,.1) ;*/
+    box-shadow:0rpx 0rpx 12rpx 5rpx #f7f7f7;
+
 }
 .waiter_name{
     font-size: 28rpx;

@@ -23,7 +23,7 @@
     padding-bottom: 35rpx;
     border-radius: 10rpx;
     margin-right: 30rpx;
-    box-shadow: 0 0 20rpx rgba(0,0,0,.1) ;
+    box-shadow:0rpx 0rpx 12rpx 5rpx #f7f7f7;
     margin-top: 5rpx;
 }
 .server-item-img{
