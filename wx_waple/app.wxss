@@ -61,8 +61,8 @@
 .gray-text{
   color: #a3a3a3;
 }
-.color-53{
-
+.color-35{
+    color: #353535;
 }
  .evaluate-item{
   display: inline-block; 

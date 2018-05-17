@@ -8,10 +8,10 @@
     </view>
     <view class="btn_wrap">
         <view class="button ipone">
-            <text>客服电话</text>
+            <text class="font_ping">客服电话</text>
         </view>
         <view class="button">
-            <text>意见反馈</text>
+            <text class="font_ping">意见反馈</text>
         </view>
     </view>
 </view>

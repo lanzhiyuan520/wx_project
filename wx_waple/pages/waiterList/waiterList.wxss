@@ -30,7 +30,7 @@
 .leval2{
     width: 60rpx;
     height: 4rpx;
-    background: linear-gradient(#ff957a,#ff779e);
+    background: linear-gradient(to right,#ff957a,#ff779e);
 }
 .price{
     font-size: 26rpx;

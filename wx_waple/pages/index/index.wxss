@@ -82,7 +82,6 @@
     justify-content: center;
 }
 .yuesao_text{
-    color: #000;
     font-size: 26rpx;
     margin-top: 10rpx;
 }
@@ -259,4 +258,11 @@
     display: block;
     width: 56rpx;
     height: 52rpx;
+}
+.pull{
+    text-align: center;
+    font-size: 24rpx;
+    color: #8b9191;
+    padding-bottom: 40rpx;
+    padding-top: 20rpx;
 }

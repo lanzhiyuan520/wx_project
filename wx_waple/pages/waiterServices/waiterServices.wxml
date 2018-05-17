@@ -5,34 +5,34 @@
     </view>
     <view>
         <view class="server-explain">
-            <text>服务说明</text>
+            <text class="color-35 font_ping">服务说明</text>
         </view>
         <view class="price-server">
-            <text class="text">服务价格:</text>
-            <text class="text">9800-15800元</text>
+            <text class="text color-35 font_ping">服务价格:</text>
+            <text class="text color-35 font_ping">9800-15800元</text>
         </view>
         <view class="server-time">
-            <text class="text">服务时间:</text>
-            <text class="text">26天(自上门服务时间开始计算)</text>
+            <text class="text color-35 font_ping">服务时间:</text>
+            <text class="text color-35 font_ping">26天(自上门服务时间开始计算)</text>
         </view>
     </view>
     <view class="leval"></view>
     <view>
         <view class="work-title">
-            <text>每日工作</text>
+            <text class="color-35 font_ping">每日工作</text>
         </view>
         <swiper circular="true" previous-margin="140rpx" next-margin="100rpx" current="{{current}}" bindchange="change_c">
             <swiper-item class="swiper_ {{current}}" wx:for="{{work_list}}" wx:key="{{index}}">
                 <view class="width_active server-list {{current==index?'width_select':''}}">
                     <view class="time-icon">
                         <image src="http://cdn.ayi800.com/image/png/wx_waple_service_time_icon%E6%97%B6%E9%97%B4-2@2x.png"></image>
-                        <text>{{item.time}}</text>
+                        <text class="font_ping">{{item.time}}</text>
                     </view>
                     <view class="work-content">
-                        <text>{{item.text1}}</text>
-                        <text>{{item.text2}}</text>
-                        <text>{{item.text3}}</text>
-                        <text>{{item.text4}}</text>
+                        <text class="font_ping">{{item.text1}}</text>
+                        <text class="font_ping">{{item.text2}}</text>
+                        <text class="font_ping">{{item.text3}}</text>
+                        <text class="font_ping">{{item.text4}}</text>
                     </view>
                 </view>
             </swiper-item>
@@ -41,13 +41,13 @@
     <view class="leval"></view>
     <view>
         <view class="server-flow-title">
-            <text>服务流程</text>
+            <text class="color-35 font_ping">服务流程</text>
         </view>
         <view style="padding:0 44rpx;box-sizing: border-box;display: flex">
             <view style="display: flex" wx:for="{{server_flow}}" wx:key="{{index}}">
                 <view class="server-text">
                     <image src="{{item.img}}"></image>
-                    <text>{{item.text}}</text>
+                    <text class="color-35 font_ping">{{item.text}}</text>
                 </view>
                 <view class="arrow">
                     <image src="{{item.arrow}}" wx:if="{{item.arrow}}"></image>
@@ -58,7 +58,7 @@
     <view class="leval"></view>
     <view style="padding-bottom: 100rpx">
         <view class="server-baozhang">
-            <text>服务保障</text>
+            <text class="color-35 font_ping">服务保障</text>
         </view>
         <view style="padding-bottom: 60rpx">
             <template is="server" data="{{service_list}}"></template>

@@ -4,7 +4,7 @@
     </view>
     <view class="service_list">
         <view class="server_five_title">
-            <text>五大服务项目</text>
+            <text class="font_ping">五大服务项目</text>
         </view>
         <view style="margin-top: 15rpx">
             <scroll-view scroll-x style="white-space: nowrap;height: 240rpx">
@@ -13,7 +13,7 @@
                         <image src="{{item.img}}"></image>
                     </view>
                     <view class="server-item-text">
-                        <text>{{item.text}}</text>
+                        <text class="font_ping">{{item.text}}</text>
                     </view>
                 </view>
             </scroll-view>
@@ -22,10 +22,10 @@
     <view style="padding-bottom: 105rpx">
         <view class="project-item" wx:for="{{service_list}}" wx:key="{{index}}">
             <view class="project-title">
-                <text>{{item.title}}</text>
+                <text class="font_ping">{{item.title}}</text>
             </view>
             <view class="project_content">
-                <text>{{item.content}}</text>
+                <text class="font_ping">{{item.content}}</text>
             </view>
             <view>
                 <scroll-view scroll-x style="white-space: nowrap;">
@@ -34,8 +34,8 @@
                             <image src="{{project.img}}"></image>
                         </view>
                         <view class="project-text">
-                            <text>{{project.text}}</text>
-                            <text>{{project.text2}}</text>
+                            <text class="font_ping">{{project.text}}</text>
+                            <text class="font_ping">{{project.text2}}</text>
                         </view>
                     </view>
                 </scroll-view>

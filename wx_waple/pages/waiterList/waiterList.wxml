@@ -2,9 +2,9 @@
     <view class="waiter_item {{index===0?'first_list':''}}" wx:for="{{waiter_list}}" wx:key="{{index}}" bindtap="waiter_detailed">
         <view class="waiter_content">
             <image src="{{item.img}}"></image>
-            <text class="waiter_name">{{item.name}}</text>
+            <text class="waiter_name color-35 font_ping">{{item.name}}</text>
             <view class="leval2"></view>
-            <text class="price">{{item.price}}</text>
+            <text class="price color-35 font_ping">{{item.price}}</text>
         </view>
     </view>
 </scroll-view>

@@ -5,10 +5,10 @@
         </view>
         <view class="service_content">
             <view class="service_title">
-                <text>{{item.title}}</text>
+                <text class="font_ping color-35">{{item.title}}</text>
             </view>
             <view class="service_text">
-                <text>{{item.content}}</text>
+                <text class="font_ping color-35">{{item.content}}</text>
             </view>
         </view>
     </view>

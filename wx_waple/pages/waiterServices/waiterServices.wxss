@@ -23,7 +23,6 @@
 }
 .text{
     font-size: 28rpx;
-    color: #353535;
 }
 .server-time{
     height: 86rpx;
@@ -45,7 +44,7 @@
     padding-left: 44rpx;
 }
 .work-title text{
-    font-size: 43rpx;
+    font-size: 34rpx;
     color: #353535;
     padding: 30rpx 0 22rpx;
 }
@@ -98,8 +97,7 @@
     padding: 30rpx 0 30rpx 44rpx;
 }
 .server-flow-title text{
-    font-size: 43rpx;
-    color: #353535;
+    font-size: 34rpx;
 }
 .server-text{
     width: auto;
@@ -115,7 +113,6 @@
 }
 .server-text text{
     font-size: 24rpx;
-    color: #353535;
     margin-top: 28rpx;
 }
 .arrow image{
@@ -129,6 +126,5 @@
     padding-top: 30rpx;
 }
 .server-baozhang text{
-    font-size: 43rpx;
-    color: #353535;
+    font-size: 34rpx;
 }
