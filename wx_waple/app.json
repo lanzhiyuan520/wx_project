@@ -1,11 +1,15 @@
 {
   "pages":[
+    "pages/my/my",
     "pages/index/index",
     "pages/waiter/waiter",
-    "pages/my/my",
     "pages/waiterDetail/waiterDetail",
     "pages/private/private",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/myServer/myServer",
+    "pages/myTicket/myTicket",
+    "pages/myPay/myPay",
+    "pages/severDetial/severDetial"
   ],
   "window":{
     "backgroundTextStyle":"light",

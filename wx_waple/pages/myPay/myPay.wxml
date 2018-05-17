@@ -1,0 +1,14 @@
+<import src ="../template/footer.wxml"/>
+<view class='pt-35 {{hasMargin?"sub-contain-X":"sub-contain"}}'>
+  <view wx:for="{{[1,2,3,4,5]}}" wx:key="*this" class='pay-item between-layout'>
+    <view style='display:flex;flex-direction: column;justify-content: space-between;'>
+      <view class='fs-34'>支付合同款</view>
+      <view class='fs-24'>2018-5-22 12:21</view>
+    </view>
+    <view style='line-height:100rpx'>
+      <text class='fs-30 text-gradient'>¥</text>
+      <text class='fs-46 text-gradient'>1270</text>
+    </view>
+  </view>
+</view>
+<template is="msgItem" data="{{hasMargin}}" bindTap='test'/>

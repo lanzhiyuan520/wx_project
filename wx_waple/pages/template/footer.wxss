@@ -5,12 +5,16 @@
   position: fixed;
   bottom:0rpx;
   width: 100%;
-  border-top: 1rpx solid #dcdcdc;
-  padding-top: 10rpx;
+  border-top: 1rpx solid #8b9090;
+  padding-top: 8rpx; 
+  /* height: 100rpx; */
+  box-sizing: border-box;
+  background: #ffffff;
 }
 .icon-pic{
   width: 60rpx;
   height: 60rpx;
+  margin-bottom: 3rpx;
 }
 .b-65{
   bottom:65rpx;
@@ -20,5 +24,5 @@
   flex-direction: column;
 }
 .footer-text{
-  color: #b6b9b9;
+  color: #8b9090;
 }
