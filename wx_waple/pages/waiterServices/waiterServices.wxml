@@ -21,7 +21,7 @@
         <view class="work-title">
             <text class="color-35 font_ping">每日工作</text>
         </view>
-        <swiper circular="true" previous-margin="140rpx" next-margin="100rpx" current="{{current}}" bindchange="change_c">
+        <swiper circular="{{true}}" previous-margin="120rpx" next-margin="100rpx" current="{{current}}" bindchange="change_c">
             <swiper-item class="swiper_ {{current}}" wx:for="{{work_list}}" wx:key="{{index}}">
                 <view class="width_active server-list {{current==index?'width_select':''}}">
                     <view class="time-icon">
