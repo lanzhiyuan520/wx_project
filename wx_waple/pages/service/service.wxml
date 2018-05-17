@@ -7,11 +7,11 @@
         <template is="server" data="{{service_list}}"></template>
     </view>
     <view class="btn_wrap">
-        <view class="button ipone">
-            <text class="font_ping">客服电话</text>
+        <view class="button ipone" bindtap="call">
+            <text>客服电话</text>
         </view>
         <view class="button">
-            <text class="font_ping">意见反馈</text>
+            <text>意见反馈</text>
         </view>
     </view>
 </view>
