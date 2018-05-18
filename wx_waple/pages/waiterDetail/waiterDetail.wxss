@@ -20,12 +20,28 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.text-show-btn{
-  margin-left: 40rpx;
-}
 .intro{
   line-height: 40rpx;
   margin-top: 45rpx;
+  position: relative
+}
+.text-show-btn{
+  position: absolute;
+  padding-left: 45rpx;
+  background: #ffffff;
+  right: 6rpx;
+  bottom: -3rpx;
+}
+.flod{
+  height: 76rpx;
+  overflow: hidden;
+}
+.extend{
+  height: auto
+}
+.lable-flod{
+  height: 120rpx;
+  overflow: hidden;
 }
 /*印象标签  */
 .impress-lable{

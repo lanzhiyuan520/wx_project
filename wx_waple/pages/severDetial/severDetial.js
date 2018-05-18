@@ -2,7 +2,8 @@ const app = getApp()
 
 Page({
   data: {
-    hasMargin: app.globalData.hasMargin
+    hasMargin: app.globalData.hasMargin,
+    serverState:3
   },
 
   onLoad: function () {

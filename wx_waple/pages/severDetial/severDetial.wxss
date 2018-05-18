@@ -31,6 +31,17 @@
   height: 4rpx;
   background: linear-gradient(to right, #ff85a9 , #ffa189);
   margin-top: 33rpx;
+  position: relative;
+}
+.sub-wire{
+  width: 100rpx;
+  height: 4rpx;
+  background: linear-gradient(to right, #ff9485 , #ff9b7c);
+  position: absolute;
+  left: 0;
+}
+.wire-opcity{
+    background: linear-gradient(to right, rgba(255,133,169, 0.5), rgba(255,161,137, 0.5)); 
 }
 .light-bg{
   opacity: 0.3
