@@ -10,7 +10,7 @@
         <view class="button ipone" bindtap="call">
             <text>客服电话</text>
         </view>
-        <view class="button">
+        <view class="button" bindtap="opinion">
             <text>意见反馈</text>
         </view>
     </view>

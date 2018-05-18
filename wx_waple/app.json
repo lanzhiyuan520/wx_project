@@ -10,7 +10,8 @@
     "pages/myServer/myServer",
     "pages/myTicket/myTicket",
     "pages/myPay/myPay",
-    "pages/severDetial/severDetial"
+    "pages/severDetial/severDetial",
+    "pages/opinion/opinion"
   ],
   "window":{
     "backgroundTextStyle":"light",

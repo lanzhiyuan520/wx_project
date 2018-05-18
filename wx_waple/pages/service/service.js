@@ -16,6 +16,11 @@ Page({
             phoneNumber: '4006625800' //仅为示例，并非真实的电话号码
         })
     },
+    opinion:function(){
+        wx.navigateTo({
+            url : '../opinion/opinion'
+        })
+    },
     onLoad: function () {
 
     }
