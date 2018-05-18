@@ -42,7 +42,7 @@
         <text>我的客户经理：李大锤</text>
         <text>电话：13457888642</text>
       </view>
-      <view class='call-btn fs-24'>拨打电话</view>
+      <view bindtap='callPhone' class='call-btn fs-24'>拨打电话</view>
     </view>
      <view class='server-box item-shade fs-28'>
       <image src='http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg' class='bd-img mr-47'></image>

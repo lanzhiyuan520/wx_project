@@ -11,7 +11,7 @@
 }
 .ticket-item{
   width: 670rpx;
-  height: 350rpx;
+  height: 360rpx;
   background-size: 100%;
   padding: 35rpx 30rpx;
    box-sizing: border-box; 
@@ -19,7 +19,7 @@
   margin-bottom: 20rpx;
 }
 .mt-54{
-  margin-top: 34rpx;
+  margin-top: 24rpx;
 }
 .use-btn{
   width: 165rpx;
@@ -48,4 +48,34 @@
 .scale-pic{
   width: 190rpx;
   height: 230rpx;
+}
+.mt-35{
+  margin-top: 35rpx;
+}
+/*遮罩  */
+.call-mask{
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+.model-box{
+  width: 450rpx;
+  height: 290rpx;
+  background: #ffffff;
+  border-radius: 20rpx;
+  text-align: center;
+  padding: 45rpx 57rpx;
+  box-sizing: border-box;
+}
+.mb-35{
+  margin-bottom: 35rpx;
+}
+.mb-50{
+  margin-bottom: 50rpx;
 }

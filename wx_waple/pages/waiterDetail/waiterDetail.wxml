@@ -99,10 +99,12 @@
   </view>
 </view>
 <view class='cut-off'></view>
-<view class='ptb-35-box mb-10'>
-  <text class='model-title'>猜你喜欢</text>
+<view class='mb-10 like-waiter'>
+  <text class='pl-60 model-title'>猜你喜欢</text>
+  <view style='margin-top:30rpx'>
+    <waiterlist waiter_list="{{waiter_list}}" ></waiterlist>
+  </view>
 </view>
-
  <!--工作照片滑动  -->
  <view class='mask' bindtap='picHide' wx:if="{{hasMask}}" catchtouchmove="myCatchTouch">
   <!-- <view class='mask-pic-box'> -->
@@ -115,3 +117,4 @@
    </swiper>
  <!-- </view> -->
  </view>
+ <consult></consult>

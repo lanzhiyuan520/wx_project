@@ -35,3 +35,30 @@
   top: 50%;
   margin-top: -16rpx;
 }
+.light-gray-color{
+  color: #d0d0d0;
+}
+.scale-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 255rpx;
+}
+.scale-pic{
+  width: 190rpx;
+  height: 230rpx;
+}
+.find-btn{
+  width: 244rpx;
+  height: 60rpx;
+  border-radius: 60rpx;
+  border: 1px solid #999999;
+  text-align: center;
+  line-height: 60rpx;
+  color: #999999;
+  margin-top: 90rpx;
+}
+.mt-35{
+  margin-top: 35rpx;
+}

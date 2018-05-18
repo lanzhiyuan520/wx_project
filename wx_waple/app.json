@@ -8,7 +8,6 @@
     "pages/waiter/waiter",
     "pages/waiterDetail/waiterDetail",
     "pages/private/private",
-    "pages/login/login",
     "pages/myServer/myServer",
     "pages/myTicket/myTicket",
     "pages/myPay/myPay",

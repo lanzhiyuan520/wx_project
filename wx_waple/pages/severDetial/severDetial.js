@@ -8,6 +8,12 @@ Page({
   onLoad: function () {
 
   },
+  // 拨打电话
+  callPhone: function () {
+    wx.makePhoneCall({
+      phoneNumber: '13457888642'
+    })
+  },
   //底部跳转 
   goIndex: function () {
     wx.switchTab({
