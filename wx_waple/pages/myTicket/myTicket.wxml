@@ -1,5 +1,5 @@
 <import src ="../template/footer.wxml"/>
-<view wx:if="{{hasData}}" class='{{hasMargin?"sub-contain-X":"sub-contain"}}'>
+<view wx:if="{{hasData}}" class='pt-35 {{hasMargin?"sub-contain-X":"sub-contain"}}'>
   <view bindtap='maskShow' class='ticket-item odd-bg'>
     <view class='between-layout'>
       <text class='fs-28'>育儿嫂服务优惠券</text>
