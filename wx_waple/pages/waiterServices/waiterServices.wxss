@@ -90,8 +90,9 @@
     margin-top: 25rpx;
 }
 .work-content text{
-    font-size: 28rpx;
+    font-size: 21rpx;
     color: #fff;
+    margin-bottom: 5rpx;
 }
 .server-flow-title{
     box-sizing: border-box;
