@@ -33,15 +33,20 @@ Component({
             })
         },
         submit:function(){
-            console.log(this.data.time)
             if (!this.data.time.replace(/(^\s*)|(\s*$)/g, "")){
                 toast.toast('请输入预约时间','none')
                 return false
             }else if (!this.data.name.replace(/(^\s*)|(\s*$)/g, "")){
                 toast.toast('请输入名字','none')
+                this.setData({
+                    name : ''
+                })
                 return false
             }else if (!this.data.phone.replace(/(^\s*)|(\s*$)/g, "")){
                 toast.toast('请输入手机号','none')
+                this.setData({
+                    phone : ''
+                })
                 return false
             }
             if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(this.data.phone))){
@@ -78,8 +83,5 @@ Component({
                 time : e.detail.value
             })
         }
-    },
-    onload:function(e){
-
     }
 })
