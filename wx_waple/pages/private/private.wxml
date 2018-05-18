@@ -1,5 +1,0 @@
-
-<view bindtap='goBack'>
-    <text>go</text>
-    
-</view>

@@ -42,5 +42,5 @@
             </view>
         </view>
     </view>
-    <consult></consult>
+    <consult flag="{{true}}"></consult>
 </view>

@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": "月嫂资料"
+  "navigationBarTitleText": "月嫂资料",
+  "usingComponents": {
+    "waiterlist": "../waiterList/waiterList",
+    "consult": "../consult/consult"
+  }
 }
