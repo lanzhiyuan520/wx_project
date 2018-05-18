@@ -39,7 +39,7 @@
     background-color:#fff8f1 ;
     border-radius: 10rpx;
     box-sizing: border-box;
-    transition: all .5s linear;
+    transition: all .3s linear;
 }
 .city-list text{
     display: flex;

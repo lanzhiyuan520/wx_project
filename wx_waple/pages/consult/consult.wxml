@@ -12,7 +12,8 @@
 <view  class="user_info" style="transform: translateY({{offset}}%);" catchtouchmove='true' >
     <view class="order-model">
         <view class="waiter-name">
-            <text>预约阿姨：马冬梅</text>
+            <text hidden="{{flag}}">预约阿姨：马冬梅</text>
+            <text hidden="{{!flag}}">预约服务：忘记什么了</text>
             <view class="close" bindtap="close">
                 <image src="http://cdn.ayi800.com/image/png/wx_waple_order_close%E5%85%B3%E9%97%AD@2x.png"></image>
             </view>
@@ -22,7 +23,9 @@
                 <view class="input-icon">
                     <image src="http://cdn.ayi800.com/image/png/wx_waple_order_icon1%E6%97%B6%E9%97%B4@2x.png"></image>
                 </view>
-                <input type="text" value="{{time}}" bindinput="time" class="time" placeholder="请选择面试时间" placeholder-class="pla"/>
+                <picker mode="date" style="width:100%;display: flex;align-items: flex-end" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+                    <input disabled="{{true}}" type="text" value="{{time}}" bindinput="time" class="time" placeholder="请选择面试时间" placeholder-class="pla" style="padding-bottom: 12rpx"/>
+                </picker>
             </view>
         </view>
         <view class="input-wrap">
@@ -62,3 +65,4 @@
         </view>
     </view>
 </view>
+

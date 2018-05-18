@@ -4,7 +4,7 @@
       <view class="city-wrap" bindtap="city_model">
         <image src="http://cdn.ayi800.com/image/png/wx_waple_index_city_icon%E4%BD%8D%E7%BD%AE@2x.png"></image>
         <text>{{city_name}}</text>
-        <view class="city-list" style="height: {{city_list_height?'0':'auto'}};overflow: hidden">
+        <view class="city-list" style="max-height: {{city_list_height?'0':'500'}}rpx;overflow: hidden">
           <text bindtap="change_city" wx:for="{{city_list}}" wx:key="{{index}}" data-name="{{item.name}}" class="{{index==0?'first-city':''}} {{index==city_list.length-1?'last-city':''}} {{city_name==item.name?'select-city':''}}">{{item.name}}</text>
         </view>
       </view>
