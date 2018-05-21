@@ -1,0 +1,5 @@
+<view>
+    <view class="mask">
+        <button class="btn" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">点我</button>
+    </view>
+</view>

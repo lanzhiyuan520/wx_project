@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/authorization/authorization",
     "pages/index/index",
     "pages/my/my",
     "pages/waiterServices/waiterServices",

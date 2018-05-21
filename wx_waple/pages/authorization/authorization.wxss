@@ -1,0 +1,18 @@
+.mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn{
+    width: 300rpx;
+    height: 100rpx;
+    background-color: #7b9cee;
+    border-radius: 50rpx;
+    color: #fff;
+}
