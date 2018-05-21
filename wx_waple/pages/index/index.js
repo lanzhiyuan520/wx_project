@@ -1,5 +1,7 @@
 //index.js
 //获取应用实例
+var toast = require('../common/toast')
+
 const app = getApp()
 
 Page({
@@ -59,14 +61,30 @@ Page({
           })
       }
     },
+    onPullDownRefresh:function(){
+        console.log('下拉刷新')
+        setTimeout(()=>{
+            toast.toast('刷新成功','none')
+            wx.stopPullDownRefresh()
+
+        },1500)
+    },
     city_model:function(){
         this.setData({
             city_list_height : !this.data.city_list_height
         })
     },
     change_city:function(e){
+        var {name} = e.currentTarget.dataset
+        console.log(name)
+        if (name == this.data.city_name){
+            console.log('一样')
+            return false
+        }else{
+            console.log('不一样')
+        }
         this.setData({
-            city_name : e.currentTarget.dataset.name
+            city_name : name
         })
     },
     more:function(){
