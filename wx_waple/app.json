@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/authorization/authorization",
     "pages/index/index",
     "pages/my/my",
     "pages/waiterServices/waiterServices",
@@ -10,7 +11,8 @@
     "pages/myServer/myServer",
     "pages/myTicket/myTicket",
     "pages/myPay/myPay",
-    "pages/severDetial/severDetial"
+    "pages/severDetial/severDetial",
+    "pages/opinion/opinion"
   ],
   "window":{
     "backgroundTextStyle":"light",
