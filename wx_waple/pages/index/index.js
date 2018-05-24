@@ -1,7 +1,8 @@
 //index.js
 //获取应用实例
 var toast = require('../common/toast')
-
+var URL = `http://dev.weixin.api.com:9090/api/wap`
+var request = require('../common/request')
 const app = getApp()
 
 Page({
@@ -118,7 +119,18 @@ Page({
             wx.hideLoading()
         },2000)
     },
+    waiter_detail:function(){
+      var url = `${URL}/detail/100005`
+        request.request(url,'GET',{})
+            .then((res)=>{
+                console.log('月嫂详情',res)
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+    },
   onLoad: function () {
-
+      //月嫂详情
+       this.waiter_detail()
   }
 })
