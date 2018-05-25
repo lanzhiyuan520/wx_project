@@ -11,7 +11,7 @@
 }
 .ticket-item{
   width: 670rpx;
-  height: 360rpx;
+  height: 325rpx;
   background-size: 100%;
   padding: 35rpx 30rpx;
    box-sizing: border-box; 
@@ -20,6 +20,9 @@
 }
 .mt-54{
   margin-top: 24rpx;
+}
+.pt-35{
+  padding-top: 35rpx;
 }
 .use-btn{
   width: 165rpx;

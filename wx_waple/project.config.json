@@ -7,7 +7,7 @@
 		"minified": true,
 		"newFeature": true
 	},
-	"compileType": "miniprogram",
+	"compileType": "search",
 	"libVersion": "1.9.94",
 	"appid": "wx8eb32572a3565b61",
 	"projectname": "waple_wx",

@@ -3,7 +3,8 @@ Page({
   data: {
     hasMargin: app.globalData.hasMargin,
     hasData:true,
-    maskHide:false
+    maskHide:false,
+    array:[200,500,300]
   },
   onLoad: function (options) {
     

@@ -37,36 +37,18 @@
 <view class='ptb-35-box mb-10'>
   <text class='model-title'>工作照片</text>
   <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex;margin-top:35rpx" >
-  <image bindtap='picShow' class='job-pic' wx:for="{{[1,2,3,4,5]}}" wx:key="*this" src="http://cdn.ayi800.com/image/b8993ca7059a9f6a83e4072f17777330.jpg" mode='aspectFill'></image>
+  <image class='job-pic' wx:for="{{arr}}" bindtap='picShow' data-index="{{index}}" wx:key="*this"   src="http://cdn.ayi800.com/image/b8993ca7059a9f6a83e4072f17777330.jpg" mode='aspectFill'></image>
 </scroll-view>
 </view>
 <view class='cut-off'></view>
 <view class='ptb-35-box mb-10' >
   <text class='model-title'>印象标签</text>
-  <view class='impress-lable {{lableFold ?"lable-flod":"extend"}}'>
-      <view class='evaluate-item mr-30'>
-        <text class='fs-22 text-gradient'>催乳好 1</text>
-      </view>
-      <view class='evaluate-item mr-30'>
-        <text class='fs-22 text-gradient'>月子餐很棒 4</text>
-      </view>
-      <view class='evaluate-item mr-30'>
-        <text class='fs-22 text-gradient'>干净 2</text>
-      </view>
-      <view class='evaluate-item mr-30'>
-        <text class='fs-22 text-gradient'>儿歌歌神 4</text>
-      </view>
-      <view class='evaluate-item mr-30'>
-        <text class='fs-22 text-gradient'>月子餐很棒 4</text>
-      </view>
-      <view class='evaluate-item mr-30'>
-        <text class='fs-22 text-gradient'>干净 2</text>
-      </view>
-      <view class='evaluate-item mr-30'>
-        <text class='fs-22 text-gradient'>儿歌歌神 4</text>
+  <view class='impress-lable extend'>
+      <view class='evaluate-item mr-30' wx:for="{{label}}" wx:key="index">
+        <text class='fs-22 text-gradient'>{{item}}</text>
       </view>
       <text wx:if="{{lableFold}}" bindtap='lableShow' class='fs-22 gray-text table-show-btn'>展开></text>
-      <text wx:else bindtap='lableShow' class='fs-22 gray-text table-show-btn'>^收起</text>
+      <text wx:else bindtap='lableHide' class='fs-22 gray-text table-show-btn'>^收起</text>
   </view>
 </view>
 <view class='cut-off'></view>
@@ -110,7 +92,7 @@
  <!--工作照片滑动  -->
  <view class='mask' bindtap='picHide' wx:if="{{hasMask}}" catchtouchmove="myCatchTouch">
   <!-- <view class='mask-pic-box'> -->
-   <swiper indicator-dots="{{indicatorDots}}" class='mask-pic-box'>
+   <swiper indicator-dots="{{indicatorDots}}" class='mask-pic-box' current="{{index}}">
       <block wx:for="{{[1,2,3,4,5]}}" wx:key="*this">
         <swiper-item class="center-pic">
           <image src="http://cdn.ayi800.com/image/b8993ca7059a9f6a83e4072f17777330.jpg" class="slide-image" mode='widthFix'/>

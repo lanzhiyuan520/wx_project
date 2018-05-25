@@ -1,27 +1,13 @@
 <import src ="../template/footer.wxml"/>
-<view wx:if="{{hasData}}" class='{{hasMargin?"sub-contain-X":"sub-contain"}}'>
-  <view bindtap='maskShow' class='ticket-item odd-bg'>
+<view wx:if="{{hasData}}" class='pt-35 {{hasMargin?"sub-contain-X":"sub-contain"}}'>
+  <view bindtap='maskShow' wx:for="{{array}}" wx:key="*this" class='ticket-item {{index%2==0?"even-bg":"odd-bg"}}'>
     <view class='between-layout'>
       <text class='fs-28'>育儿嫂服务优惠券</text>
       <text class='fs-20'>券码：234567</text>
     </view>
     <view class='mt-54'>
       <text style='font-size:40rpx'>¥</text>
-      <text style='font-size:100rpx'>200</text>
-    </view>
-    <view class='between-layout bottom-text'>
-      <text class='fs-24'>有效期:2018-7-30</text>
-      <view class='use-btn fs-28'>立即使用</view>
-    </view>
-  </view>
-  <view bindtap='maskShow' class='ticket-item even-bg'>
-    <view class='between-layout'>
-      <text class='fs-28'>育儿嫂服务优惠券</text>
-      <text class='fs-20'>券码：234567</text>
-    </view>
-    <view class='mt-54'>
-      <text style='font-size:40rpx'>¥</text>
-      <text style='font-size:100rpx'>500</text>
+      <text style='font-size:100rpx'>{{item}}</text>
     </view>
     <view class='between-layout bottom-text'>
       <text class='fs-24'>有效期:2018-7-30</text>
