@@ -16,12 +16,15 @@ Page({
     arr: [1, 2, 3, 4, 5],
     label: ["催乳好 1", "月子餐很棒 4", "干净 2", "儿歌歌神 4", "月子餐很棒 4", "干净 2", "儿歌歌神 4", "干净 2","月子餐很棒 4", "干净 2","催乳好 1", "月子餐很棒 4"],
     lessLabel:[],
+    content:'我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良，我很开朗，我很我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良，我很开朗，我很我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良，我很开朗，我很我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良多经验，我很我善良很多经验多经验',
+    lessContent:'',
     index:0
   },
 
   onLoad: function () {
     this.setData({
-      lessLabel: this.data.label.slice(0,6)
+      lessLabel: this.data.label.slice(0,6),
+      lessContent: this.data.content.substr(0,38)
     })
   },
   // 防止遮罩的穿透

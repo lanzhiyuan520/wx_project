@@ -48,7 +48,6 @@
       <view class='list-item'>
         <view class='fs-34'>付款记录</view>
         <view>
-          <text class='fs-36 text-gradient'>1</text>
           <image src='http://cdn.ayi800.com/wx_wap/arrow.png' class='arr-pic'></image>
         </view>
       </view>

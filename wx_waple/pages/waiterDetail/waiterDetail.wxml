@@ -9,9 +9,9 @@
     </view>
   </view>
   <view class='intro'>
-    <view class='fs-26 {{isFold ?"flod":"extend"}}'>自我简介：我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良，我很开朗，我很我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良，我很开朗，我很我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良，我很开朗，我很我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良多经验，我很善良</view>
-    <view wx:if="{{isFold}}" bindtap="flodFn" class='fs-22 pink-text text-show-btn'>展开></view>
-    <text wx:else bindtap="flodFn" class='fs-22 pink-text'>^收起</text>
+    <text class='fs-26 extend'>自我简介：{{isFold?lessContent:content}}</text>
+    <text wx:if="{{isFold}}" bindtap="flodFn" class='fs-22 pink-text text-show-btn'>展开></text>
+    <text wx:else bindtap="flodFn" class='fs-22 pink-text text-show-btn'>^收起</text>
     </view>
 </view>
 <view class='cut-off'></view>
