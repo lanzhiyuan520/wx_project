@@ -1,0 +1,29 @@
+.footerbox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: fixed;
+  bottom:0rpx;
+  width: 100%;
+  border-top: 1rpx solid #8b9090;
+  padding-top: 8rpx; 
+  /* height: 100rpx; */
+  box-sizing: border-box;
+  background: #ffffff;
+}
+.icon-pic{
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 3rpx;
+}
+.b-65{
+  bottom:65rpx;
+} 
+.bar-item{
+  display: flex;
+  flex-direction: column;
+}
+.footer-text{
+  color: #8b9090;
+}
+

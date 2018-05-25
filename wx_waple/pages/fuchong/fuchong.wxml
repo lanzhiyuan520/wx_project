@@ -1,0 +1,46 @@
+<view>
+    <view class="banner">
+        <image src="http://cdn.ayi800.com/image/png/wx_waple_service_banner%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C_02.png"></image>
+    </view>
+    <view class="service_list">
+        <view class="server_five_title">
+            <text class="font_ping">五大服务项目</text>
+        </view>
+        <view style="margin-top: 15rpx">
+            <scroll-view scroll-x style="white-space: nowrap;height: 240rpx">
+                <view class="service-item {{index==0?'first-item':''}}" wx:for="{{server_five_list}}" wx:key="{{index}}">
+                    <view class="server-item-img">
+                        <image src="{{item.img}}"></image>
+                    </view>
+                    <view class="server-item-text">
+                        <text class="font_ping">{{item.text}}</text>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+    <view style="padding-bottom: 105rpx">
+        <view class="project-item" wx:for="{{service_list}}" wx:key="{{index}}">
+            <view class="project-title">
+                <text class="font_ping">{{item.title}}</text>
+            </view>
+            <view class="project_content">
+                <text class="font_ping">{{item.content}}</text>
+            </view>
+            <view>
+                <scroll-view scroll-x style="white-space: nowrap;">
+                    <view class="project {{index==0?'first-project':''}}"  wx:for="{{item.img_list}}" wx:for-item="project" wx:key="{{index}}" >
+                        <view class='project-img'>
+                            <image src="{{project.img}}"></image>
+                        </view>
+                        <view class="project-text">
+                            <text class="font_ping">{{project.text}}</text>
+                            <text class="font_ping">{{project.text2}}</text>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+    </view>
+    <consult flag="{{true}}"></consult>
+</view>

@@ -1,0 +1,71 @@
+<import src="../template/serverBaozhang.wxml"/>
+<view style="overflow: hidden">
+    <view class="banner">
+        <image src="http://cdn.ayi800.com/image/png/wx_waple_service_banner%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C_02.png"></image>
+    </view>
+    <view>
+        <view class="server-explain">
+            <text class="color-35 font_ping">服务说明</text>
+        </view>
+        <view class="price-server">
+            <text class="text color-35 font_ping">服务价格:</text>
+            <text class="text color-35 font_ping">9800-15800元</text>
+        </view>
+        <view class="server-time">
+            <text class="text color-35 font_ping">服务时间:</text>
+            <text class="text color-35 font_ping">26天(自上门服务时间开始计算)</text>
+        </view>
+    </view>
+    <view class="leval"></view>
+    <view>
+        <view class="work-title">
+            <text class="color-35 font_ping">每日工作</text>
+        </view>
+        <swiper circular="{{true}}" previous-margin="120rpx" next-margin="100rpx" current="{{current}}" bindchange="change_c">
+            <swiper-item class="swiper_ {{current}}" wx:for="{{work_list}}" wx:key="{{index}}">
+                <view class="width_active server-list {{current==index?'width_select':''}}">
+                    <view class="time-icon">
+                        <image src="http://cdn.ayi800.com/image/png/wx_waple_service_time_icon%E6%97%B6%E9%97%B4-2@2x.png"></image>
+                        <text class="font_ping">{{item.time}}</text>
+                    </view>
+                    <view class="work-content">
+                        <text class="font_ping">{{item.text1}}</text>
+                        <text class="font_ping">{{item.text2}}</text>
+                        <text class="font_ping">{{item.text3}}</text>
+                        <text class="font_ping">{{item.text4}}</text>
+                    </view>
+                </view>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="leval"></view>
+    <view>
+        <view class="server-flow-title">
+            <text class="color-35 font_ping">服务流程</text>
+        </view>
+        <view style="padding:0 44rpx;box-sizing: border-box;display: flex">
+            <view style="display: flex" wx:for="{{server_flow}}" wx:key="{{index}}">
+                <view class="server-text">
+                    <image src="{{item.img}}"></image>
+                    <text class="color-35 font_ping">{{item.text}}</text>
+                </view>
+                <view class="arrow">
+                    <image src="{{item.arrow}}" wx:if="{{item.arrow}}"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="leval"></view>
+    <view style="padding-bottom: 100rpx">
+        <view class="server-baozhang">
+            <text class="color-35 font_ping">服务保障</text>
+        </view>
+        <view style="padding-bottom: 60rpx">
+            <template is="server" data="{{service_list}}"></template>
+        </view>
+    </view>
+    <view>
+        <!--<template is="consult"></template>-->
+        <consult flag="{{true}}"></consult>
+    </view>
+</view>

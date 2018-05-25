@@ -1,0 +1,68 @@
+<view class="wrap">
+    <view class="left">
+        <view class="content">
+            <image src="http://cdn.ayi800.com/image/png/wx_waple_service_consult_icon%E5%92%A8%E8%AF%A21@2x.png"></image>
+            <text>咨询</text>
+        </view>
+    </view>
+    <view class="right" bindtap='order'>
+        <text>我要预约</text>
+    </view>
+</view>
+<view  class="user_info" style="transform: translateY({{offset}}%);" catchtouchmove='true' >
+    <view class="order-model">
+        <view class="waiter-name">
+            <text hidden="{{flag}}">预约阿姨：马冬梅</text>
+            <text hidden="{{!flag}}">预约服务：月嫂服务</text>
+            <view class="close" bindtap="close">
+                <image src="http://cdn.ayi800.com/image/png/wx_waple_order_close%E5%85%B3%E9%97%AD@2x.png"></image>
+            </view>
+        </view>
+        <view class="input-wrap">
+            <view class="input-text">
+                <view class="input-icon">
+                    <image src="http://cdn.ayi800.com/image/png/wx_waple_order_icon1%E6%97%B6%E9%97%B4@2x.png"></image>
+                </view>
+                <picker mode="date" style="width:100%;display: flex;align-items: flex-end" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+                    <input disabled="{{true}}" type="text" value="{{time}}" bindinput="time" class="time" placeholder="请选择服务时间" placeholder-class="pla" style="padding-bottom: 12rpx"/>
+                </picker>
+            </view>
+        </view>
+        <view class="input-wrap">
+            <view class="input-text">
+                <view class="input-icon">
+                    <image src="http://cdn.ayi800.com/image/png/wx_waple_order_icon2%E4%B8%AA%E4%BA%BA@2x.png"></image>
+                </view>
+                <input type="text" value="{{name}}" class="time" bindinput="name" placeholder="输入姓名" placeholder-class="pla"/>
+            </view>
+        </view>
+        <view class="input-wrap">
+            <view class="input-text">
+                <view class="input-icon">
+                    <image src="http://cdn.ayi800.com/image/png/wx_waple_order_icon3%E6%89%8B%E6%9C%BA@2x.png"></image>
+                </view>
+                <input type="text" maxlength="11" value="{{phone}}" class="time" bindinput="phone" placeholder="输入手机号" placeholder-class="pla"/>
+            </view>
+        </view>
+        <view class="submit" bindtap="submit">
+            <text>提交</text>
+        </view>
+    </view>
+</view>
+<view class="order-success " catchtouchmove='true' hidden="{{success_model}}">
+    <view class="success-model">
+        <view class="success-icon">
+            <image src="http://cdn.ayi800.com/image/png/wx_waple_order_success_icon%E5%AF%B9%E5%8F%B7@2x.png"></image>
+        </view>
+        <view class="success-text">
+            <text>预约提交成功</text>
+        </view>
+        <view class="inform">
+            <text>请耐心等待，客户经理会尽快电话和您沟通！</text>
+        </view>
+        <view class="know" bindtap="close_success_model">
+            <text>知道啦</text>
+        </view>
+    </view>
+</view>
+

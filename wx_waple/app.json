@@ -1,13 +1,23 @@
 {
   "pages":[
+    "pages/authorization/authorization",
     "pages/index/index",
+    "pages/my/my",
+    "pages/waiterServices/waiterServices",
+    "pages/service/service",
+    "pages/fuchong/fuchong",
     "pages/waiter/waiter",
-    "pages/my/my"
+    "pages/waiterDetail/waiterDetail",
+    "pages/myServer/myServer",
+    "pages/myTicket/myTicket",
+    "pages/myPay/myPay",
+    "pages/severDetial/severDetial",
+    "pages/opinion/opinion"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "有福妈妈",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {

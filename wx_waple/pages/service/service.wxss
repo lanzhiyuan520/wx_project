@@ -1,0 +1,25 @@
+.banner image{
+    width: 100%;
+    height: 300rpx;
+}
+.button{
+    width: 268rpx;
+    height: 72rpx;
+    border-radius: 50rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5rpx #f7614a ;
+    background: linear-gradient(to right,#ff85a9,#ffa189);
+}
+.button text{
+    font-size: 30rpx;
+    color: #fff;
+}
+.btn_wrap{
+    display: flex;
+    margin-top: 40rpx;
+}
+.ipone{
+    margin: 0 70rpx 0 74rpx;
+}

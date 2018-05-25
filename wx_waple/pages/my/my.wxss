@@ -1,0 +1,78 @@
+/*登录  */
+.contain{
+  padding: 170rpx 115rpx 0;
+}
+.section{
+  position: relative;
+}
+.phone,.code{
+  border-bottom: 1rpx solid #e8e8e8;
+  padding: 0 0 30rpx 165rpx;
+}
+.phone-titles{
+  position: absolute;
+}
+.text-gray{
+  color: #b0b0b0
+}
+.mb-60{
+  margin-bottom: 60rpx;
+}
+.mb-30{
+  margin-bottom: 30rpx;
+}
+.code-btn{
+  position: absolute;
+  right: 0;
+  bottom: 20rpx;
+  width: 160rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+}
+.code{
+  padding-right: 160rpx;
+}
+.sub-btn{
+  width: 100%;
+  height: 85rpx;
+  background: linear-gradient(to right, #ff85a9 , #ffa189);
+  border-radius: 20rpx;
+  text-align: center;
+  line-height: 85rpx;
+  color: #ffffff;
+  margin-top: 58rpx;
+  box-shadow: -2px 3px 10px 5px #fddad5;
+}
+.deep-gray-color{
+  color: #878686
+}
+button::after{
+  border: none;
+}
+/*个人中心  */
+.head-img{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin-bottom: 40rpx;
+}
+.person-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32rpx 0 57rpx;
+}
+.list-item{
+  display: flex;
+  flex: row;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #e9e9e9;
+  height: 133rpx;
+  align-items: center;
+}
+.arr-pic{
+  width: 20rpx;
+  height: 33rpx;
+  margin-left: 50rpx;
+}
