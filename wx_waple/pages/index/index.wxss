@@ -74,6 +74,7 @@
 .server_nav_img{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .server_item{
     width: 33.333%;

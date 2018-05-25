@@ -43,6 +43,7 @@ App({
     hasLogin:false,
     hasMargin: false,
     openId : null,
-    session_key : null
+    session_key : null,
+    URL : 'http://dev.weixin.api.com:9090/api/wap'
   }
 })
