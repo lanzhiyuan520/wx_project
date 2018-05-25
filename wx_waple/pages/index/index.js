@@ -3,6 +3,7 @@
 var toast = require('../common/toast')
 var URL = `http://dev.weixin.api.com:9090/api/wap`
 var request = require('../common/request')
+var rsa = require('../common/rsa')
 const app = getApp()
 
 Page({
@@ -45,7 +46,7 @@ Page({
       city_list:[{name:'北京'},{name:'广州'},{name:'深圳'}],
       city_list_height:true,
       city_name:'北京',
-      pull_text:'上拉加载更多'
+      pull_text:'上拉加载更多',
   },
     service:function(e){
       if (e.currentTarget.dataset.idx == 0){
@@ -129,8 +130,30 @@ Page({
                 console.log(error)
             })
     },
+    yuyue:function(){
+      var data = JSON.stringify({
+          user_id : 1,
+          object_id : 100005,
+          city : 184,
+          note : '2018-05-05',
+          customer_name : 'test',
+          customer_phone : '18310737476',
+          nanny_type : 0
+      })
+      var url = `${URL}/appointment`
+        var encStr = rsa.sign(data)
+        request.request(url,'POST',encStr)
+            .then(res=>{
+                console.log('预约',res)
+            })
+            .catch((e)=>{
+                console.log(e)
+            })
+    },
   onLoad: function () {
       //月嫂详情
-       this.waiter_detail()
+       //this.waiter_detail()
+      //预约
+      this.yuyue()
   }
 })

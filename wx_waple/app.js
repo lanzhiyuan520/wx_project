@@ -13,9 +13,6 @@ App({
         this.code()
     }else{
         console.log('获取到openid和用户信息了，跳转首页')
-        wx.switchTab({
-            url: './pages/index/index'
-        })
     }
   },
     code:function() {

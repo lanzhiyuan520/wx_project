@@ -2,6 +2,8 @@ var toast = require('../common/toast')
 var request = require('../common/request')
 var rsa = require('../common/rsa')
 var URL = `http://dev.weixin.api.com:9090/api/wap`
+var userinfo = wx.getStorageSync('userInfo')
+var oppenId = wx.getStorageSync('openId')
 const app = getApp()
 
 Page({
@@ -11,6 +13,9 @@ Page({
     userInfoHandler:function(e){
         var that  = this
         console.log(e)
+        wx.switchTab({
+            url: '../index/index'
+        })
         if (e.detail.errMsg =="getUserInfo:ok"){
             wx.setStorageSync('userInfo', e.detail.rawData)
             var data = {
@@ -30,9 +35,7 @@ Page({
                 }
             })
 
-            wx.switchTab({
-                url: '../index/index'
-            })
+
         }else {
             toast.toast('您点击拒绝不能进入小程序','none')
         }
@@ -45,18 +48,21 @@ Page({
             nickname : '2222'
         })
         var encStr = rsa.sign(data)
-        wx.request({
-            url,
-            method:'PUT',
-            data : {encStr},
-            success:function(res){
+        request.request(url,'PUT',encStr)
+            .then(res=>{
                 console.log('put',res)
-            }
-        })
+            })
+            .catch(error=>{
+                console.log(error)
+            })
     },
     onLoad: function () {
-        var userinfo = wx.getStorageSync('userInfo')
-        if (userinfo){
+        this.put()
+        if (userinfo && oppenId){
+            wx.switchTab({
+                url: '../index/index'
+            })
+        }else{
 
         }
     }
