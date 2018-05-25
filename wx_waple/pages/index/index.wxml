@@ -38,14 +38,14 @@
       </view>
       <scroll-view>
         <view class="comment_list" wx:for="{{comment_list}}" wx:key="{{index}}">
-          <view class="comment_item">
+          <view class="comment_item" bindtap="user_comment">
             <view class="user_info">
               <view class="user_head">
-                <image src="http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg"></image>
+                <image src="{{item.customer_img}}"></image>
               </view>
               <view class="info">
                 <view class="user_name_wrap">
-                  <text class="user_name color-35">{{item.name}}</text>
+                  <text class="user_name color-35">{{item.customer_fullname}}</text>
                 </view>
                 <view class="comment_star">
                   <view class="star">
@@ -56,14 +56,14 @@
                     <image src="http://cdn.ayi800.com/image/png/wx_waple_star%E6%98%9F@2x.png"></image>
                   </view>
                   <view class="time">
-                    <text style="font-size: 24rpx;" class="color-35">{{item.time}}</text>
+                    <text style="font-size: 24rpx;" class="color-35">{{item.created_at}}</text>
                   </view>
                 </view>
               </view>
             </view>
             <view class="comment_content">
               <view class="comment_text">
-                <text class="comment_text_content">{{item.content}}</text>
+                <text class="comment_text_content">{{item.customer_comment}}</text>
               </view>
               <view class="comment_img">
                 <image src="http://cdn.ayi800.com/image/png/fuchong_chanhou%E8%90%A5%E5%85%BB%E5%B8%884@2x.png"></image>
@@ -74,13 +74,13 @@
             <view class="leval" style="width: 662rpx;height:12rpx;position: relative;left: -21rpx;"></view>
             <view class="waiter_user">
               <view class="waiter_head">
-                <image src="http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg"></image>
+                <image src="{{item.nanny_head}}"></image>
               </view>
               <view class="waiter_nicname">
-                <text style="font-size: 24rpx">{{item.waiter_name}}</text>
+                <text style="font-size: 24rpx">{{item.nanny_fullname}}</text>
               </view>
               <view class="waiter_price">
-                <text>{{item.price}}</text>
+                <text>{{item.nanny_price}}元/26天</text>
               </view>
               <view class="arrow_right">
                 <image src="http://cdn.ayi800.com/image/png/wx_waple_arrow%E5%B1%95%E5%BC%80@2x.png"></image>

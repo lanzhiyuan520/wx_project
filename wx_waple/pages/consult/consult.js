@@ -21,6 +21,7 @@ Component({
             this.setData({
                 time : e.detail.value
             })
+
         },
         name:function(e){
             this.setData({

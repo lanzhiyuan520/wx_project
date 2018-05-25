@@ -13,9 +13,7 @@ Page({
     userInfoHandler:function(e){
         var that  = this
         console.log(e)
-        wx.switchTab({
-            url: '../index/index'
-        })
+
         if (e.detail.errMsg =="getUserInfo:ok"){
             wx.setStorageSync('userInfo', e.detail.rawData)
             var data = {
@@ -35,7 +33,9 @@ Page({
                 }
             })
 
-
+            wx.switchTab({
+                url: '../index/index'
+            })
         }else {
             toast.toast('您点击拒绝不能进入小程序','none')
         }
