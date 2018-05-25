@@ -14,7 +14,7 @@ Page({
       { img: 'http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg', name: "马冬梅", price: '19200元/26天' }
     ],
     arr: [1, 2, 3, 4, 5],
-    label: ["催乳好 1", "月子餐很棒 4", "干净 2", "儿歌歌神 4", "月子餐很棒 4", "干净 2", "儿歌歌神 4", "月子餐很棒 4","干净 2"],
+    label: ["催乳好 1", "月子餐很棒 4", "干净 2", "儿歌歌神 4", "月子餐很棒 4", "干净 2", "儿歌歌神 4", "干净 2","月子餐很棒 4", "干净 2","催乳好 1", "月子餐很棒 4"],
     lessLabel:[],
     index:0
   },
@@ -53,7 +53,6 @@ Page({
     
     this.setData({
       lableFold: !this.data.lableFold,
-      label: this.data.label
     })
   },
   // 展示加载更多

@@ -44,11 +44,11 @@
 <view class='ptb-35-box mb-10' >
   <text class='model-title'>印象标签</text>
   <view class='impress-lable extend'>
-      <view class='evaluate-item mr-30' wx:for="{{label}}" wx:key="index">
+      <view class='evaluate-item mr-30' wx:for="{{lableFold?lessLabel:label}}" wx:key="index">
         <text class='fs-22 text-gradient'>{{item}}</text>
       </view>
       <text wx:if="{{lableFold}}" bindtap='lableShow' class='fs-22 gray-text table-show-btn'>展开></text>
-      <text wx:else bindtap='lableHide' class='fs-22 gray-text table-show-btn'>^收起</text>
+      <text wx:else bindtap='lableShow' class='fs-22 gray-text table-show-btn'>^收起</text>
   </view>
 </view>
 <view class='cut-off'></view>
