@@ -1,5 +1,5 @@
 const app = getApp();
-var URL = `http://dev.weixin.api.com:9090/api/wap`
+var URL = app.globalData.URL
 var request = require('../common/request')
 Page({
   data: {

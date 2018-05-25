@@ -9,6 +9,7 @@
         <view class='pic-symbol'>
           <image wx:if="{{serverState!==1}}" src='http://cdn.ayi800.com/wx_wap/on_server_n.png' class='state-pic'></image>
            <image wx:if="{{serverState==1}}" src='http://cdn.ayi800.com/wx_wap/on_server_y.png' class='state-pic'></image> 
+           <view class='fs-28 state-test'>{{top.status.one}}</view> 
         </view>
         <view class='down-wire {{serverState==1?"wire-opcity":""}}'>
           <view wx:if="{{serverState==1}}" class='sub-wire'></view>
@@ -16,6 +17,7 @@
         <view class='pic-symbol'>
         <image wx:if="{{serverState!==2}}" src='http://cdn.ayi800.com/wx_wap/doing_server_n.png' class='state-pic'></image>
           <image wx:if="{{serverState==2}}" src='http://cdn.ayi800.com/wx_wap/doing_server_y.png' class='state-pic'></image>
+           <view class='fs-28 state-test'>{{top.status.two}}</view> 
         </view>
         <view class='down-wire {{(serverState==1 || serverState==2)?"wire-opcity":""}}'>
           <view wx:if="{{serverState==2}}" class='sub-wire'></view>
@@ -23,13 +25,14 @@
         <view class='pic-symbol'>
         <image wx:if="{{serverState!==3}}" src='http://cdn.ayi800.com/wx_wap/down_server_n.png' class='state-pic'></image>
           <image wx:if="{{serverState==3}}" src='http://cdn.ayi800.com/wx_wap/down_server_y.png' class='state-pic'></image>
+          <view class='fs-28 state-test'>{{top.status.three}}</view>
         </view>
       </view>
-      <view class='between-layout mt-20'>
-        <view class='fs-28'>待服务</view> 
-        <view class='fs-28'>服务中</view> 
-        <view class='fs-28'>服务中</view> 
-      </view>
+      <!-- <view class='between-layout mt-20'>
+        <view class='fs-28'>{{top.status.one}}</view> 
+        <view class='fs-28'>{{top.status.two}}</view> 
+        <view class='fs-28'>{{top.status.three}}</view> 
+      </view> -->
     </view>
     <view class='server-info item-shade fs-28'>
       <view>

@@ -25,9 +25,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+.state-test{
+  width: 120rpx;
+  position: absolute;
+  left: 50%;
+  bottom: 10rpx;
+  transform: translate(-40%,0)
 }
 .down-wire{
-  width: 200rpx;
+  flex: 1;
   height: 4rpx;
   background: linear-gradient(to right, #ff85a9 , #ffa189);
   margin-top: 33rpx;
