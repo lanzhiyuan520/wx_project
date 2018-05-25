@@ -11,8 +11,9 @@ Component({
     },
     methods: {
         waiter_detailed:function(e){
+            var id = e.currentTarget.dataset.idx
             wx.navigateTo({
-                url : '../waiterDetail/waiterDetail'
+                url : `../waiterDetail/waiterDetail?id=${id}`
             })
         },
         // onPullDownRefresh: function () {

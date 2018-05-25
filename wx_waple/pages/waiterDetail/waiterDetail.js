@@ -19,7 +19,8 @@ Page({
     index:0
   },
 
-  onLoad: function () {
+  onLoad: function (res) {
+    console.log(res)
     this.setData({
       lessLabel: this.data.label.slice(0,6)
     })

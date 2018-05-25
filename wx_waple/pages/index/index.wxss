@@ -119,18 +119,19 @@
 }
 .comment_list{
     width: 100%;
-    height: 452rpx;
+    /*height: 452rpx;*/
     box-sizing: border-box;
     padding: 0 44rpx;
 }
 .comment_item{
-    margin-top: 40rpx;
+    margin-top: 30rpx;
     box-sizing: border-box;
     padding: 22rpx 23rpx 0;
     width: 100%;
     background-color: #fff;
     box-shadow: 0 0 20rpx rgba(0,0,0,.1) ;
     border-radius: 10rpx;
+    margin-bottom: 10rpx;
 }
 .user_info{
     width: 100%;
