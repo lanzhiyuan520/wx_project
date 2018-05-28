@@ -1,4 +1,4 @@
-@import "../template/footer.wxss";
+
 .item-shade{
   box-shadow: -2px 5px 12px 5px #f7f7f7;
   border-radius: 20rpx;

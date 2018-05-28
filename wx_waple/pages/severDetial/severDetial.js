@@ -30,8 +30,10 @@ Page({
   },
   goPsact:function(){
     console.log(555)
+    var url = this.data.center.contract_url;
+    console.log('url', this.data.center.contract_url)
     wx.navigateTo({
-      url: 'http://400.youfumama.com/contract/electronic/51',
+      url: '../contract/contract?source=' + url,
     })
   },
   // 拨打电话
@@ -40,15 +42,5 @@ Page({
       phoneNumber: this.data.foot.manager.phone
     })
   },
-  //底部跳转 
-  goIndex: function () {
-    wx.switchTab({
-      url: '../index/index',
-    })
-  },
-  goWaiter: function () {
-    wx.switchTab({
-      url: '../waiter/waiter',
-    })
-  }
+
 })

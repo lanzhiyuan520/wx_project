@@ -10,7 +10,7 @@
       <view class="section">
       <view class="phone-titles fs-32">验证码</view>
       <input type="text" name='code' class='code' placeholder-class='fs-30 text-gray' maxlength='4' placeholder="4位数字" />
-      <view class='evaluate-item code-btn'>
+      <view class='evaluate-item code-btn' bindtap='codeBtn'>
         <text class='fs-30 text-gradient'>验证码</text>
       </view>
       </view>

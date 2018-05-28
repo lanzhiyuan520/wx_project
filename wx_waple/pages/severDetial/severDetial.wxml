@@ -1,4 +1,4 @@
-<import src ="../template/footer.wxml"/>
+
   <view class='pt-35 {{hasMargin?"sub-contain-X":"sub-contain"}}'>
     <view class='server-state item-shade'>
       <view class='between-layout fs-26'>
@@ -54,5 +54,3 @@
       <view class='fs-28'>我的服务员：{{foot.nanny.fullname}}</view>
     </view>
   </view>
-  
-<template is="msgItem" data="{{hasMargin}}" bindTap='test'/>

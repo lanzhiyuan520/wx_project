@@ -39,6 +39,21 @@ Page({
         console.log(error)
       })
   },
+  codeBtn: function () {
+    var url = `${URL}/qrcode`
+    var params_data = {
+      type: 1,
+      phone: '17611476961',
+      code_length:4
+    }
+    wx.request({
+      url: url,
+      method: 'POST',
+      data: params_data,
+      success: function (res) {
+        console.log('code',res)    //221558
+      }})
+  },
   // 拨打电话
   callPhone: function () {
     wx.makePhoneCall({
