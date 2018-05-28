@@ -7,7 +7,7 @@
         <text class='fs-30'>{{item.fullname}}</text>
         <view class='waiter-info'>
           <text class='fs-24'>{{item.age}}岁</text>
-          <text class='fs-24'>{{item.fullname}}</text>
+          <text class='fs-24'>{{item.city}}</text>
           <text class='fs-24'>{{item.nanny_good_comments}}好评</text>
         </view>
         <view class='evaluate-box'>
