@@ -1,8 +1,10 @@
 <view class="wrap">
     <view class="left">
         <view class="content">
-            <image src="http://cdn.ayi800.com/image/png/wx_waple_service_consult_icon%E5%92%A8%E8%AF%A21@2x.png"></image>
-            <text>咨询</text>
+            <button class="btn" open-type="contact">
+                <image src="http://cdn.ayi800.com/image/png/wx_waple_service_consult_icon%E5%92%A8%E8%AF%A21@2x.png"></image>
+                <text>咨询</text>
+            </button>
         </view>
     </view>
     <view class="right" bindtap='order'>
@@ -58,7 +60,7 @@
             <text>预约提交成功</text>
         </view>
         <view class="inform">
-            <text>请耐心等待，客户经理会尽快电话和您沟通！</text>
+            <text>{{msg}}</text>
         </view>
         <view class="know" bindtap="close_success_model">
             <text>知道啦</text>

@@ -32,6 +32,7 @@ Component({
         phone:'',
         success_model:true,
         offset:100,
+        msg:''
     },
     methods: {
         // 这里是一个自定义方法
@@ -96,7 +97,8 @@ Component({
                             offset : 100,
                             time:'',
                             name:'',
-                            phone:''
+                            phone:'',
+                            msg : res.data.message
                         })
                     }else{
                         this.setData({
