@@ -1,9 +1,11 @@
 const app = getApp()
-var URL = `http://dev.weixin.api.com:9090/api/wap`
+var URL = app.globalData.URL
 var request = require('../common/request')
 Page({
   data: {
-    hasMargin: app.globalData.hasMargin
+    hasMargin: app.globalData.hasMargin,
+    payData:[],
+    hasData:false
   },
 
   onLoad: function () {
@@ -11,6 +13,12 @@ Page({
     request.request(url, 'GET', {})
       .then((res) => {
         console.log('支付', res)
+        if(res.data.data!==[]){
+          this.setData({
+            hasData: true,
+            payData: res.data.data
+          })
+        }
       })
       .catch((error) => {
         console.log(error)

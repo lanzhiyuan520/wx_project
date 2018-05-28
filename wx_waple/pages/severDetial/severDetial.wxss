@@ -30,9 +30,10 @@
 .state-test{
   width: 120rpx;
   position: absolute;
+  text-align: center;
   left: 50%;
-  bottom: 10rpx;
-  transform: translate(-40%,0)
+  bottom: -50rpx;
+  transform: translate(-50%,0)
 }
 .down-wire{
   flex: 1;

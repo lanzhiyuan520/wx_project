@@ -14,13 +14,16 @@ Page({
       .then((res) => {
         console.log('服务', res)
         var result = res.data.data;
-        for (var i = 0; i < result.length;i++){
-          result[i].created_at = result[i].created_at.substr(0,10)
+        if (result.length!==0){
+          for (var i = 0; i < result.length; i++) {
+            result[i].created_at = result[i].created_at.substr(0, 10)
+          }
+          this.setData({
+            hasData: true,
+            serverData: result
+          })
         }
-        this.setData({
-          hasData: true,
-          serverData: result
-        })
+        
       })
       .catch((error) => {
         console.log(error)

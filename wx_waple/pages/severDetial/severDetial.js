@@ -4,7 +4,7 @@ var request = require('../common/request')
 Page({
   data: {
     hasMargin: app.globalData.hasMargin,
-    serverState:1,
+    serverState:"",
     top:{},
     center:{},
     foot:{}
@@ -16,20 +16,28 @@ Page({
     request.request(url, 'GET', {})
       .then((res) => {
         console.log('服务详情', res)
+        var center = res.data.data.center;
+        center.birday=center.birday.substr(0, 10)
         this.setData({
           top: res.data.data.top,
-          center: res.data.data.center,
-          foot: res.data.foot
+          center: center,
+          foot: res.data.data.foot
         })
       })
       .catch((error) => {
         console.log(error)
       })
   },
+  goPsact:function(){
+    console.log(555)
+    wx.navigateTo({
+      url: 'http://400.youfumama.com/contract/electronic/51',
+    })
+  },
   // 拨打电话
   callPhone: function () {
     wx.makePhoneCall({
-      phoneNumber: '13457888642'
+      phoneNumber: this.data.foot.manager.phone
     })
   },
   //底部跳转 

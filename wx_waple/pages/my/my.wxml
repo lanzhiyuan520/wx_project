@@ -22,7 +22,7 @@
 
 <view wx:else>
    <view class='person-info'>
-     <image src='http://cdn.ayi800.com/timg-10.jpeg' class='head-img'></image>
+     <image src='{{headPic}}' class='head-img'></image>
      <view>13264241374</view>
    </view>
    <view style='padding:0 50rpx'>
@@ -30,7 +30,7 @@
       <view class='list-item'>
         <view class='fs-34'>我的服务</view>
         <view>
-          <text class='fs-36 text-gradient'>1</text>
+          <text class='fs-36 text-gradient'>{{personal.contract_num}}</text>
           <image src='http://cdn.ayi800.com/wx_wap/arrow.png' class='arr-pic'></image>
         </view>
       </view>
@@ -39,7 +39,7 @@
         <view class='list-item'>
           <view class='fs-34'>优惠券</view>
           <view>
-            <text class='fs-36 text-gradient'>1</text>
+            <text class='fs-36 text-gradient'>{{personal.promo_num}}</text>
             <image src='http://cdn.ayi800.com/wx_wap/arrow.png' class='arr-pic'></image>
           </view>
         </view>
