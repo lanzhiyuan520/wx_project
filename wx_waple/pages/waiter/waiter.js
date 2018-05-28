@@ -3,6 +3,7 @@
 const app = getApp()
 var toast = require('../common/toast')
 var URL = app.globalData.URL
+var Date = require('../common/Date')
 var request = require('../common/request')
 Page({
   data: {
@@ -80,6 +81,7 @@ Page({
       })
     //服务员列表
     this.waiter_list(this.data.page)
+      this.action()
   },
   onPullDownRefresh: function () {
       this.setData({
@@ -88,6 +90,20 @@ Page({
       })
       this.waiter_list(this.data.page)
   },
+    action:function(){
+        var id = wx.getStorageSync('user_id')
+        var url = `${URL}/actions`
+        var data = {
+            user_id : id,
+            path : 'waiter',
+            page_type : 3,
+            request_time : Date.time()
+        }
+        request.request(url,'POST',data)
+            .then(res=>{
+                console.log('用户行为',res)
+            })
+    },
     //上拉加载
     onReachBottom:function(){
         wx.showLoading({

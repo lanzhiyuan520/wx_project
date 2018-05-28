@@ -52,6 +52,7 @@ Component({
             })
         },
         submit:function(){
+            var myreg = new RegExp("^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$");
             if (!this.data.time.replace(/(^\s*)|(\s*$)/g, "")){
                 toast.toast('请输入预约时间','none')
                 return false
@@ -68,7 +69,7 @@ Component({
                 })
                 return false
             }
-            if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(this.data.phone))){
+            if (!myreg.test(this.data.phone)){
                 toast.toast('手机号格式错误','none')
                 return false
             }
@@ -97,6 +98,14 @@ Component({
                             name:'',
                             phone:''
                         })
+                    }else{
+                        this.setData({
+                            offset : 100,
+                            time:'',
+                            name:'',
+                            phone:''
+                        })
+                        toast.toast(res.data.message,'none',2000)
                     }
                 })
         },
