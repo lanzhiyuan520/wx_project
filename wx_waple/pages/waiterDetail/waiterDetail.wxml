@@ -73,7 +73,7 @@
       <text class='review-text fs-28'>{{item.customer_comment}}</text>
     </view>
     <view class='review-pic-box'>
-      <image  wx:for="{{[1,2,3]}}" wx:key="*this" src='http://cdn.ayi800.com/ayi800_1520930902yszl_103304922922ZWpI4mN1.jpg' class='review-pic' mode='aspectFill'></image>
+       <image  wx:for="{{item.work_img}}" wx:key="*this" src='http://cdn.ayi800.com/ayi800_1520930902yszl_103304922922ZWpI4mN1.jpg' class='review-pic' mode='aspectFill'></image> 
     </view>
   </view>
   <view class='btn-box'>
