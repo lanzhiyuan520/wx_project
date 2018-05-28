@@ -6,7 +6,7 @@ var URL = app.globalData.URL
 var request = require('../common/request')
 Page({
   data: {
-    city_id : 184,
+    city_id : '',
     page : 1,
     waiter_list:[],
     waiter_tags : [],
@@ -57,7 +57,23 @@ Page({
         wx.hideLoading()
         console.log('错误信息',e)
     },
+    //判断城市是否更改，更改重新请求数据
+    onShow:function(){
+        var city = wx.getStorageSync('city')
+        console.log(city,this.data.city_id)
+        if (city !== this.data.city_id){
+            this.setData({
+                page : 1,
+                city_id : city
+            })
+            this.waiter_list(this.data.page)
+        }
+    },
   onLoad: function () {
+      var city = wx.getStorageSync('city')
+      this.setData({
+          city_id : city
+      })
       wx.showLoading({
           title : '加载中',
           mask : true

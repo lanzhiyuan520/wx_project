@@ -58,6 +58,7 @@ Page({
             city_list_height : !this.data.city_list_height
         })
     },
+    //修改城市
     change_city:function(e){
         var {name} = e.currentTarget.dataset
         var {id} = e.currentTarget.dataset
@@ -104,26 +105,6 @@ Page({
             mask : true
         })
         this.comments_list(this.data.page)
-    },
-    yuyue:function(){
-      var data = JSON.stringify({
-          user_id : 1,
-          object_id : 100005,
-          city : 184,
-          note : '2018-05-05',
-          customer_name : 'test',
-          customer_phone : '18310737476',
-          nanny_type : 0
-      })
-      var url = `${URL}/appointment`
-        var encStr = rsa.sign(data)
-        request.request(url,'POST',encStr)
-            .then(res=>{
-                console.log('预约',res)
-            })
-            .catch((e)=>{
-                console.log(e)
-            })
     },
     //刷新成功函数
     refresh_success : function(){
