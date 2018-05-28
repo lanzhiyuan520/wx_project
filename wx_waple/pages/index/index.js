@@ -68,9 +68,9 @@ var URL = app.globalData.URL
             city_name : name
         })
     },
+    //跳转服务员详情
     user_comment:function(e){
         var id = e.currentTarget.dataset.id
-        console.log(e)
         wx.navigateTo({
             url : `../waiterDetail/waiterDetail?id=${id}`
         })
@@ -92,16 +92,6 @@ var URL = app.globalData.URL
             mask : true
         })
         this.comments_list(this.data.page)
-    },
-    waiter_detail:function(){
-      var url = `${URL}/detail/100005`
-        request.request(url,'GET',{})
-            .then((res)=>{
-                console.log('月嫂详情',res)
-            })
-            .catch((error)=>{
-                console.log(error)
-            })
     },
     yuyue:function(){
       var data = JSON.stringify({
@@ -135,6 +125,7 @@ var URL = app.globalData.URL
             })
         }
     } ,
+    //月嫂推荐列表
     waiterlist_recommend:function(){
         var that = this
         var url = `${URL}/nannys?city=${this.data.city_id}`
@@ -157,6 +148,7 @@ var URL = app.globalData.URL
                 this.error_msg(e)
             })
     },
+    //用户点评列表
     comments_list:function (page) {
         var that = this
         var url = `${URL}/comments?city=${this.data.city_id}&page=${page}&current_page=index`
