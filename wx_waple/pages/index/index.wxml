@@ -5,7 +5,7 @@
         <image src="http://cdn.ayi800.com/image/png/wx_waple_index_city_icon%E4%BD%8D%E7%BD%AE@2x.png"></image>
         <text>{{city_name}}</text>
         <view class="city-list" style="max-height: {{city_list_height?'0':'500'}}rpx;overflow: hidden">
-          <text bindtap="change_city" wx:for="{{city_list}}" wx:key="{{index}}" data-name="{{item.name}}" class="{{index==0?'first-city':''}} {{index==city_list.length-1?'last-city':''}} {{city_name==item.name?'select-city':''}}">{{item.name}}</text>
+          <text bindtap="change_city" wx:for="{{city_list}}" wx:key="{{index}}" data-name="{{item.name}}" class="{{index==0?'first-city':''}} {{index==city_list.length-1?'last-city':''}} {{city_name==item.name?'select-city':''}}" data-id="{{item.id}}">{{item.name}}</text>
         </view>
       </view>
     </view>
@@ -66,9 +66,7 @@
                 <text class="comment_text_content">{{item.customer_comment}}</text>
               </view>
               <view class="comment_img">
-                <image src="http://cdn.ayi800.com/image/png/fuchong_chanhou%E8%90%A5%E5%85%BB%E5%B8%884@2x.png"></image>
-                <image src="http://cdn.ayi800.com/image/png/fuchong_chanhou%E8%90%A5%E5%85%BB%E5%B8%884@2x.png"></image>
-                <image src="http://cdn.ayi800.com/image/png/fuchong_chanhou%E8%90%A5%E5%85%BB%E5%B8%884@2x.png"></image>
+                <image src="{{item}}" wx:for="{{item.work_img}}" wx:key="{{index}}"></image>
               </view>
             </view>
             <view class="leval" style="width: 662rpx;height:12rpx;position: relative;left: -21rpx;"></view>
@@ -93,7 +91,10 @@
     <view class="pull">
       {{pull_text}}
     </view>
-    <view class="service">
-      <image src="http://cdn.ayi800.com/image/png/wx_waple_server%E5%AE%A2%E6%9C%8D-2%E6%8B%B7%E8%B4%9D@2x.png"></image>
-    </view>
+  <view class="service">
+    <button open-type="contact">
+        <image src="http://cdn.ayi800.com/image/png/wx_waple_server%E5%AE%A2%E6%9C%8D-2%E6%8B%B7%E8%B4%9D@2x.png"></image>
+    </button>
+  </view>
+
 </view>

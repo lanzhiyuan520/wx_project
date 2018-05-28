@@ -19,6 +19,10 @@ Component({
         userInfo : {
             type : Object,
             value : ''
+        },
+        order_type:{
+            type : String,
+            value : ''
         }
     },
     data: {
@@ -28,6 +32,7 @@ Component({
         phone:'',
         success_model:true,
         offset:100,
+        msg:''
     },
     methods: {
         // 这里是一个自定义方法
@@ -48,6 +53,7 @@ Component({
             })
         },
         submit:function(){
+            var myreg = new RegExp("^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$");
             if (!this.data.time.replace(/(^\s*)|(\s*$)/g, "")){
                 toast.toast('请输入预约时间','none')
                 return false
@@ -64,20 +70,21 @@ Component({
                 })
                 return false
             }
-            if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(this.data.phone))){
+            if (!myreg.test(this.data.phone)){
                 toast.toast('手机号格式错误','none')
                 return false
             }
             var id = wx.getStorageSync('user_id')
+            var city = wx.getStorageSync('city')
             var url = `${URL}/appointment`
             var data = JSON.stringify({
                 user_id : id,
                 object_id : this.data.waiter_info?this.data.waiter_info.nanny_id:null,
-                city : 184,
+                city,
                 note : this.data.time,
                 customer_name : this.data.name,
                 customer_phone : this.data.phone,
-                nanny_type : 0
+                nanny_type : this.data.order_type
             })
             var encStr = rsa.sign(data)
             console.log(JSON.parse(data))
@@ -90,8 +97,17 @@ Component({
                             offset : 100,
                             time:'',
                             name:'',
+                            phone:'',
+                            msg : res.data.message
+                        })
+                    }else{
+                        this.setData({
+                            offset : 100,
+                            time:'',
+                            name:'',
                             phone:''
                         })
+                        toast.toast(res.data.message,'none',2000)
                     }
                 })
         },

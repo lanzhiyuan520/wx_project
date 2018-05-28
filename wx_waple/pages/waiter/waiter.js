@@ -3,10 +3,11 @@
 const app = getApp()
 var toast = require('../common/toast')
 var URL = app.globalData.URL
+var Date = require('../common/Date')
 var request = require('../common/request')
 Page({
   data: {
-    city_id : 184,
+    city_id : '',
     page : 1,
     waiter_list:[],
     waiter_tags : [],
@@ -57,13 +58,30 @@ Page({
         wx.hideLoading()
         console.log('错误信息',e)
     },
+    //判断城市是否更改，更改重新请求数据
+    onShow:function(){
+        var city = wx.getStorageSync('city')
+        console.log(city,this.data.city_id)
+        if (city !== this.data.city_id){
+            this.setData({
+                page : 1,
+                city_id : city
+            })
+            this.waiter_list(this.data.page)
+        }
+    },
   onLoad: function () {
+      var city = wx.getStorageSync('city')
+      this.setData({
+          city_id : city
+      })
       wx.showLoading({
           title : '加载中',
           mask : true
       })
     //服务员列表
     this.waiter_list(this.data.page)
+      this.action()
   },
   onPullDownRefresh: function () {
       this.setData({
@@ -72,6 +90,20 @@ Page({
       })
       this.waiter_list(this.data.page)
   },
+    action:function(){
+        var id = wx.getStorageSync('user_id')
+        var url = `${URL}/actions`
+        var data = {
+            user_id : id,
+            path : 'waiter',
+            page_type : 3,
+            request_time : Date.time()
+        }
+        request.request(url,'POST',data)
+            .then(res=>{
+                console.log('用户行为',res)
+            })
+    },
     //上拉加载
     onReachBottom:function(){
         wx.showLoading({

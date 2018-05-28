@@ -1,5 +1,7 @@
 const app = getApp()
-
+var request = require('../common/request')
+var Date = require('../common/Date')
+var URL = app.globalData.URL
 Page({
     data: {
         server_five_list:[
@@ -17,7 +19,21 @@ Page({
             {title:'月嫂24h贴心服务',content:'严格考核，持证上岗，仅30%录取率的母婴护理师，照顾妈妈和宝宝的月子',img_list:[{img:'http://cdn.ayi800.com/image/png/wx_waple_service_five_5_1%E8%B4%B4%E5%BF%83%E6%9C%8D%E5%8A%A11@2x.png',text:'42天住家服务'},{img:'http://cdn.ayi800.com/image/png/wx_waple_service_five_5_2%E8%B4%B4%E5%BF%83%E6%9C%8D%E5%8A%A12@2x.png',text:'营养月子餐制作'},{img:'http://cdn.ayi800.com/image/png/wx_waple_service_five_5_3%E8%B4%B4%E5%BF%83%E6%9C%8D%E5%8A%A13@2x.png',text:'日常母婴护理'},{img:'http://cdn.ayi800.com/image/png/wx_waple_service_five_5_4%E8%B4%B4%E5%BF%83%E6%9C%8D%E5%8A%A14@2x.png',text:'在线智能督导'}]},
         ]
     },
+    action:function(){
+        var id = wx.getStorageSync('user_id')
+        var url = `${URL}/actions`
+        var data = {
+            user_id : this.data.id,
+            path : 'waiterServeices',
+            page_type : 1,
+            request_time : Date.time()
+        }
+        request.request(url,'POST',data)
+            .then(res=>{
+                console.log('用户行为',res)
+            })
+    },
     onLoad: function () {
-
+        this.action()
     }
 })

@@ -1,5 +1,26 @@
 <view>
     <view class="mask">
-        <button class="btn" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">点我</button>
+        <view class="authorization_wrap">
+            <view class="title">
+                微信授权
+            </view>
+            <view class="authorization_logo">
+                <view class="logo">
+                    <view class="logo_img">
+                        <image src="http://cdn.ayi800.com/image/png/xiaochengxu_logologo.png"></image>
+                    </view>
+                    <view class="authorization_text">
+                        有福妈妈申请获得以下权限：
+                    </view>
+                </view>
+            </view>
+            <view class="name">
+                <view class="circle"></view>
+                <text class="userinfo">获得你的公开信息(昵称、头像等)</text>
+            </view>
+            <button class="btn_submit" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">
+                好的
+            </button>
+        </view>
     </view>
 </view>

@@ -1,7 +1,6 @@
 var toast = require('../common/toast')
 var request = require('../common/request')
 var rsa = require('../common/rsa')
-
 var userinfo = wx.getStorageSync('userInfo')
 var oppenId = wx.getStorageSync('openId')
 const app = getApp()
@@ -15,6 +14,7 @@ Page({
         console.log(e)
         if (e.detail.errMsg =="getUserInfo:ok"){
             wx.setStorageSync('userInfo', e.detail.rawData)
+            wx.setStorageSync('city',184)
             var data = {
                 appid : app.globalData.appid,
                 user_id : app.globalData.openId,
@@ -63,8 +63,6 @@ Page({
             wx.switchTab({
                 url: '../index/index'
             })
-        }else{
-
         }
     }
 })
