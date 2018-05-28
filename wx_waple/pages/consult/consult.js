@@ -68,7 +68,7 @@ Component({
                 toast.toast('手机号格式错误','none')
                 return false
             }
-            var id = wx.setStorageSync('user_id')
+            var id = wx.getStorageSync('user_id')
             var url = `${URL}/appointment`
             var data = JSON.stringify({
                 user_id : id,
