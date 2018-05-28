@@ -86,7 +86,7 @@
 <view class='mb-10 like-waiter'>
   <text class='pl-60 model-title'>猜你喜欢</text>
   <view style='margin-top:30rpx'>
-    <waiterlist waiter_list="{{waiter_list}}" ></waiterlist>
+    <waiterlist waiter_list="{{like_list}}" ></waiterlist>
   </view>
 </view>
  <!--工作照片滑动  -->
@@ -101,4 +101,4 @@
    </swiper>
  <!-- </view> -->
  </view>
- <consult flag="{{false}}"></consult>
+ <consult flag="{{false}}" waiter_info="{{waiter_info}}"></consult>
