@@ -15,6 +15,7 @@ Page({
         console.log(e)
         if (e.detail.errMsg =="getUserInfo:ok"){
             wx.setStorageSync('userInfo', e.detail.rawData)
+            wx.setStorageSync('city',184)
             var data = {
                 appid : app.globalData.appid,
                 user_id : app.globalData.openId,

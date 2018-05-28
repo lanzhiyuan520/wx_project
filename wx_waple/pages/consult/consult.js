@@ -73,11 +73,12 @@ Component({
                 return false
             }
             var id = wx.getStorageSync('user_id')
+            var city = wx.getStorageSync('city')
             var url = `${URL}/appointment`
             var data = JSON.stringify({
                 user_id : id,
                 object_id : this.data.waiter_info?this.data.waiter_info.nanny_id:null,
-                city : 184,
+                city,
                 note : this.data.time,
                 customer_name : this.data.name,
                 customer_phone : this.data.phone,

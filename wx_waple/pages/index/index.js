@@ -3,10 +3,11 @@
 var toast = require('../common/toast')
 var request = require('../common/request')
 var rsa = require('../common/rsa')
+var Date = require('../common/Date')
 const app = getApp()
 var URL = app.globalData.URL
 
-    Page({
+Page({
   data: {
       server_list:[
           {img:'http://cdn.ayi800.com/image/png/wx_waple_server_list1%E6%9C%88%E5%AB%82@2x.png', text:'月嫂服务'},
@@ -15,16 +16,18 @@ var URL = app.globalData.URL
       ],
       waiter_list:[],
       comment_list:[],
-      city_list:[{name:'北京'},{name:'广州'},{name:'深圳'}],
+      city_list:[{name:'北京',id:184},{name:'广州',id:100049},{name:'深圳',id:100047 }],
       city_list_height:true,
-      city_name:'北京',
+      city_name:'',
       pull_text:'上拉加载更多',
-      city_id:184,
+      city_id:'',
       page : 1,
       refresh : false,
       waiter_list_refresh : false,
       comment_list_refresh : false,
+      id : null
   },
+    //跳转功能页
     service:function(e){
       if (e.currentTarget.dataset.idx == 0){
           wx.navigateTo({
@@ -57,16 +60,24 @@ var URL = app.globalData.URL
     },
     change_city:function(e){
         var {name} = e.currentTarget.dataset
-        console.log(name)
+        var {id} = e.currentTarget.dataset
         if (name == this.data.city_name){
-            console.log('一样')
             return false
         }else{
-            console.log('不一样')
+            wx.showLoading({
+                title : '加载中',
+                mask : true
+            })
+            this.setData({
+                city_name : name,
+                city_id : id,
+                page : 1
+            })
+            wx.setStorageSync('city',id)
+            this.waiterlist_recommend()
+            this.comments_list(this.data.page)
         }
-        this.setData({
-            city_name : name
-        })
+
     },
     //跳转服务员详情
     user_comment:function(e){
@@ -75,6 +86,7 @@ var URL = app.globalData.URL
             url : `../waiterDetail/waiterDetail?id=${id}`
         })
     },
+    //跳转服务员列表页
     more:function(){
         wx.switchTab({
             url: '../waiter/waiter'
@@ -192,7 +204,49 @@ var URL = app.globalData.URL
         wx.hideLoading()
         console.log('错误信息',e)
     },
+    //用户行为
+  action:function(){
+      var url = `${URL}/actions`
+      var data = {
+          user_id : this.data.id,
+          path : 'index',
+          page_type : 3,
+          request_time : Date.time()
+      }
+      request.request(url,'POST',data)
+          .then(res=>{
+              console.log('用户行为',res)
+          })
+  },
+    //首页加载城市
+    city_name:function(city){
+        if (city === 184){
+            this.setData({
+                city_name : '北京',
+                city_id : 184
+            })
+        }else if (city === 100047){
+            this.setData({
+                city_name : '深圳',
+                city_id : 100047
+            })
+        }else if (city === 100049){
+            this.setData({
+                city_name : '广州',
+                city_id : 100049
+            })
+        }
+    },
   onLoad: function () {
+      var id = wx.getStorageSync('user_id')
+      var city = wx.getStorageSync('city')
+      this.setData({
+          id,
+          city_id : city
+      })
+      this.city_name(city)
+      //用户行为
+      this.action()
       wx.showLoading({
           title : '加载中',
           mask : true
