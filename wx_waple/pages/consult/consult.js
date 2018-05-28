@@ -1,11 +1,25 @@
 var toast = require('../common/toast')
+var request = require('../common/request')
+var URL = 'http://test.weixin.api.ayi800.com/api/wap'
+var rsa = require('../common/rsa')
 Component({
-
     properties:{
         flag: {
             type: Boolean, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
             value: '', // 属性初始值（可选），如果未指定则会根据类型选择一个
         },
+        waiter_info:{
+            type: Object,
+            value: ''
+        },
+        city : {
+            type : String,
+            value : ''
+        },
+        userInfo : {
+            type : Object,
+            value : ''
+        }
     },
     data: {
         // 这里是一些组件内部数据
@@ -54,14 +68,32 @@ Component({
                 toast.toast('手机号格式错误','none')
                 return false
             }
-
-            this.setData({
-                success_model : false,
-                offset : 100,
-                time:'',
-                name:'',
-                phone:''
+            var id = wx.setStorageSync('user_id')
+            var url = `${URL}/appointment`
+            var data = JSON.stringify({
+                user_id : id,
+                object_id : this.data.waiter_info?this.data.waiter_info.nanny_id:null,
+                city : 184,
+                note : this.data.time,
+                customer_name : this.data.name,
+                customer_phone : this.data.phone,
+                nanny_type : 0
             })
+            var encStr = rsa.sign(data)
+            console.log(JSON.parse(data))
+            request.request(url,'POST',encStr)
+                .then(res=>{
+                    console.log(res)
+                    if (res.data.code === 1){
+                        this.setData({
+                            success_model : false,
+                            offset : 100,
+                            time:'',
+                            name:'',
+                            phone:''
+                        })
+                    }
+                })
         },
         order:function(){
             this.setData({

@@ -101,4 +101,4 @@
    </swiper>
  <!-- </view> -->
  </view>
- <consult flag="{{false}}"></consult>
+ <consult flag="{{false}}" waiter_info="{{waiter_info}}"></consult>

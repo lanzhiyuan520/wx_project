@@ -12,7 +12,7 @@
 <view  class="user_info" style="transform: translateY({{offset}}%);" catchtouchmove='true' >
     <view class="order-model">
         <view class="waiter-name">
-            <text hidden="{{flag}}">预约阿姨：马冬梅</text>
+            <text hidden="{{flag}}">预约阿姨：{{waiter_info.fullname}}</text>
             <text hidden="{{!flag}}">预约服务：月嫂服务</text>
             <view class="close" bindtap="close">
                 <image src="http://cdn.ayi800.com/image/png/wx_waple_order_close%E5%85%B3%E9%97%AD@2x.png"></image>
