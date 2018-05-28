@@ -33,15 +33,21 @@ Page({
         headPic: useInfo.avatarUrl,
         phoneNum: value.phone
       })
+      this.getInfo();
     }
+    
+  },
+  getInfo:function(){
     var userid = wx.getStorageSync('user_id');
-    var url = `${URL}/users/` + userid +`?action_type=list&action=index`
+    var url = `${URL}/users/${userid}?action_type=list&action=index`
     request.request(url, 'GET', {})
       .then((res) => {
         console.log('个人', res)
-        this.setData({
-          personal:res.data.data
-        })
+        if (res.data.code===1){
+          this.setData({
+            personal: res.data.data
+          })
+        }
       })
       .catch((error) => {
         console.log(error)
@@ -147,7 +153,7 @@ Page({
             login:true,
             phone:phone
           }
-          console.log('login',login)
+          this.getInfo();
           wx.setStorageSync('login', login)
         }else{
           toast.toast(res.msg, 'none')

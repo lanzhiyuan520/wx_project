@@ -1,6 +1,5 @@
 //app.js
 var request = require('./pages/common/request')
-var url = `http://dev.weixin.api.com:9090/api/wap`
 App({
   onLaunch: function () {
     var userInfo = wx.getStorageSync('userInfo')
