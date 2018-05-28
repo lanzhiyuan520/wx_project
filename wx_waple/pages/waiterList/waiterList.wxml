@@ -1,10 +1,10 @@
 <scroll-view scroll-x style="white-space: nowrap; height: 350rpx">
-    <view class="waiter_item {{index===0?'first_list':''}}" wx:for="{{waiter_list}}" wx:key="{{index}}" bindtap="waiter_detailed">
+    <view class="waiter_item {{index===0?'first_list':''}}" wx:for="{{waiter_list}}" wx:key="{{index}}" bindtap="waiter_detailed" data-idx="{{item.id}}">
         <view class="waiter_content">
-            <image src="{{item.img}}"></image>
-            <text class="waiter_name color-35 font_ping">{{item.name}}</text>
+            <image src="{{item.nanny_head}}"></image>
+            <text class="waiter_name color-35 font_ping">{{item.fullname}}</text>
             <view class="leval2"></view>
-            <text class="price color-35 font_ping">{{item.price}}</text>
+            <text class="price color-35 font_ping">{{item.price}}元/26天</text>
         </view>
     </view>
 </scroll-view>

@@ -1,112 +1,20 @@
 <view class="flex-wrp waiter-box">
-  <navigator url="../waiterDetail/waiterDetail" hover-class="navigator-hover">
+  <navigator url="../waiterDetail/waiterDetail?id={{item.id}}" hover-class="navigator-hover" wx:for="{{waiter_list}}" wx:for-item="item" wx:key="{{index}}">
       <view class='waiter-item text-center'>
         <view class='waiter-img-box'>
-          <image class='waiter-img' mode="scaleToFill" src="http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg"></image>
+          <image class='waiter-img' mode="scaleToFill" src="{{item.nanny_head}}"></image>
         </view>
-        <text class='fs-30'>马冬梅</text>
+        <text class='fs-30'>{{item.fullname}}</text>
         <view class='waiter-info'>
-          <text class='fs-24'>27岁</text>
-          <text class='fs-24'>三亚</text>
-          <text class='fs-24'>66好评</text>
+          <text class='fs-24'>{{item.age}}岁</text>
+          <text class='fs-24'>{{item.city}}</text>
+          <text class='fs-24'>{{item.nanny_good_comments}}好评</text>
         </view>
         <view class='evaluate-box'>
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>催乳好</text>
-          </view>
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>儿歌能手</text>
-          </view>
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>双胞胎经验</text>
-          </view> 
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>善良</text>
+          <view class='evaluate-item' wx:for="{{item.nanny_tag}}" wx:key="{{index}}" wx:for-item="tag">
+            <text class='fs-22 text-gradient'>{{tag}}</text>
           </view>
         </view>
       </view>
     </navigator>
-     
-       <navigator url="../waiterDetail/waiterDetail" hover-class="navigator-hover">
-      <view class='waiter-item text-center'>
-        <view class='waiter-img-box'>
-          <image class='waiter-img' mode="scaleToFill" src="http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg"></image>
-        </view>
-        <text class='fs-30'>马冬梅</text>
-        <view class='waiter-info'>
-          <text class='fs-24'>27岁</text>
-          <text class='fs-24'>三亚</text>
-          <text class='fs-24'>66好评</text>
-        </view>
-        <view class='evaluate-box'>
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>催乳好</text>
-          </view>
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>儿歌能手</text>
-          </view>
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>双胞胎经验</text>
-          </view> 
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>善良</text>
-          </view>
-        </view>
-      </view>
-    </navigator>
-      <navigator url="../waiterDetail/waiterDetail" hover-class="navigator-hover">
-      <view class='waiter-item text-center'>
-        <view class='waiter-img-box'>
-          <image class='waiter-img' mode="scaleToFill" src="http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg"></image>
-        </view>
-        <text class='fs-30'>马冬梅</text>
-        <view class='waiter-info'>
-          <text class='fs-24'>27岁</text>
-          <text class='fs-24'>三亚</text>
-          <text class='fs-24'>66好评</text>
-        </view>
-        <view class='evaluate-box'>
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>催乳好</text>
-          </view>
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>儿歌能手</text>
-          </view>
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>双胞胎经验</text>
-          </view> 
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>善良</text>
-          </view>
-        </view>
-      </view>
-    </navigator>
-      <navigator url="../waiterDetail/waiterDetail" hover-class="navigator-hover">
-      <view class='waiter-item text-center'>
-        <view class='waiter-img-box'>
-          <image class='waiter-img' mode="scaleToFill" src="http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg"></image>
-        </view>
-        <text class='fs-30'>马冬梅</text>
-        <view class='waiter-info'>
-          <text class='fs-24'>27岁</text>
-          <text class='fs-24'>三亚</text>
-          <text class='fs-24'>66好评</text>
-        </view>
-        <view class='evaluate-box'>
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>催乳好</text>
-          </view>
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>儿歌能手</text>
-          </view>
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>双胞胎经验</text>
-          </view> 
-          <view class='evaluate-item'>
-            <text class='fs-22 text-gradient'>善良</text>
-          </view>
-        </view>
-      </view>
-    </navigator>
-     
 </view>

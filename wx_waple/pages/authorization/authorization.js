@@ -1,11 +1,10 @@
 var toast = require('../common/toast')
 var request = require('../common/request')
 var rsa = require('../common/rsa')
-var URL = `http://dev.weixin.api.com:9090/api/wap`
 var userinfo = wx.getStorageSync('userInfo')
 var oppenId = wx.getStorageSync('openId')
 const app = getApp()
-
+var URL = app.globalData.URL
 Page({
     data: {
 
@@ -13,16 +12,16 @@ Page({
     userInfoHandler:function(e){
         var that  = this
         console.log(e)
-        wx.switchTab({
-            url: '../index/index'
-        })
         if (e.detail.errMsg =="getUserInfo:ok"){
             wx.setStorageSync('userInfo', e.detail.rawData)
+            wx.setStorageSync('city',184)
             var data = {
                 appid : app.globalData.appid,
                 user_id : app.globalData.openId,
-                nickname : e.detail.userInfo.nickName
+                nickname : e.detail.userInfo.nickName,
+                picture :  e.detail.userInfo.avatarUrl
             }
+            console.log(data)
             var url = `${URL}/users`
             wx.request({
                 url : url,
@@ -30,12 +29,14 @@ Page({
                 data:data,
                 success:function(res){
                     console.log(res)    //221558
-
-                    //that.put()
+                    if (res.data.code === 1){
+                        wx.setStorageSync('user_id', res.data.data.id)
+                        wx.switchTab({
+                            url: '../index/index'
+                        })
+                    }
                 }
             })
-
-
         }else {
             toast.toast('您点击拒绝不能进入小程序','none')
         }
@@ -57,13 +58,11 @@ Page({
             })
     },
     onLoad: function () {
-        this.put()
+        //this.put()
         if (userinfo && oppenId){
             wx.switchTab({
                 url: '../index/index'
             })
-        }else{
-
         }
     }
 })

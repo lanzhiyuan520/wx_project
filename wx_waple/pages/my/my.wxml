@@ -5,32 +5,32 @@
        <label class='fs-22 pink-text'>*请输入正确的手机号</label>
      </view> 
       <view class="phone-titles fs-32">手机号</view>
-      <input type="text" name='phone' maxlength='11' class='phone' placeholder-class='fs-30 text-gray' placeholder="手机号" />
+      <input type="text" name='phone'  bindinput="voteTitle" maxlength='11' class='phone' placeholder-class='fs-30 text-gray' placeholder="手机号" />
       </view>
       <view class="section">
       <view class="phone-titles fs-32">验证码</view>
       <input type="text" name='code' class='code' placeholder-class='fs-30 text-gray' maxlength='4' placeholder="4位数字" />
-      <view class='evaluate-item code-btn'>
-        <text class='fs-30 text-gradient'>验证码</text>
-      </view>
+      <button disabled='{{focus}}' class='evaluate-item code-btn' bindtap='codeBtn'>
+        <text wx:if="{{again}}"  class='fs-30 text-gradient'>重新发送</text>
+        <text wx:else class='fs-30 text-gradient'>{{code_test}}</text>
+      </button>
       </view>
       <text class='fs-20 deep-gray-color'>*首次登陆即默认注册</text>
       <button class='sub-btn fs-32' form-type='submit'>登录</button>
    </form>
-   
 </view>
 
 <view wx:else>
    <view class='person-info'>
-     <image src='http://cdn.ayi800.com/timg-10.jpeg' class='head-img'></image>
-     <view>13264241374</view>
+     <image src='{{headPic}}' class='head-img'></image>
+     <view>{{phoneNum}}</view>
    </view>
    <view style='padding:0 50rpx'>
     <navigator url="../myServer/myServer">
       <view class='list-item'>
         <view class='fs-34'>我的服务</view>
         <view>
-          <text class='fs-36 text-gradient'>1</text>
+          <text class='fs-36 text-gradient'>{{personal.contract_num}}</text>
           <image src='http://cdn.ayi800.com/wx_wap/arrow.png' class='arr-pic'></image>
         </view>
       </view>
@@ -39,7 +39,7 @@
         <view class='list-item'>
           <view class='fs-34'>优惠券</view>
           <view>
-            <text class='fs-36 text-gradient'>1</text>
+            <text class='fs-36 text-gradient'>{{personal.promo_num}}</text>
             <image src='http://cdn.ayi800.com/wx_wap/arrow.png' class='arr-pic'></image>
           </view>
         </view>
@@ -48,7 +48,6 @@
       <view class='list-item'>
         <view class='fs-34'>付款记录</view>
         <view>
-          <text class='fs-36 text-gradient'>1</text>
           <image src='http://cdn.ayi800.com/wx_wap/arrow.png' class='arr-pic'></image>
         </view>
       </view>

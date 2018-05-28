@@ -120,7 +120,6 @@
 }
 .success-model{
     width: 450rpx;
-    height: 403rpx;
     background-color: #fff;
     border-radius: 20rpx;
     position: absolute;
@@ -128,6 +127,7 @@
     left: 50%;
     margin-top: -225rpx;
     margin-left: -201rpx;
+    padding-bottom: 30rpx;
 }
 .success-icon{
     display: flex;
@@ -175,4 +175,13 @@
     height: 100%;
     z-index: 1000;
     transition: all .5s linear;
+}
+.btn{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border: none;
+}
+.btn::after{
+    border: none;
 }

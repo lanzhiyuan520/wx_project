@@ -1,5 +1,8 @@
 const app = getApp()
 var sideBarstart
+var request = require('../common/request')
+var Date = require('../common/Date')
+var URL = app.globalData.URL
 Page({
     data: {
         work_list:[
@@ -32,7 +35,21 @@ Page({
             current : e.detail.current
         })
     },
+    action:function(){
+        var id = wx.getStorageSync('user_id')
+        var url = `${URL}/actions`
+        var data = {
+            user_id : this.data.id,
+            path : 'waiterServeices',
+            page_type : 1,
+            request_time : Date.time()
+        }
+        request.request(url,'POST',data)
+            .then(res=>{
+                console.log('用户行为',res)
+            })
+    },
     onLoad: function () {
-
+        this.action()
     }
 })

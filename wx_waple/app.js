@@ -1,6 +1,5 @@
 //app.js
 var request = require('./pages/common/request')
-var url = `http://dev.weixin.api.com:9090/api/wap`
 App({
   onLaunch: function () {
     var userInfo = wx.getStorageSync('userInfo')
@@ -20,8 +19,8 @@ App({
         wx.login({
             success(res){
                 var data= {
-                    appid : 'wx8eb32572a3565b61',
-                    secret : '5d61285d21821d4dae4813c1c87668a8',
+                    appid : 'wxe97b308db9edb9b4',
+                    secret : '5d82799cf47df88e36fbb7293844b063',
                     js_code : res.code
                 }
                 wx.request({
@@ -38,11 +37,12 @@ App({
         })
     },
   globalData: {
-    appid: 'wx8eb32572a3565b61',
+    appid: 'wxe97b308db9edb9b4',
     userInfo: null,
     hasLogin:false,
     hasMargin: false,
     openId : null,
-    session_key : null
+    session_key : null,
+    URL : 'http://test.weixin.api.ayi800.com/api/wap'
   }
 })

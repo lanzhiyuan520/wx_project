@@ -12,7 +12,8 @@
     "pages/myTicket/myTicket",
     "pages/myPay/myPay",
     "pages/severDetial/severDetial",
-    "pages/opinion/opinion"
+    "pages/opinion/opinion",
+    "pages/contract/contract"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -42,5 +43,8 @@
       "text": "我的"
     }
       ]
+  },
+  "networkTimeout":{
+    "request":5000
   }
 }

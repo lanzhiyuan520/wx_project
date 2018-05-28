@@ -1,5 +1,3 @@
-@import "../template/footer.wxss";
-
 .even-bg{
   background: url("http://cdn.ayi800.com/wx_wap/even_bg.png") no-repeat;
 }
