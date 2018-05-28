@@ -1,19 +1,13 @@
 const app = getApp()
 var URL = app.globalData.URL
 var request = require('../common/request')
+var toast = require('../common/toast')
 Page({
   data: {
     hasMask: false,
     indicatorDots: false,
     isFold: true,
     lableFold: true,
-    waiter_list: [
-      { img: 'http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg', name: "马冬梅", price: '19200元/26天' },
-      { img: 'http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg', name: "马冬梅", price: '19200元/26天' },
-      { img: 'http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg', name: "马冬梅", price: '19200元/26天' },
-      { img: 'http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg', name: "马冬梅", price: '19200元/26天' },
-      { img: 'http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg', name: "马冬梅", price: '19200元/26天' }
-    ],
     work_img: [],
     label: [],
     lessLabel: [],
@@ -23,7 +17,9 @@ Page({
     tags: [],
     page: 1,
     like_list: [],
-    detail_comments: []
+    detail_comments: [],
+    comments:[],
+    less_content:''
   },
   // 防止遮罩的穿透
   myCatchTouch: function () {
@@ -57,13 +53,14 @@ Page({
   },
   // 展示加载更多
   extendMore: function () {
+    this.setData({
+      page: this.data.page+1
+    })
+    this.comments()
     wx.showLoading({
       title: '加载中'
     })
-    // 隐藏
-    setTimeout(function () {
-      wx.hideLoading()
-    }, 2000)
+    
   },
   //服务员资料
   waiter_detail: function () {
@@ -74,12 +71,12 @@ Page({
           console.log('月嫂详情', res)
           var waiter = res.data.data
           var lessLabel = waiter.tags.slice(0, 6);
-          var waiter_info = waiter.baseMessgae;
-          waiter_info.self = waiter.baseMessgae.self.substr(0,40)
+          var less_content = waiter.baseMessgae.self.substr(0,38);
           this.setData({
             waiter_info: waiter.baseMessgae,
             label: waiter.tags,
             lessLabel: lessLabel,
+            less_content: less_content,
             work_img: waiter.workImg,
             like_list: waiter.other
           })
@@ -96,11 +93,19 @@ Page({
     console.log(url)
     request.request(url, 'GET', {})
       .then(res => {
-        console.log('详情点评', res)
-        if (res.data.code === 1) {
+        console.log('详情点评', res.data.data.length)
+        if (res.data.data.length!==0) {
+          this.data.comments.push(...res.data.data)
           this.setData({
-            detail_comments: res.data.data
+            detail_comments: this.data.comments
           })
+          wx.hideLoading()
+        }else{
+          // 隐藏
+          setTimeout(function () {
+            wx.hideLoading()
+          }, 2000)
+          toast.toast('没有更多数据了', 'none')
         }
       })
       .catch(e => {

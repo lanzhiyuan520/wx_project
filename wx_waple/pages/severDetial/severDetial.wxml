@@ -1,5 +1,4 @@
-
-  <view class='pt-35 {{hasMargin?"sub-contain-X":"sub-contain"}}'>
+<view class='pt-35 sub-contain}}'>
     <view class='server-state item-shade'>
       <view class='between-layout fs-26'>
         <text>订单编号：107722</text>

@@ -1,4 +1,3 @@
-@import "../template/footer.wxss";
 .server-item{
   width: 670rpx;
   height: 285rpx;

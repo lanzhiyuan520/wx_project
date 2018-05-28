@@ -58,16 +58,5 @@ Page({
     wx.makePhoneCall({
       phoneNumber: this.data.phoneNum
     })
-  },
-  //底部跳转 
-  goIndex: function () {
-    wx.switchTab({
-      url: '../index/index',
-    })
-  },
-  goWaiter: function () {
-    wx.switchTab({
-      url: '../waiter/waiter',
-    })
   }
 })

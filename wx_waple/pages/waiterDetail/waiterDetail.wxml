@@ -9,7 +9,8 @@
     </view>
   </view>
   <view class='intro'>
-    <text class='fs-26 {{isFold ?"flod":"extend"}}'>自我简介：{{waiter_info.self}}</text>
+   <text class='fs-26 extend' wx:if="{{isFold}}">自我简介：{{less_content}}</text>
+    <text class='fs-26 extend'  wx:else>自我简介：{{waiter_info.self}}</text>
     <text wx:if="{{isFold}}" bindtap="flodFn" class='fs-22 pink-text text-show-btn'>展开></text>
     <text wx:else bindtap="flodFn" class='fs-22 pink-text text-show-btn'>^收起</text>
     </view>

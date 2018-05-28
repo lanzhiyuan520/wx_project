@@ -1,5 +1,5 @@
-<import src ="../template/footer.wxml"/>
-<view wx:if="{{hasData}}" class='pt-35 {{hasMargin?"sub-contain-X":"sub-contain"}}'>
+
+<view wx:if="{{hasData}}" class='pt-35 sub-contain}}'>
 <view wx:for="{{serverData}}" wx:key="{{index}}" >
   <navigator url='../severDetial/severDetial?id={{item.id}}' >
     <view class='server-item'>
@@ -23,5 +23,3 @@
   </view> 
   <view bindtap='goWaiter' class='find-btn fs-30'>现在找月嫂</view> 
  </view> 
-<!--http://cdn.ayi800.com/wx_wap/no_server.png  -->
-<template is="msgItem" data="{{hasMargin}}" bindTap='test'/>
