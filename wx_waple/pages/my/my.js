@@ -1,16 +1,20 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+var URL = app.globalData.URL
+var request = require('../common/request')
 Page({
   data: {
     hasLogin: app.globalData.hasLogin,
-    hasWarn: false
+    hasWarn: false,
+    personal:[],
+    headPic:""
   },
 
   onLoad: function () {
-    if (!this.data.hasLogin){
-      console.log(5)
+    var value= wx.getStorageSync('login');
+    var useInfo = JSON.parse(wx.getStorageSync('userInfo'));
+    if (value!=='true'){
       wx.setNavigationBarTitle({
         title: '绑定手机号'
       })
@@ -18,7 +22,37 @@ Page({
       wx.setNavigationBarTitle({
         title: '个人中心'
       })
+      this.setData({
+        hasLogin: true,
+        headPic: useInfo.avatarUrl
+      })
     }
+    var url = `${URL}/users/45126?action_type=list&action=index`
+    request.request(url, 'GET', {})
+      .then((res) => {
+        console.log('个人', res)
+        this.setData({
+          personal:res.data.data
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  },
+  codeBtn: function () {
+    var url = `${URL}/qrcode`
+    var params_data = {
+      type: 1,
+      phone: '17611476961',
+      code_length:4
+    }
+    wx.request({
+      url: url,
+      method: 'POST',
+      data: params_data,
+      success: function (res) {
+        console.log('code',res)    //221558
+      }})
   },
   // 拨打电话
   callPhone: function () {
@@ -50,6 +84,7 @@ Page({
     this.setData({
       hasLogin:true
     })
+    wx.setStorageSync('login', 'true')
     //  登录成功后跳转到个人中心
     console.log(myreg.test(phone))
   },
@@ -58,6 +93,7 @@ Page({
     this.setData({
       hasLogin: false
     })
+    wx.setStorageSync('login', 'false')
     app.globalData.hasLogin = false;
     wx.setNavigationBarTitle({
       title: '绑定手机号'

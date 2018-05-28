@@ -1,13 +1,42 @@
 const app = getApp();
+var URL = app.globalData.URL
+var request = require('../common/request')
 Page({
   data: {
     hasMargin: app.globalData.hasMargin,
-    hasData:true,
+    hasData:false,
     maskHide:false,
-    array:[200,500,300]
+    tickes:[],
+    pastTickes:[],
+    phoneNum:'',
+    manager:''
   },
   onLoad: function (options) {
-    
+    var url = `${URL}/users/45126?action_type=list&action=mycounplist`
+    request.request(url, 'GET',{})
+      .then((res) => {
+        console.log('优惠券', res)
+        var result = res.data.data;
+        var arr=[];
+        var oldArr=[];
+        for(var i=0;i<result.length;i++){
+          if (result[i].is_expired==1){
+            oldArr.push(result[i])
+          }else{
+            arr.push(result[i])
+          }
+        }
+        this.setData({
+          hasData: true,
+          tickes: arr,
+          pastTickes: oldArr,
+          phoneNum: res.data.data[0].manager_phone,
+          manager: res.data.data[0].manager_name
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   },
   myCatchTouch: function () {
     console.log('stop user scroll it!');
@@ -27,7 +56,7 @@ Page({
   // 拨打电话
   callPhone:function(){
     wx.makePhoneCall({
-      phoneNumber: '15867887677'
+      phoneNumber: this.data.phoneNum
     })
   },
   //底部跳转 
