@@ -42,5 +42,5 @@
             </view>
         </view>
     </view>
-    <consult flag="{{true}}"></consult>
+    <consult flag="{{true}}" order_type="5"></consult>
 </view>

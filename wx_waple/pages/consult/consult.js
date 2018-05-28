@@ -19,6 +19,10 @@ Component({
         userInfo : {
             type : Object,
             value : ''
+        },
+        order_type:{
+            type : String,
+            value : ''
         }
     },
     data: {
@@ -77,7 +81,7 @@ Component({
                 note : this.data.time,
                 customer_name : this.data.name,
                 customer_phone : this.data.phone,
-                nanny_type : 0
+                nanny_type : this.data.order_type
             })
             var encStr = rsa.sign(data)
             console.log(JSON.parse(data))
