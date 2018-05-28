@@ -127,7 +127,6 @@ Page({
     this.testPhone(phone)
     var that=this;
     var city=wx.getStorageSync('city')
-    console.log(city)
     var url = `${URL}/login`
     var params_data = {
       phone: phone,
