@@ -9,7 +9,8 @@ Page({
   },
 
   onLoad: function () {
-    var url = `${URL}/users/45126?action_type=list&action=myorderlist`
+    var userid = wx.getStorageSync('user_id');
+    var url = `${URL}/users/` + userid +`?action_type=list&action=myorderlist`
     request.request(url, 'GET', {})
       .then((res) => {
         console.log('支付', res)

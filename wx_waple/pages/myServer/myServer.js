@@ -9,7 +9,8 @@ Page({
   },
 
   onLoad: function () {
-    var url = `${URL}/users/45126?action_type=list&action=myserverlist`
+    var userid = wx.getStorageSync('user_id');
+    var url = `${URL}/users/` + userid +`?action_type=list&action=myserverlist`
     request.request(url, 'GET', {})
       .then((res) => {
         console.log('服务', res)
