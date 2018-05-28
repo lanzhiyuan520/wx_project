@@ -1,4 +1,3 @@
-@import "../template/footer.wxss";
 .pay-item{
   width: 670rpx;
   height: 160rpx;

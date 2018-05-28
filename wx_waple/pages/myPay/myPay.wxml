@@ -1,5 +1,4 @@
-<import src ="../template/footer.wxml"/>
-<view class='pt-35 {{hasMargin?"sub-contain-X":"sub-contain"}}'>
+<view class='pt-35 sub-contain}}'>
   <view wx:if="{{hasData}}">
     <view wx:for="{{payData}}" wx:key="*this" class='pay-item between-layout'>
       <view style='display:flex;flex-direction: column;justify-content: space-between;'>
@@ -19,5 +18,3 @@
   </view>  
  </view>
 </view>
-
-<template is="msgItem" data="{{hasMargin}}" bindTap='test'/>

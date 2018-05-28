@@ -12,27 +12,31 @@ Page({
     manager:''
   },
   onLoad: function (options) {
-    var url = `${URL}/users/45126?action_type=list&action=mycounplist`
+    var userid = wx.getStorageSync('user_id');
+    var url = `${URL}/users/${userid}?action_type=list&action=mycounplist`
     request.request(url, 'GET',{})
       .then((res) => {
         console.log('优惠券', res)
-        var result = res.data.data;
-        var arr=[];
-        var oldArr=[];
-        for(var i=0;i<result.length;i++){
-          if (result[i].is_expired==1){
-            oldArr.push(result[i])
-          }else{
-            arr.push(result[i])
+        if(res.data.code===1){
+          var result = res.data.data;
+          var arr = [];
+          var oldArr = [];
+          for (var i = 0; i < result.length; i++) {
+            if (result[i].is_expired == 1) {
+              oldArr.push(result[i])
+            } else {
+              arr.push(result[i])
+            }
           }
+          this.setData({
+            hasData: true,
+            tickes: arr,
+            pastTickes: oldArr,
+            phoneNum: res.data.data[0].manager_phone,
+            manager: res.data.data[0].manager_name
+          })
         }
-        this.setData({
-          hasData: true,
-          tickes: arr,
-          pastTickes: oldArr,
-          phoneNum: res.data.data[0].manager_phone,
-          manager: res.data.data[0].manager_name
-        })
+        
       })
       .catch((error) => {
         console.log(error)
@@ -57,17 +61,6 @@ Page({
   callPhone:function(){
     wx.makePhoneCall({
       phoneNumber: this.data.phoneNum
-    })
-  },
-  //底部跳转 
-  goIndex: function () {
-    wx.switchTab({
-      url: '../index/index',
-    })
-  },
-  goWaiter: function () {
-    wx.switchTab({
-      url: '../waiter/waiter',
     })
   }
 })

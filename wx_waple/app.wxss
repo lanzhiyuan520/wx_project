@@ -95,11 +95,7 @@
   justify-content: space-between;
 }
 .sub-contain{
-  padding: 0 40rpx 120rpx;
-  box-sizing: border-box;
-}
-.sub-contain-X{
-  padding: 0 40rpx 170rpx;
+  padding: 0 40rpx 70rpx;
   box-sizing: border-box;
 }
 
