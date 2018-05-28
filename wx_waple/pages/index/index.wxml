@@ -37,8 +37,8 @@
         <text class="title_text font_ping color-35">用户点评</text>
       </view>
       <scroll-view>
-        <view class="comment_list" wx:for="{{comment_list}}" wx:key="{{index}}">
-          <view class="comment_item" bindtap="user_comment">
+        <view class="comment_list">
+          <view class="comment_item" wx:for="{{comment_list}}" wx:key="{{index}}" bindtap="user_comment" data-id="{{item.nanny_id}}">
             <view class="user_info">
               <view class="user_head">
                 <image src="{{item.customer_img}}"></image>

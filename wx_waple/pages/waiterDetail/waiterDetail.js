@@ -1,5 +1,6 @@
 const app = getApp()
-
+var URL = app.globalData.URL
+var request = require('../common/request')
 Page({
   data: {
     hasMask:false,
@@ -13,19 +14,16 @@ Page({
       { img: 'http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg', name: "马冬梅", price: '19200元/26天' },
       { img: 'http://cdn.ayi800.com/image/1aedf6b47bda6cccda6602c4fd2de4b5.jpg', name: "马冬梅", price: '19200元/26天' }
     ],
-    arr: [1, 2, 3, 4, 5],
+    work_img: [],
     label: ["催乳好 1", "月子餐很棒 4", "干净 2", "儿歌歌神 4", "月子餐很棒 4", "干净 2", "儿歌歌神 4", "干净 2","月子餐很棒 4", "干净 2","催乳好 1", "月子餐很棒 4"],
     lessLabel:[],
-    content:'我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良，我很开朗，我很我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良，我很开朗，我很我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良，我很开朗，我很我叫马冬梅，对照顾宝妈和宝宝特别有很多经验，我很善良多经验，我很我善良很多经验多经验',
-    lessContent:'',
-    index:0
-  },
-
-  onLoad: function () {
-    this.setData({
-      lessLabel: this.data.label.slice(0,6),
-      lessContent: this.data.content.substr(0,38)
-    })
+    index:0,
+    waiter_id : null,
+    waiter_info : {},
+    tags:[],
+    page : 1,
+    like_list:[],
+    detail_comments:[]
   },
   // 防止遮罩的穿透
   myCatchTouch: function () {
@@ -67,5 +65,55 @@ Page({
     setTimeout(function () {
       wx.hideLoading()
     }, 2000)
-  }
+  },
+    //服务员资料
+    waiter_detail:function(){
+        var url = `${URL}/detail/${this.data.waiter_id}`
+        request.request(url,'GET',{})
+            .then((res)=>{
+                if (res.data.code === 1){
+                    console.log('月嫂详情',res)
+                    var waiter = res.data.data
+                    this.setData({
+                        waiter_info : waiter.baseMessgae,
+                        label : waiter.tags,
+                        work_img : waiter.workImg,
+                        like_list : waiter.other
+                    })
+                }
+
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+    },
+    //用户点评
+    comments:function(){
+       var url = `${URL}/comments/${this.data.waiter_id}?current_page=detail&page=${this.data.page}`
+        console.log(url)
+       request.request(url,'GET',{})
+           .then(res=>{
+             console.log('详情点评',res)
+               if (res.data.code === 1){
+                  this.setData({
+                      detail_comments : res.data.data
+                  })
+               }
+           })
+           .catch(e=>{
+             console.log(e)
+           })
+    },
+    onLoad: function (res) {
+        this.setData({
+            waiter_id : res.id
+        })
+        this.setData({
+            lessLabel: this.data.label.slice(0,6)
+        })
+        //月嫂详情资料
+        this.waiter_detail()
+        //点评列表
+        this.comments()
+    },
 })
