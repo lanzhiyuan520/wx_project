@@ -55,12 +55,10 @@ Page({
   },
   voteTitle: function (e) {
     this.data.phone = e.detail.value;
-    console.log(this.data.phone)
   }, 
   codeBtn: function () {
     var that = this;
     this.testPhone(this.data.phone)
-    console.log(this.data.hasWarn)
     if (!this.data.hasWarn){
       var url = `${URL}/qrcode`
       var params_data = {
@@ -128,11 +126,14 @@ Page({
     var useInfo = JSON.parse(wx.getStorageSync('userInfo'));
     this.testPhone(phone)
     var that=this;
+    var city=wx.getStorageSync('city')
+    console.log(city)
     var url = `${URL}/login`
     var params_data = {
       phone: phone,
       verify: code,
-      nanny_type: 0
+      nanny_type: 0,
+      city: city
     }
     wx.request({
       url: url,
@@ -153,7 +154,7 @@ Page({
             login:true,
             phone:phone
           }
-          this.getInfo();
+          that.getInfo();
           wx.setStorageSync('login', login)
         }else{
           toast.toast(res.msg, 'none')
