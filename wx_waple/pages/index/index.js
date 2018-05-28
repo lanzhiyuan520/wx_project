@@ -236,9 +236,6 @@ Page({
       this.waiterlist_recommend()
       //获取用户点评
       this.comments_list(this.data.page)
-      //月嫂详情
-       //this.waiter_detail()
-      //预约
-      //this.yuyue()
+
   }
 })

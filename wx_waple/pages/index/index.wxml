@@ -66,9 +66,7 @@
                 <text class="comment_text_content">{{item.customer_comment}}</text>
               </view>
               <view class="comment_img">
-                <image src="http://cdn.ayi800.com/image/png/fuchong_chanhou%E8%90%A5%E5%85%BB%E5%B8%884@2x.png"></image>
-                <image src="http://cdn.ayi800.com/image/png/fuchong_chanhou%E8%90%A5%E5%85%BB%E5%B8%884@2x.png"></image>
-                <image src="http://cdn.ayi800.com/image/png/fuchong_chanhou%E8%90%A5%E5%85%BB%E5%B8%884@2x.png"></image>
+                <image src="{{item}}" wx:for="{{item.work_img}}" wx:key="{{index}}"></image>
               </view>
             </view>
             <view class="leval" style="width: 662rpx;height:12rpx;position: relative;left: -21rpx;"></view>

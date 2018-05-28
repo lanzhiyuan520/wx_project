@@ -1,7 +1,6 @@
 var toast = require('../common/toast')
 var request = require('../common/request')
 var rsa = require('../common/rsa')
-
 var userinfo = wx.getStorageSync('userInfo')
 var oppenId = wx.getStorageSync('openId')
 const app = getApp()
@@ -64,8 +63,6 @@ Page({
             wx.switchTab({
                 url: '../index/index'
             })
-        }else{
-
         }
     }
 })
