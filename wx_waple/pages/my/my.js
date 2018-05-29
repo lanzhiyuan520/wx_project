@@ -156,7 +156,7 @@ Page({
           that.getInfo();
           wx.setStorageSync('login', login)
         }else{
-          toast.toast(res.msg, 'none')
+          toast.toast(res.data.msg,'none')
         }
       }
     })
