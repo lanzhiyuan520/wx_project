@@ -21,7 +21,8 @@ Page({
     comments:[],
     less_content:'',
     active:null,
-    show:false
+    show:false,
+    reviewShow:false
   },
   // 防止遮罩的穿透
   myCatchTouch: function () {
@@ -116,7 +117,7 @@ Page({
     console.log(url)
     request.request(url, 'GET', {})
       .then(res => {
-        console.log('详情点评', res.data.data.length)
+        console.log('详情点评', res)
         if (res.data.data.length!==0) {
           this.data.comments.push(...res.data.data)
           this.setData({
@@ -145,4 +146,15 @@ Page({
     //点评列表
     this.comments()
   },
+  reviewShow:function(){
+    console.log(555)
+    this.setData({
+      reviewShow:false
+    })
+  },
+  reviewHide: function () {
+    this.setData({
+      reviewShow: true
+    })
+  }
 })

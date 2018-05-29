@@ -120,7 +120,8 @@
   width: 145rpx;
   height: 114rpx; 
   border-radius: 10rpx;
-  margin-right: 40rpx
+  margin-right: 40rpx;
+  margin-bottom: 20rpx;
 }
 .review-pic-box{
   display: flex;
