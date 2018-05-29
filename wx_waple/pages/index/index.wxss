@@ -206,7 +206,7 @@ button::after{ border: none; }
 }
 .comment_img image{
     width: 150rpx;
-    height: 115rpx;
+    height: 140rpx;
     border-radius: 10rpx;
     margin-right: 40rpx;
 }
