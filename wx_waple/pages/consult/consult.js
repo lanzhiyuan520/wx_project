@@ -112,6 +112,12 @@ Component({
                 })
         },
         order:function(){
+            var login = wx.getStorageSync('login')
+            if (login){
+                this.setData({
+                    phone : login.phone
+                })
+            }
             this.setData({
                 offset : 0
             })

@@ -152,6 +152,12 @@ Page({
                     wx.hideLoading()
                     if (page != 1){
                         console.log('上拉加载',res)
+                        if (res.data.data.length == 0){
+                            this.setData({
+                                pull_text : '没有更多了',
+                            })
+                            return false
+                        }
                         var comment_list = that.data.comment_list
                         res.data.data.map((item,index)=>{
                             comment_list.push(item)
