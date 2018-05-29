@@ -32,12 +32,6 @@ Page({
         console.log(error)
       })
   },
-  goPsact:function(){
-    var url = this.data.center.contract_url;
-    wx.navigateTo({
-      url: '../contract/contract?source=' + url,
-    })
-  },
   // 拨打电话
   callPhone: function () {
     wx.makePhoneCall({
