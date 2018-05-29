@@ -22,7 +22,8 @@ Page({
     less_content:'',
     active:null,
     show:false,
-    reviewIndex:0
+    reviewIndex:0,
+    scrollPic:[]
   },
   // 防止遮罩的穿透
   myCatchTouch: function () {
@@ -36,7 +37,7 @@ Page({
     this.setData({
       hasMask: true,
       index: index,
-      work_img: source
+      scrollPic: source
     })
   },
   picHide: function () {

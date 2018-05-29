@@ -38,7 +38,7 @@
 <view class='ptb-35-box mb-10'>
   <text class='model-title'>工作照片</text>
   <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex;margin-top:35rpx" >
-  <image class='job-pic' wx:for="{{work_img}}" bindtap='picShow' data-index="{{index}}" wx:key="{{index}}"   src="{{item}}" mode='aspectFill'></image>
+  <image class='job-pic' wx:for="{{work_img}}" data-source="{{work_img}}" bindtap='picShow' data-index="{{index}}" wx:key="{{index}}"   src="{{item}}" mode='aspectFill'></image>
 </scroll-view>
 </view>
 <view class='cut-off'></view>
@@ -94,7 +94,7 @@
  <view class='mask' bindtap='picHide' wx:if="{{hasMask}}" catchtouchmove="myCatchTouch">
   <!-- <view class='mask-pic-box'> -->
    <swiper indicator-dots="{{indicatorDots}}" class='mask-pic-box' current="{{index}}">
-      <block wx:for="{{work_img}}" wx:key="{{index}}">
+      <block wx:for="{{scrollPic}}" wx:key="{{index}}">
         <swiper-item class="center-pic">
           <image src="{{item}}" class="slide-image" mode='widthFix'/>
         </swiper-item>
