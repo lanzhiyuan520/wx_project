@@ -38,14 +38,14 @@
 <view class='ptb-35-box mb-10'>
   <text class='model-title'>工作照片</text>
   <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex;margin-top:35rpx" >
-  <image class='job-pic' wx:for="{{work_img}}" bindtap='picShow' data-index="{{index}}" wx:key="*this"   src="{{item}}" mode='aspectFill'></image>
+  <image class='job-pic' wx:for="{{work_img}}" bindtap='picShow' data-index="{{index}}" wx:key="{{index}}"   src="{{item}}" mode='aspectFill'></image>
 </scroll-view>
 </view>
 <view class='cut-off'></view>
 <view class='ptb-35-box mb-10' >
   <text class='model-title'>印象标签</text>
   <view class='impress-lable extend'>
-      <view class='evaluate-item mr-30' wx:for="{{lableFold?lessLabel:label}}" wx:key="index">
+      <view class='evaluate-item mr-30' wx:for="{{lableFold?lessLabel:label}}" wx:key="{{index}}">
         <text class='fs-22 text-gradient'>{{item}}</text>
       </view>
       <text wx:if="{{lableFold}}" bindtap='lableShow' class='fs-22 gray-text table-show-btn'>展开></text>
@@ -74,19 +74,8 @@
       <text class=' fs-28 {{active!=index?"review-text":""}}'>{{item.customer_comment}}</text>
     </view>
     <view class='review-pic-box'>
-       <image wx:for="{{item.work_img}}" bindtap='reviewShow' data-index="{{index}}"  wx:key="{{index}}" src='{{item}}' class='review-pic' mode='aspectFill'></image> 
+       <image wx:for="{{item.work_img}}" wx:for-index="Index" wx:for-item="Item" bindtap='picShow' data-index="{{Index}}" data-source="{{item.work_img}}"  wx:key="{{Index}}" src='{{Item}}' class='review-pic' mode='aspectFill'></image> 
     </view>
-    <view class='mask' bindtap='reviewHide' wx:if="{{reviewMask}}" catchtouchmove="myCatchTouch">
-  <!-- 评价照片展开 -->
-   <swiper indicator-dots="{{indicatorDots}}" class='mask-pic-box' current="{{reviewIndex}}">
-      <block wx:for="{{item.work_img}}" wx:key="*this">
-        <swiper-item class="center-pic">
-          <image src="{{item}}" class="slide-image" mode='widthFix'/>
-        </swiper-item>
-      </block>
-   </swiper>
- <!-- </view> -->
- </view>
   </view>
   <view class='btn-box'>
     <view class='more-btn' bindtap='extendMore'>
@@ -105,7 +94,7 @@
  <view class='mask' bindtap='picHide' wx:if="{{hasMask}}" catchtouchmove="myCatchTouch">
   <!-- <view class='mask-pic-box'> -->
    <swiper indicator-dots="{{indicatorDots}}" class='mask-pic-box' current="{{index}}">
-      <block wx:for="{{work_img}}" wx:key="*this">
+      <block wx:for="{{work_img}}" wx:key="{{index}}">
         <swiper-item class="center-pic">
           <image src="{{item}}" class="slide-image" mode='widthFix'/>
         </swiper-item>

@@ -32,27 +32,16 @@ Page({
   // 图片展示的显示和隐藏
   picShow: function (e) {
     var index = e.currentTarget.dataset['index'];
+    var source = e.currentTarget.dataset['source'];
     this.setData({
       hasMask: true,
-      index: index
+      index: index,
+      work_img: source
     })
   },
   picHide: function () {
     this.setData({
       hasMask: false
-    })
-  },
-  reviewShow: function (e) {
-    var index = e.currentTarget.dataset['index'];
-    console.log("index",index)
-    this.setData({
-      reviewMask: true,
-      reviewIndex: index
-    })
-  },
-  reviewHide: function (e) {
-    this.setData({
-      reviewMask: false
     })
   },
   // 文字展开隐藏
@@ -127,7 +116,6 @@ Page({
   //用户点评
   comments: function () {
     var url = `${URL}/comments/${this.data.waiter_id}?current_page=detail&page=${this.data.page}`
-    console.log(url)
     request.request(url, 'GET', {})
       .then(res => {
         console.log('详情点评', res)
