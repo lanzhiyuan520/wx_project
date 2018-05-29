@@ -127,12 +127,14 @@ Page({
     this.testPhone(phone)
     var that=this;
     var city=wx.getStorageSync('city')
+    var userid = wx.getStorageSync('user_id');
     var url = `${URL}/login`
     var params_data = {
       phone: phone,
       verify: code,
       nanny_type: 0,
-      city: city
+      city: city,
+      user_id: userid
     }
     wx.request({
       url: url,
