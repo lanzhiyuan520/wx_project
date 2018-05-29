@@ -12,8 +12,7 @@
     "pages/myTicket/myTicket",
     "pages/myPay/myPay",
     "pages/severDetial/severDetial",
-    "pages/opinion/opinion",
-    "pages/contract/contract"
+    "pages/opinion/opinion"
   ],
   "window":{
     "backgroundTextStyle":"light",
