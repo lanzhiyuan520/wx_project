@@ -136,32 +136,35 @@ Page({
       city: city,
       user_id: userid
     }
-    wx.request({
-      url: url,
-      method: 'POST',
-      data: params_data,
-      success: function (res) {
-        if (res.data.code===1){
-          app.globalData.hasLogin = true;
-          wx.setNavigationBarTitle({
-            title: '个人中心'
-          })
-          that.setData({
-            hasLogin: true,
-            headPic: useInfo.avatarUrl,
-            phoneNum: phone
-          })
-          var login={
-            login:true,
-            phone:phone
+    if (code !== "" && phone !== ""){
+      wx.request({
+        url: url,
+        method: 'POST',
+        data: params_data,
+        success: function (res) {
+          if (res.data.code === 1) {
+            app.globalData.hasLogin = true;
+            wx.setNavigationBarTitle({
+              title: '个人中心'
+            })
+            that.setData({
+              hasLogin: true,
+              headPic: useInfo.avatarUrl,
+              phoneNum: phone
+            })
+            var login = {
+              login: true,
+              phone: phone
+            }
+            that.getInfo();
+            wx.setStorageSync('login', login)
+          } else {
+            toast.toast(res.data.msg, 'none')
           }
-          that.getInfo();
-          wx.setStorageSync('login', login)
-        }else{
-          toast.toast(res.data.msg,'none')
         }
-      }
-    })
+      })
+    }
+   
   },
   // 退出登录
   exitLogin:function(){
