@@ -1,5 +1,5 @@
 <scroll-view scroll-x style="white-space: nowrap; height: 350rpx">
-    <view class="waiter_item {{index===0?'first_list':''}}" wx:for="{{waiter_list}}" wx:key="{{index}}" bindtap="waiter_detailed" data-idx="{{item.id}}">
+    <view  wx:for="{{waiter_list}}" wx:key="{{index}}" bindtap="waiter_detailed" data-idx="{{item.id}}" class="waiter_item">
         <view class="waiter_content">
             <image src="{{item.nanny_head}}"></image>
             <text class="waiter_name color-35 font_ping">{{item.fullname}}</text>

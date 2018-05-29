@@ -30,5 +30,10 @@ Page({
       .catch((error) => {
         console.log(error)
       })
+  },
+  goWaiter:function(){
+    wx.switchTab({
+      url: '../waiter/waiter',
+    })
   }
 })
