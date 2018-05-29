@@ -128,7 +128,6 @@ Page({
         var url = `${URL}/nannys?city=${this.data.city_id}`
         request.request(url,'GET',{})
             .then(res=>{
-                console.log('服务员列表推荐',res)
                 if (res.data.code === 1){
                     if (this.data.refresh){
                         this.setData({
@@ -151,11 +150,9 @@ Page({
         var url = `${URL}/comments?city=${this.data.city_id}&page=${page}&current_page=index`
         request.request(url,'GET',{})
             .then(res=>{
-                console.log('点评',res)
                 if (res.data.code === 1){
                     wx.hideLoading()
                     if (page != 1){
-                        console.log('上拉加载',res)
                         if (res.data.data.length == 0){
                             this.setData({
                                 pull_text : '没有更多了',
@@ -206,7 +203,6 @@ Page({
       }
       request.request(url,'POST',data)
           .then(res=>{
-              console.log('用户行为',res)
           })
   },
     //首页加载城市

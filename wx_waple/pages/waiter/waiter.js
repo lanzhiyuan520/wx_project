@@ -17,7 +17,6 @@ Page({
      var url = `${URL}/nannys?city=${this.data.city_id}&page=${page}`
      request.request(url,'GET',{})
          .then(res=>{
-             console.log('服务员列表',res)
             if (res.data.code === 1){
                 var waiter_list = res.data.data
                 waiter_list.map((item,index)=>{
@@ -60,7 +59,6 @@ Page({
     //判断城市是否更改，更改重新请求数据
     onShow:function(){
         var city = wx.getStorageSync('city')
-        console.log(city,this.data.city_id)
         if (city !== this.data.city_id){
             this.setData({
                 page : 1,
@@ -100,7 +98,6 @@ Page({
         }
         request.request(url,'POST',data)
             .then(res=>{
-                console.log('用户行为',res)
             })
     },
     //上拉加载

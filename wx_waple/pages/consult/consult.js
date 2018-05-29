@@ -87,10 +87,8 @@ Component({
                 nanny_type : this.data.order_type
             })
             var encStr = rsa.sign(data)
-            console.log(JSON.parse(data))
             request.request(url,'POST',encStr)
                 .then(res=>{
-                    console.log(res)
                     if (res.data.code === 1){
                         this.setData({
                             success_model : false,

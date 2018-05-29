@@ -42,7 +42,6 @@ Page({
     var url = `${URL}/users/${userid}?action_type=list&action=index`
     request.request(url, 'GET', {})
       .then((res) => {
-        console.log('个人', res)
         if (res.data.code===1){
           this.setData({
             personal: res.data.data
@@ -71,7 +70,6 @@ Page({
         method: 'POST',
         data: params_data,
         success: function (res) {
-          console.log('res',res)
           if(res.data.code===200){
             var i = 61;
             var timer = setInterval(function () {

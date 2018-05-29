@@ -95,7 +95,6 @@ Page({
     request.request(url, 'GET', {})
       .then((res) => {
         if (res.data.code === 1) {
-          console.log('月嫂详情', res)
           var waiter = res.data.data
           var lessLabel = waiter.tags.slice(0, 6);
           var less_content = waiter.baseMessgae.self.substr(0,38);
@@ -119,7 +118,6 @@ Page({
     var url = `${URL}/comments/${this.data.waiter_id}?current_page=detail&page=${this.data.page}`
     request.request(url, 'GET', {})
       .then(res => {
-        console.log('详情点评', res)
         if (res.data.data.length!==0) {
           this.data.comments.push(...res.data.data)
           this.setData({

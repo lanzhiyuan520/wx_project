@@ -16,7 +16,6 @@ Page({
     var url = `${URL}/users/${userid}?action_type=list&action=mycounplist`
     request.request(url, 'GET',{})
       .then((res) => {
-        console.log('优惠券', res)
         if(res.data.code===1){
           var result = res.data.data;
           var arr = [];

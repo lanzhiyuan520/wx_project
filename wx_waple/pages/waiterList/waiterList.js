@@ -6,7 +6,7 @@ Component({
         },
     },
     data: {
-        // 这里是一些组件内部数据
+       
 
     },
     methods: {
@@ -15,14 +15,6 @@ Component({
             wx.navigateTo({
                 url : `../waiterDetail/waiterDetail?id=${id}`
             })
-        },
-        // onPullDownRefresh: function () {
-        //   console.log('下拉刷新')
-        //   setTimeout(() => {
-        //     toast.toast('刷新成功', 'none')
-        //     wx.stopPullDownRefresh()
-
-        //   }, 1500)
-        // }
+        }
     }
 })
