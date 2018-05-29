@@ -34,7 +34,7 @@ button::after{ border: none; }
 .city-wrap image{
     display: block;
     width: 22rpx;
-    height: 22rpx;
+    height: 26rpx;
     margin: 0 11rpx;
 }
 .city-wrap text{

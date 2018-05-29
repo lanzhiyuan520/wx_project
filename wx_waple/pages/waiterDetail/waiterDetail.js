@@ -19,7 +19,9 @@ Page({
     like_list: [],
     detail_comments: [],
     comments:[],
-    less_content:''
+    less_content:'',
+    active:null,
+    show:false
   },
   // 防止遮罩的穿透
   myCatchTouch: function () {
@@ -62,6 +64,27 @@ Page({
     })
     
   },
+    click:function(e){
+        if (this.data.show){
+            if (e.currentTarget.dataset.id == this.data.active){
+                this.setData({
+                    show : false,
+                    active : null
+                })
+            }else{
+                this.setData({
+                    show : true,
+                    active : e.currentTarget.dataset.id
+                })
+            }
+        }else {
+            this.setData({
+                show : true,
+                active : e.currentTarget.dataset.id
+            })
+        }
+
+    },
   //服务员资料
   waiter_detail: function () {
     var url = `${URL}/detail/${this.data.waiter_id}`
