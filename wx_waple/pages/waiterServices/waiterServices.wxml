@@ -9,7 +9,7 @@
         </view>
         <view class="price-server">
             <text class="text color-35 font_ping">服务价格:</text>
-            <text class="text color-35 font_ping">9800-15800元</text>
+            <text class="text color-35 font_ping">9800-18800元</text>
         </view>
         <view class="server-time">
             <text class="text color-35 font_ping">服务时间:</text>
