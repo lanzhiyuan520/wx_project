@@ -15,7 +15,6 @@ Page({
   },
   waiter_list:function (page) {
      var url = `${URL}/nannys?city=${this.data.city_id}&page=${page}`
-      console.log(page)
      request.request(url,'GET',{})
          .then(res=>{
              console.log('服务员列表',res)

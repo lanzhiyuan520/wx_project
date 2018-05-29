@@ -24,7 +24,7 @@ App({
                     js_code : res.code
                 }
                 wx.request({
-                    url:`http://weixin.youfumama.com/api/jscode2session`,
+                  url:`https://wx.youfumama.com/api/wap/jscode2session`,
                     method:'POST',
                     data:data,
                     success:function (res) {
@@ -45,6 +45,6 @@ App({
     hasMargin: false,
     openId : null,
     session_key : null,
-    URL : 'http://test.weixin.api.ayi800.com/api/wap'
+    URL: 'https://wx.youfumama.com/api/wap'
   }
 })
