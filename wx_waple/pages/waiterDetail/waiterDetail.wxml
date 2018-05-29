@@ -70,8 +70,8 @@
         <text class='fs-24 gray-text'>{{item.created_at}}</text>
       </view>
     </view>
-    <view class='line-50 ptb-25'>
-      <text class='review-text fs-28'>{{item.customer_comment}}</text>
+    <view class='line-50 ptb-25' data-id="{{index}}" bindtap="click">
+      <text class=' fs-28 {{active!=index?"review-text":""}}'>{{item.customer_comment}}</text>
     </view>
     <view class='review-pic-box'>
        <image  wx:for="{{item.work_img}}" wx:key="*this" src='http://cdn.ayi800.com/ayi800_1520930902yszl_103304922922ZWpI4mN1.jpg' class='review-pic' mode='aspectFill'></image> 
