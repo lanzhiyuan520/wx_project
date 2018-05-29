@@ -71,7 +71,9 @@ Page({
             this.setData({
                 city_name : name,
                 city_id : id,
-                page : 1
+                page : 1,
+                pull_text:'上拉加载更多',
+                comments_list:[]
             })
             wx.setStorageSync('city',id)
             this.waiterlist_recommend()
