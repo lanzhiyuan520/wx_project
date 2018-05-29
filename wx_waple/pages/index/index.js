@@ -45,7 +45,6 @@ Page({
     },
     //下拉刷新
     onPullDownRefresh:function(){
-        console.log('下拉刷新')
         this.setData({
             page : 1,
             refresh : true
@@ -72,7 +71,9 @@ Page({
             this.setData({
                 city_name : name,
                 city_id : id,
-                page : 1
+                page : 1,
+                pull_text:'上拉加载更多',
+                comments_list:[]
             })
             wx.setStorageSync('city',id)
             this.waiterlist_recommend()
@@ -95,6 +96,9 @@ Page({
     },
     //上拉加载
     onReachBottom:function () {
+        if (this.data.pull_text == '没有更多了'){
+            return false
+        }
         var that = this
         this.setData({
             pull_text : '加载中...',
