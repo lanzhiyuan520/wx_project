@@ -30,7 +30,7 @@ Page({
         }
         request.request(url,'POST',data)
             .then(res=>{
-                console.log('用户行为',res)
+              
             })
     },
     onLoad: function () {

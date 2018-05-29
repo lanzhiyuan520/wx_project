@@ -13,7 +13,6 @@ Page({
     var url = `${URL}/users/${userid}?action_type=list&action=myorderlist`
     request.request(url, 'GET', {})
       .then((res) => {
-        console.log('支付', res)
         if (res.data.code===1){
           if (res.data.data !== []) {
             this.setData({

@@ -13,7 +13,6 @@ Page({
     var url = `${URL}/users/${userid}?action_type=list&action=myserverlist`
     request.request(url, 'GET', {})
       .then((res) => {
-        console.log('服务', res)
         if(res.data.code===1){
           var result = res.data.data;
           if (result.length !== 0) {
