@@ -74,8 +74,19 @@
       <text class=' fs-28 {{active!=index?"review-text":""}}'>{{item.customer_comment}}</text>
     </view>
     <view class='review-pic-box'>
-       <image  wx:for="{{item.work_img}}" bindtap='reviewShow' data-index="{{index}}"  wx:key="{{index}}" src='{{item}}' class='review-pic' mode='aspectFill'></image> 
+       <image wx:for="{{item.work_img}}" bindtap='reviewShow' data-index="{{index}}"  wx:key="{{index}}" src='{{item}}' class='review-pic' mode='aspectFill'></image> 
     </view>
+    <view class='mask' bindtap='reviewHide' wx:if="{{reviewMask}}" catchtouchmove="myCatchTouch">
+  <!-- 评价照片展开 -->
+   <swiper indicator-dots="{{indicatorDots}}" class='mask-pic-box' current="{{reviewIndex}}">
+      <block wx:for="{{item.work_img}}" wx:key="*this">
+        <swiper-item class="center-pic">
+          <image src="{{item}}" class="slide-image" mode='widthFix'/>
+        </swiper-item>
+      </block>
+   </swiper>
+ <!-- </view> -->
+ </view>
   </view>
   <view class='btn-box'>
     <view class='more-btn' bindtap='extendMore'>

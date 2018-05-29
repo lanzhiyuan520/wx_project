@@ -22,7 +22,7 @@ Page({
     less_content:'',
     active:null,
     show:false,
-    reviewShow:false
+    reviewIndex:0
   },
   // 防止遮罩的穿透
   myCatchTouch: function () {
@@ -40,6 +40,19 @@ Page({
   picHide: function () {
     this.setData({
       hasMask: false
+    })
+  },
+  reviewShow: function (e) {
+    var index = e.currentTarget.dataset['index'];
+    console.log("index",index)
+    this.setData({
+      reviewMask: true,
+      reviewIndex: index
+    })
+  },
+  reviewHide: function (e) {
+    this.setData({
+      reviewMask: false
     })
   },
   // 文字展开隐藏
@@ -145,16 +158,5 @@ Page({
     this.waiter_detail()
     //点评列表
     this.comments()
-  },
-  reviewShow:function(){
-    console.log(555)
-    this.setData({
-      reviewShow:false
-    })
-  },
-  reviewHide: function () {
-    this.setData({
-      reviewShow: true
-    })
   }
 })
