@@ -1,7 +1,7 @@
 <import src="../template/serverBaozhang.wxml"/>
 <view>
     <view class="banner">
-        <image src="http://cdn.ayi800.com/image/png/wx_waple_service_banner%E6%9C%8D%E5%8A%A1%E4%BF%9D%E9%9A%9C_02.png"></image>
+        <image src="http://cdn.ayi800.com/image/png/xiaochengxu_service_banner2services.png"></image>
     </view>
     <view>
         <template is="server" data="{{service_list}}"></template>
