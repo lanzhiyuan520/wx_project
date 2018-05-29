@@ -20,8 +20,8 @@ Page({
     detail_comments: [],
     comments:[],
     less_content:'',
-      active:null,
-      show:false
+    active:null,
+    show:false
   },
   // 防止遮罩的穿透
   myCatchTouch: function () {
@@ -66,10 +66,17 @@ Page({
   },
     click:function(e){
         if (this.data.show){
-            this.setData({
-                show : false,
-                active : null
-            })
+            if (e.currentTarget.dataset.id == this.data.active){
+                this.setData({
+                    show : false,
+                    active : null
+                })
+            }else{
+                this.setData({
+                    show : true,
+                    active : e.currentTarget.dataset.id
+                })
+            }
         }else {
             this.setData({
                 show : true,
