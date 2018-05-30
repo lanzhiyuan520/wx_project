@@ -3,6 +3,12 @@ var request = require('../common/request')
 var Date = require('../common/Date')
 var URL = app.globalData.URL
 Page({
+    onShareAppMessage: function () {
+        return {
+            title: '有福妈妈福宠套餐，更专业的月子服务！',
+            path: '/pages/fuchong/fuchong'
+        }
+    },
     data: {
         server_five_list:[
             {img:'http://cdn.ayi800.com/image/png/wx_waple_service_five_item1%E7%A6%8F%E5%AE%A0%E5%A5%97%E9%A4%90_03.png',text:'营养师指导'},

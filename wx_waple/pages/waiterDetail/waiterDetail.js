@@ -3,6 +3,12 @@ var URL = app.globalData.URL
 var request = require('../common/request')
 var toast = require('../common/toast')
 Page({
+    onShareAppMessage: function () {
+        return {
+            title: `有福妈妈-${this.data.waiter_info.fullname}`,
+            path: `/pages/waiterDetail/waiterDetail?id=${this.data.waiter_id}`
+        }
+    },
   data: {
     hasMask: false,
     indicatorDots: false,

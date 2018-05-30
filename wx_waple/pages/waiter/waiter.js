@@ -6,6 +6,13 @@ var URL = app.globalData.URL
 var Date = require('../common/Date')
 var request = require('../common/request')
 Page({
+    onShareAppMessage: function (e) {
+        console.log(e)
+        return {
+            title: '月嫂资料列表',
+            path: '/pages/waiter/waiter'
+        }
+    },
   data: {
     city_id : '',
     page : 1,

@@ -8,6 +8,12 @@ const app = getApp()
 var URL = app.globalData.URL
 
 Page({
+    onShareAppMessage: function () {
+        return {
+            title: '专业月嫂服务，上万家庭选择！',
+            path: '/pages/index/index'
+        }
+    },
   data: {
       server_list:[
           {img:'http://cdn.ayi800.com/image/png/wx_waple_server_list1%E6%9C%88%E5%AB%82@2x.png', text:'月嫂服务'},
