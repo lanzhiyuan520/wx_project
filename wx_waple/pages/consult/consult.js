@@ -1,6 +1,6 @@
 var toast = require('../common/toast')
 var request = require('../common/request')
-var URL = 'http://test.weixin.api.ayi800.com/api/wap'
+var URL = 'https://wx.youfumama.com/api/wap'
 var rsa = require('../common/rsa')
 Component({
     properties:{
