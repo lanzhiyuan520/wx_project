@@ -2,22 +2,22 @@ var toast = require('../common/toast')
 var request = require('../common/request')
 var rsa = require('../common/rsa')
 var userinfo = wx.getStorageSync('userInfo')
-var oppenId = wx.getStorageSync('openId')
 const app = getApp()
 var URL = app.globalData.URL
 Page({
     data: {
-
+        hidden : true
     },
     userInfoHandler:function(e){
         var that  = this
         console.log(e)
         if (e.detail.errMsg =="getUserInfo:ok"){
+            var openId = wx.getStorageSync('openId')
             wx.setStorageSync('userInfo', e.detail.rawData)
             wx.setStorageSync('city',184)
             var data = {
                 appid : app.globalData.appid,
-                user_id : app.globalData.openId,
+                user_id : openId.openid,
                 nickname : e.detail.userInfo.nickName,
                 picture :  e.detail.userInfo.avatarUrl
             }
@@ -40,6 +40,24 @@ Page({
         }
     },
     onLoad: function () {
+        var that = this
+        wx.getSetting({
+            success(res){
+                if (res.authSetting['scope.userInfo']){
+                    wx.showLoading({
+                        title : '加载中',
+                        mask : true
+                    })
+                    that.setData({
+                        hidden : true
+                    })
+                }else{
+                    that.setData({
+                        hidden : false
+                    })
+                }
+            }
+        })
 
     }
 })

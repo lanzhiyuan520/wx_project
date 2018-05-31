@@ -1,4 +1,4 @@
-<view>
+<view hidden="{{hidden}}">
     <view class="mask">
         <view class="authorization_wrap">
             <view class="title">

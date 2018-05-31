@@ -21,7 +21,6 @@ App({
                       url: '/pages/index/index'
                   })
                   console.log('授权了跳转首页')
-                  wx.hideLoading()
               }else{
                   wx.hideLoading()
                   console.log('没有授权')
@@ -63,6 +62,7 @@ App({
                     method:'POST',
                     data:data,
                     success:function (res) {
+                        console.log(res)
                         that.globalData.openId = res.data.openid
                         that.globalData.session_key = res.data.session_key
                         //将openid和session_key存储

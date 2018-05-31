@@ -231,15 +231,44 @@ Page({
             })
         }
     },
+    getUserId:function(){
+        var that = this
+        var data = {
+            appid : app.globalData.appid,
+            user_id : openId.openid,
+            nickname : userInfo.nickName,
+            picture :  userInfo.avatarUrl
+        }
+        console.log(data)
+        var url = `${URL}/users`
+        wx.request({
+            url : url,
+            method:'POST',
+            data:data,
+            success:function(res){
+                if (res.data.code === 1){
+                    wx.setStorageSync('user_id', res.data.data.id)
+                    that.setData({
+                        id : res.data.data.id
+                    })
+                    console.log(that.data)
+                }
+            }
+        })
+    },
   onLoad: function () {
        id = wx.getStorageSync('user_id')
        city = wx.getStorageSync('city')
-       userInfo = wx.getStorageSync('userInfo')
+       userInfo = JSON.parse(wx.getStorageSync('userInfo'))
        openId = wx.getStorageSync('openId')
       this.setData({
           id,
           city_id : city
       })
+      if (!id){
+           console.log('id获取失败，从新获取id')
+           this.getUserId()
+      }
       this.city_name(city)
       //用户行为
       this.action()
