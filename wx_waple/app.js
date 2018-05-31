@@ -24,7 +24,9 @@ App({
                     js_code : res.code
                 }
                 wx.request({
-                    url:`https://api.weixin.qq.com/sns/jscode2session?appid=wx8eb32572a3565b61&secret=5d61285d21821d4dae4813c1c87668a8&js_code=${res.code}&grant_type=authorization_code`,
+                  url:`https://wx.youfumama.com/api/wap/jscode2session`,
+                    method:'POST',
+                    data:data,
                     success:function (res) {
                         that.globalData.openId = res.data.openid
                         that.globalData.session_key = res.data.session_key
@@ -43,6 +45,6 @@ App({
     hasMargin: false,
     openId : null,
     session_key : null,
-    URL : 'http://test.weixin.api.ayi800.com/api/wap'
+    URL: 'https://wx.youfumama.com/api/wap'
   }
 })

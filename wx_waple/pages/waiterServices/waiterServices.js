@@ -4,6 +4,12 @@ var request = require('../common/request')
 var Date = require('../common/Date')
 var URL = app.globalData.URL
 Page({
+    onShareAppMessage: function () {
+        return {
+            title: '专业月嫂服务，上万家庭选择！',
+            path: '/pages/waiterServices/waiterServices'
+        }
+    },
     data: {
         work_list:[
             {time:'06:00-07:00',text1:'月嫂起床洗漱，准备早餐',text2:'清理宝宝卫生、测体温、喂奶、拍嗝',text3:'与宝宝亲子互动',text4:'收拾厨房用具、产妇用具'},

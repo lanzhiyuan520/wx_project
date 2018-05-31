@@ -8,6 +8,12 @@ const app = getApp()
 var URL = app.globalData.URL
 
 Page({
+    onShareAppMessage: function () {
+        return {
+            title: '专业月嫂服务，上万家庭选择！',
+            path: '/pages/index/index'
+        }
+    },
   data: {
       server_list:[
           {img:'http://cdn.ayi800.com/image/png/wx_waple_server_list1%E6%9C%88%E5%AB%82@2x.png', text:'月嫂服务'},
@@ -45,7 +51,6 @@ Page({
     },
     //下拉刷新
     onPullDownRefresh:function(){
-        console.log('下拉刷新')
         this.setData({
             page : 1,
             refresh : true
@@ -72,7 +77,9 @@ Page({
             this.setData({
                 city_name : name,
                 city_id : id,
-                page : 1
+                page : 1,
+                pull_text:'上拉加载更多',
+                comments_list:[]
             })
             wx.setStorageSync('city',id)
             this.waiterlist_recommend()
@@ -95,6 +102,9 @@ Page({
     },
     //上拉加载
     onReachBottom:function () {
+        if (this.data.pull_text == '没有更多了'){
+            return false
+        }
         var that = this
         this.setData({
             pull_text : '加载中...',
@@ -124,7 +134,6 @@ Page({
         var url = `${URL}/nannys?city=${this.data.city_id}`
         request.request(url,'GET',{})
             .then(res=>{
-                console.log('服务员列表推荐',res)
                 if (res.data.code === 1){
                     if (this.data.refresh){
                         this.setData({
@@ -147,11 +156,15 @@ Page({
         var url = `${URL}/comments?city=${this.data.city_id}&page=${page}&current_page=index`
         request.request(url,'GET',{})
             .then(res=>{
-                console.log('点评',res)
                 if (res.data.code === 1){
                     wx.hideLoading()
                     if (page != 1){
-                        console.log('上拉加载',res)
+                        if (res.data.data.length == 0){
+                            this.setData({
+                                pull_text : '没有更多了',
+                            })
+                            return false
+                        }
                         var comment_list = that.data.comment_list
                         res.data.data.map((item,index)=>{
                             comment_list.push(item)
@@ -196,7 +209,6 @@ Page({
       }
       request.request(url,'POST',data)
           .then(res=>{
-              console.log('用户行为',res)
           })
   },
     //首页加载城市

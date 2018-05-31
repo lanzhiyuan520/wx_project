@@ -18,8 +18,8 @@
 </view>
 <view wx:else class='scale-box'>
    <view> 
-    <image class='scale-pic'  src='http://cdn.ayi800.com/wx_wap/no%20_sale.png'></image>
+    <image class='scale-pic'  src='http://cdn.ayi800.com/wx_wap/no_server.png'></image>
      <view class='light-gray-color fs-28 text-center mt-35'>暂无服务</view> 
   </view> 
-  <view bindtap='goWaiter' class='find-btn fs-30'>现在找月嫂</view> 
+    <view bindtap='goWaiter' class='find-btn fs-30'>现在找月嫂</view>
  </view> 

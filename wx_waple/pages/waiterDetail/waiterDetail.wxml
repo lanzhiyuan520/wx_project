@@ -38,14 +38,14 @@
 <view class='ptb-35-box mb-10'>
   <text class='model-title'>工作照片</text>
   <scroll-view scroll-x="true" style=" white-space: nowrap; display: flex;margin-top:35rpx" >
-  <image class='job-pic' wx:for="{{work_img}}" bindtap='picShow' data-index="{{index}}" wx:key="*this"   src="{{item}}" mode='aspectFill'></image>
+  <image class='job-pic' wx:for="{{work_img}}" data-source="{{work_img}}" bindtap='picShow' data-index="{{index}}" wx:key="{{index}}"   src="{{item}}" mode='aspectFill'></image>
 </scroll-view>
 </view>
 <view class='cut-off'></view>
 <view class='ptb-35-box mb-10' >
   <text class='model-title'>印象标签</text>
   <view class='impress-lable extend'>
-      <view class='evaluate-item mr-30' wx:for="{{lableFold?lessLabel:label}}" wx:key="index">
+      <view class='evaluate-item mr-30' wx:for="{{lableFold?lessLabel:label}}" wx:key="{{index}}">
         <text class='fs-22 text-gradient'>{{item}}</text>
       </view>
       <text wx:if="{{lableFold}}" bindtap='lableShow' class='fs-22 gray-text table-show-btn'>展开></text>
@@ -55,14 +55,14 @@
 <view class='cut-off'></view>
 <view class='ptb-35-box mb-10'>
   <text class='model-title'>客户点评({{detail_comments.length}})</text>
-  <view class='review-item' wx:for="{{detail_comments}}" wx:key="*this">
+  <view class='review-item' wx:for="{{detail_comments}}" wx:key="{{index}}">
     <view class='safe-pic-box'>
       <view class='start-box'>
         <image class='customer-pic' src='{{item.customer_img}}'></image>
         <view class='customer-info'>
           <text class='fs-30'>{{item.customer_fullname}}</text>
           <view class='start-box'>
-            <image  wx:for="{{[1,2,3,4,5]}}" wx:key="*this" class='start-pic' src='http://cdn.ayi800.com/wx_wap/start.png'></image>
+            <image  wx:for="{{[1,2,3,4,5]}}" wx:key="{{index}}" class='start-pic' src='http://cdn.ayi800.com/wx_wap/start.png'></image>
           </view>
         </view>
       </view>
@@ -70,11 +70,11 @@
         <text class='fs-24 gray-text'>{{item.created_at}}</text>
       </view>
     </view>
-    <view class='line-50 ptb-25'>
-      <text class='review-text fs-28'>{{item.customer_comment}}</text>
+    <view class='line-50 ptb-25' data-id="{{index}}" bindtap="click">
+      <text class=' fs-28 {{active!=index?"review-text":""}}'>{{item.customer_comment}}</text>
     </view>
     <view class='review-pic-box'>
-       <image  wx:for="{{item.work_img}}" wx:key="*this" src='http://cdn.ayi800.com/ayi800_1520930902yszl_103304922922ZWpI4mN1.jpg' class='review-pic' mode='aspectFill'></image> 
+       <image wx:for="{{item.work_img}}" wx:for-index="Index" wx:for-item="Item" bindtap='picShow' data-index="{{Index}}" data-source="{{item.work_img}}"  wx:key="{{Index}}" src='{{Item}}' class='review-pic' mode='aspectFill'></image> 
     </view>
   </view>
   <view class='btn-box'>
@@ -94,7 +94,7 @@
  <view class='mask' bindtap='picHide' wx:if="{{hasMask}}" catchtouchmove="myCatchTouch">
   <!-- <view class='mask-pic-box'> -->
    <swiper indicator-dots="{{indicatorDots}}" class='mask-pic-box' current="{{index}}">
-      <block wx:for="{{work_img}}" wx:key="*this">
+      <block wx:for="{{scrollPic}}" wx:key="{{index}}">
         <swiper-item class="center-pic">
           <image src="{{item}}" class="slide-image" mode='widthFix'/>
         </swiper-item>

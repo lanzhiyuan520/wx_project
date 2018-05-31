@@ -1,6 +1,6 @@
 var toast = require('../common/toast')
 var request = require('../common/request')
-var URL = 'http://test.weixin.api.ayi800.com/api/wap'
+var URL = 'https://wx.youfumama.com/api/wap'
 var rsa = require('../common/rsa')
 Component({
     properties:{
@@ -87,10 +87,8 @@ Component({
                 nanny_type : this.data.order_type
             })
             var encStr = rsa.sign(data)
-            console.log(JSON.parse(data))
             request.request(url,'POST',encStr)
                 .then(res=>{
-                    console.log(res)
                     if (res.data.code === 1){
                         this.setData({
                             success_model : false,
@@ -112,6 +110,12 @@ Component({
                 })
         },
         order:function(){
+            var login = wx.getStorageSync('login')
+            if (login){
+                this.setData({
+                    phone : login.phone
+                })
+            }
             this.setData({
                 offset : 0
             })

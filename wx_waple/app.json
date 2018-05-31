@@ -11,9 +11,7 @@
     "pages/myServer/myServer",
     "pages/myTicket/myTicket",
     "pages/myPay/myPay",
-    "pages/severDetial/severDetial",
-    "pages/opinion/opinion",
-    "pages/contract/contract"
+    "pages/severDetial/severDetial"
   ],
   "window":{
     "backgroundTextStyle":"light",

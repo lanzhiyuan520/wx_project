@@ -42,7 +42,6 @@ Page({
     var url = `${URL}/users/${userid}?action_type=list&action=index`
     request.request(url, 'GET', {})
       .then((res) => {
-        console.log('个人', res)
         if (res.data.code===1){
           this.setData({
             personal: res.data.data
@@ -71,7 +70,6 @@ Page({
         method: 'POST',
         data: params_data,
         success: function (res) {
-          console.log('res',res)
           if(res.data.code===200){
             var i = 61;
             var timer = setInterval(function () {
@@ -127,39 +125,44 @@ Page({
     this.testPhone(phone)
     var that=this;
     var city=wx.getStorageSync('city')
+    var userid = wx.getStorageSync('user_id');
     var url = `${URL}/login`
     var params_data = {
       phone: phone,
       verify: code,
       nanny_type: 0,
-      city: city
+      city: city,
+      user_id: userid
     }
-    wx.request({
-      url: url,
-      method: 'POST',
-      data: params_data,
-      success: function (res) {
-        if (res.data.code===1){
-          app.globalData.hasLogin = true;
-          wx.setNavigationBarTitle({
-            title: '个人中心'
-          })
-          that.setData({
-            hasLogin: true,
-            headPic: useInfo.avatarUrl,
-            phoneNum: phone
-          })
-          var login={
-            login:true,
-            phone:phone
+    if (code !== "" && phone !== ""){
+      wx.request({
+        url: url,
+        method: 'POST',
+        data: params_data,
+        success: function (res) {
+          if (res.data.code === 1) {
+            app.globalData.hasLogin = true;
+            wx.setNavigationBarTitle({
+              title: '个人中心'
+            })
+            that.setData({
+              hasLogin: true,
+              headPic: useInfo.avatarUrl,
+              phoneNum: phone
+            })
+            var login = {
+              login: true,
+              phone: phone
+            }
+            that.getInfo();
+            wx.setStorageSync('login', login)
+          } else {
+            toast.toast(res.data.msg, 'none')
           }
-          that.getInfo();
-          wx.setStorageSync('login', login)
-        }else{
-          toast.toast(res.msg, 'none')
         }
-      }
-    })
+      })
+    }
+   
   },
   // 退出登录
   exitLogin:function(){

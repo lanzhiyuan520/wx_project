@@ -14,7 +14,7 @@
     font-size: 28rpx;
     padding:15rpx 0;
 }
-.first_list{
+.waiter_item:first-child{
     margin-left: 67rpx;
 }
 .waiter_content image{

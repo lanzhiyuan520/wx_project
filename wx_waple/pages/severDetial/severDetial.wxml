@@ -34,10 +34,6 @@
         <text>我的预产期：{{center.birday}}</text>
       </view>
       <view>服务周期：{{center.days}}天</view>
-      <view>
-        <text>我的合同：</text>
-        <text bindtap='goPsact' class='colours'>查看合同</text>
-      </view>
       <view>服务地址：{{center.address}}</view>
     </view>
     <view class='bd-box item-shade fs-28'>
