@@ -6,6 +6,7 @@ var rsa = require('../common/rsa')
 var Date = require('../common/Date')
 const app = getApp()
 var URL = app.globalData.URL
+var openId,userInfo,city,id
 
 Page({
     onShareAppMessage: function () {
@@ -231,8 +232,10 @@ Page({
         }
     },
   onLoad: function () {
-      var id = wx.getStorageSync('user_id')
-      var city = wx.getStorageSync('city')
+       id = wx.getStorageSync('user_id')
+       city = wx.getStorageSync('city')
+       userInfo = wx.getStorageSync('userInfo')
+       openId = wx.getStorageSync('openId')
       this.setData({
           id,
           city_id : city

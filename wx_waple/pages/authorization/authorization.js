@@ -11,6 +11,7 @@ Page({
     },
     userInfoHandler:function(e){
         var that  = this
+        console.log(e)
         if (e.detail.errMsg =="getUserInfo:ok"){
             wx.setStorageSync('userInfo', e.detail.rawData)
             wx.setStorageSync('city',184)
@@ -29,7 +30,7 @@ Page({
                     if (res.data.code === 1){
                         wx.setStorageSync('user_id', res.data.data.id)
                         wx.switchTab({
-                            url: '../index/index'
+                            url: '/pages/index/index'
                         })
                     }
                 }
@@ -39,10 +40,6 @@ Page({
         }
     },
     onLoad: function () {
-        if (userinfo && oppenId){
-            wx.switchTab({
-                url: '../index/index'
-            })
-        }
+
     }
 })

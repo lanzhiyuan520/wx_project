@@ -116,6 +116,7 @@ Page({
 
       })
       .catch((error) => {
+        wx.hideLoading()
         console.log(error)
       })
   },
@@ -139,10 +140,15 @@ Page({
         }
       })
       .catch(e => {
-        console.log(e)
+          wx.hideLoading()
+          console.log(e)
       })
   },
   onLoad: function (res) {
+      wx.showLoading({
+          title: '加载中',
+          mask : true
+      })
     this.setData({
       waiter_id: res.id
     })

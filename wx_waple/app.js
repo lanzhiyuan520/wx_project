@@ -2,18 +2,53 @@
 var request = require('./pages/common/request')
 App({
   onLaunch: function () {
+      wx.showLoading({
+          title : '加载中',
+          mask : true
+      })
+    var that = this
     var userInfo = wx.getStorageSync('userInfo')
-    var oppenId = wx.getStorageSync('openId')
+    var openId = wx.getStorageSync('openId')
     var res = wx.getSystemInfoSync();
     if (res.model.indexOf('iPhone X') !== -1) {
       this.globalData.hasMargin=true;
     }
-    if (!oppenId || !userInfo){
-        this.code()
-    }else{
-        console.log('获取到openid和用户信息了，跳转首页')
-    }
+      wx.getSetting({
+          success(res){
+              that._session()
+              if (res.authSetting['scope.userInfo']){
+                  wx.switchTab({
+                      url: '/pages/index/index'
+                  })
+                  console.log('授权了跳转首页')
+                  wx.hideLoading()
+              }else{
+                  wx.hideLoading()
+                  console.log('没有授权')
+              }
+          }
+      })
+    // if (!oppenId || !userInfo){
+    //     this.code()
+    // }else{
+    //     wx.switchTab({
+    //         url: 'pages/index/index'
+    //     })
+    //     console.log('获取到openid和用户信息了，跳转首页')
+    // }
   },
+    _session:function(){
+        var that = this
+        wx.checkSession({
+            success(res){
+                console.log('session正常')
+            },
+            fail(){
+                console.log('session失效')
+                that.code()
+            }
+        })
+    },
     code:function() {
         var that = this
         wx.login({
