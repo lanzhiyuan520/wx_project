@@ -18,6 +18,17 @@
       <text class='fs-20 deep-gray-color'>*首次登陆即默认注册</text>
       <button class='sub-btn fs-32' form-type='submit'>登录</button>
    </form>
+    <view class="wechat_login">
+        <view class="level"></view>
+        <view class="login-text">使用第三方登录</view>
+        <view class="level"></view>
+    </view>
+    <view class="wechat_icon">
+        <button class="wechat_btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+            <image src="http://cdn.ayi800.com/image/png/xiaochengxu_wechat_icon%E5%BE%AE%E4%BF%A1@2x.png"></image>
+        </button>
+        <text class="wechat_text">微信登录</text>
+    </view>
 </view>
 
 <view wx:else>

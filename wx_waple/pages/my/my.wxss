@@ -42,7 +42,7 @@
   line-height: 85rpx;
   color: #ffffff;
   margin-top: 58rpx;
-  box-shadow: -2px 3px 10px 5px #fddad5;
+  box-shadow: -2px 3px 10px 1px #fddad5;
 }
 .deep-gray-color{
   color: #878686
@@ -75,4 +75,46 @@ button::after{
   width: 20rpx;
   height: 33rpx;
   margin-left: 50rpx;
+}
+.wechat_login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 185rpx;
+}
+.level{
+  width: 84rpx;
+  height: 0;
+  border-bottom: 1rpx solid #808080;
+}
+.login-text{
+  font-size: 20rpx;
+  color: #808080;
+  font-family: "PingFang SC";
+  margin: 0 26rpx;
+}
+.wechat_btn{
+  width: 122rpx;
+  height: 122rpx;
+  background-color: #fff;
+  border: none;
+  padding: 0;
+  margin-bottom:10rpx;
+}
+.wechat_icon{
+  margin-top: 59rpx;
+  text-align: center;
+}
+.wechat_btn::after{
+  border: none;
+  border-radius: 0;
+}
+.wechat_btn image{
+    width: 122rpx;
+    height: 122rpx;
+}
+.wechat_text{
+  color: #808080;
+  font-size: 24rpx;
+  padding-top: 20rpx;
 }

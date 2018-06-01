@@ -49,7 +49,7 @@
     padding: 30rpx 0 22rpx;
 }
 .server-list{
-    background: linear-gradient(to right,#ff8a6c,#ff6794);
+    background: linear-gradient(to right,#ffa289,#ff85ac);
     border-radius: 10rpx;
     margin-right: 40rpx;
     margin-left: 35rpx;
@@ -110,8 +110,26 @@
 }
 .server-text image{
     display: block;
-    width: 55rpx;
+}
+.img0{
+    width: 54rpx;
     height: 57rpx;
+}
+.img1{
+    width: 49rpx;
+    height: 52rpx;
+}
+.img2{
+    width: 48rpx;
+    height: 52rpx;
+}
+.img3{
+    width: 42rpx;
+    height: 52rpx;
+}
+.img4{
+    width: 49rpx;
+    height: 52rpx;
 }
 .server-text text{
     font-size: 24rpx;

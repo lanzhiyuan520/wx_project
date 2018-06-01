@@ -178,5 +178,13 @@ Page({
     wx.setNavigationBarTitle({
       title: '绑定手机号'
     })
-  }
+  },
+    //手机号登录
+    getPhoneNumber:function(res){
+       if (res.detail.errMsg === "getPhoneNumber:ok"){
+          console.log(res)
+       }else{
+          toast.toast('取消授权无法登录，请重新授权','none',2000)
+       }
+    }
 })

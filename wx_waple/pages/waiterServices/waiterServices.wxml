@@ -46,7 +46,7 @@
         <view style="padding:0 44rpx;box-sizing: border-box;display: flex">
             <view style="display: flex" wx:for="{{server_flow}}" wx:key="{{index}}">
                 <view class="server-text">
-                    <image src="{{item.img}}"></image>
+                    <image src="{{item.img}}" class="img{{index}}"></image>
                     <text class="color-35 font_ping">{{item.text}}</text>
                 </view>
                 <view class="arrow">
