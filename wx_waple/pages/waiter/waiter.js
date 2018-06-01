@@ -18,7 +18,8 @@ Page({
     page : 1,
     waiter_list:[],
     waiter_tags : [],
-    refresh : false
+    refresh : false,
+    more_text : false
   },
   waiter_list:function (page) {
      var url = `${URL}/nannys?city=${this.data.city_id}&page=${page}`
@@ -32,11 +33,19 @@ Page({
                 })
                  if (page !== 1){
                      var waiter = this.data.waiter_list
+                     console.log(res)
+                     if (res.data.data.length == 0){
+                         console.log('没有了')
+                         this.setData({
+                             more_text : true
+                         })
+                     }
                      waiter_list.map((item,index)=>{
                          waiter.push(item)
                      })
                      this.setData({
-                         waiter_list : waiter
+                         waiter_list : waiter,
+
                      })
                  }else{
                      this.setData({
@@ -69,7 +78,8 @@ Page({
         if (city !== this.data.city_id){
             this.setData({
                 page : 1,
-                city_id : city
+                city_id : city,
+                more_text : false
             })
             this.waiter_list(this.data.page)
         }
@@ -90,7 +100,8 @@ Page({
   onPullDownRefresh: function () {
       this.setData({
           page : 1,
-          refresh : true
+          refresh : true,
+          more_text : false
       })
       this.waiter_list(this.data.page)
   },
@@ -109,6 +120,10 @@ Page({
     },
     //上拉加载
     onReachBottom:function(){
+        if (this.data.more_text){
+            toast.toast('没有更多了','none')
+            return false
+        }
         wx.showLoading({
             title : '加载中',
             mask : true

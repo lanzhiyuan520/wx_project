@@ -54,7 +54,8 @@ Page({
     onPullDownRefresh:function(){
         this.setData({
             page : 1,
-            refresh : true
+            refresh : true,
+            pull_text:'上拉加载更多',
         })
         this.comments_list(this.data.page)
         this.waiterlist_recommend()
