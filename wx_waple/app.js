@@ -27,14 +27,6 @@ App({
               }
           }
       })
-    // if (!oppenId || !userInfo){
-    //     this.code()
-    // }else{
-    //     wx.switchTab({
-    //         url: 'pages/index/index'
-    //     })
-    //     console.log('获取到openid和用户信息了，跳转首页')
-    // }
   },
     _session:function(){
         var that = this

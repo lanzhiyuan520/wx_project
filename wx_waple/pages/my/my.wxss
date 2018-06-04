@@ -102,7 +102,7 @@ button::after{
   margin-bottom:10rpx;
 }
 .wechat_icon{
-  margin-top: 59rpx;
+  margin-top: 20rpx;
   text-align: center;
 }
 .wechat_btn::after{

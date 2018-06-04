@@ -4,6 +4,7 @@ const app = getApp()
 var URL = app.globalData.URL
 var request = require('../common/request')
 var toast = require('../common/toast')
+var rsa = require('../common/rsa')
 Page({
   data: {
     hasLogin: app.globalData.hasLogin,
@@ -42,6 +43,7 @@ Page({
     var url = `${URL}/users/${userid}?action_type=list&action=index`
     request.request(url, 'GET', {})
       .then((res) => {
+        console.log(res)
         if (res.data.code===1){
           this.setData({
             personal: res.data.data
@@ -182,9 +184,60 @@ Page({
     //手机号登录
     getPhoneNumber:function(res){
        if (res.detail.errMsg === "getPhoneNumber:ok"){
-          console.log(res)
+           wx.showLoading({
+               title : '登录中',
+               mask : true
+           })
+          var that = this
+          var appid = app.globalData.appid
+          var openId = wx.getStorageSync('openId')
+          var userid = wx.getStorageSync('user_id')
+          var city = wx.getStorageSync('city')
+          var useInfo = JSON.parse(wx.getStorageSync('userInfo'));
+          var data = JSON.stringify({
+               appid,
+               sessionKey : openId.session_key,
+               encryptedData:res.detail.encryptedData,
+               iv : res.detail.iv
+           })
+           console.log(data)
+           var encStr = rsa.sign(data)
+           wx.request({
+               url : `http://test.weixin.api.ayi800.com/api/wap/login?login_type=Authlogin`,
+               method : 'POST',
+               data : {
+                   data : encStr,
+                   user_id : userid ,
+                   nanny_type : 0 ,
+                   city : city ,
+               },
+               success:function(res){
+                   console.log('登录',res)
+                   if (res.data.code === 1){
+                       wx.hideLoading()
+                       app.globalData.hasLogin = true;
+                       wx.setNavigationBarTitle({
+                           title: '个人中心'
+                       })
+                       that.setData({
+                           hasLogin: true,
+                           headPic: useInfo.avatarUrl,
+                           phoneNum: res.data.msg.phone
+                       })
+                       var login = {
+                           login: true,
+                           phone: res.data.msg.phone
+                       }
+                       that.getInfo();
+                       wx.setStorageSync('login', login)
+                   }else {
+                       wx.hideLoading()
+                       toast.toast('登录失败，请稍后重试', 'none')
+                   }
+               }
+           })
        }else{
-          toast.toast('取消授权无法登录，请重新授权','none',2000)
+          toast.toast('取消授权无法登录，请重新授权','none')
        }
     }
 })

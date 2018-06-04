@@ -19,9 +19,9 @@
       <button class='sub-btn fs-32' form-type='submit'>登录</button>
    </form>
     <view class="wechat_login">
-        <view class="level"></view>
-        <view class="login-text">使用第三方登录</view>
-        <view class="level"></view>
+        <!--<view class="level"></view>-->
+        <!--<view class="login-text">使用第三方登录</view>-->
+        <!--<view class="level"></view>-->
     </view>
     <view class="wechat_icon">
         <button class="wechat_btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
