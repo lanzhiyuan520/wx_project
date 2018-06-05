@@ -168,18 +168,33 @@ Page({
   },
   // 退出登录
   exitLogin:function(){
-    this.setData({
-      hasLogin: false
-    })
-    var login = {
-      login: false,
-      phone: ''
-    }
-    wx.setStorageSync('login', login)
-    app.globalData.hasLogin = false;
-    wx.setNavigationBarTitle({
-      title: '绑定手机号'
-    })
+      var that = this
+      wx.showModal({
+          title : '提示',
+          content : '您确定要退出登录吗?',
+          cancelText : '取消',
+          confirmText : '确定',
+          success : function(res){
+              if (res.confirm){
+                  that.setData({
+                      hasLogin: false
+                  })
+                  var login = {
+                      login: false,
+                      phone: ''
+                  }
+                  wx.setStorageSync('login', login)
+                  app.globalData.hasLogin = false;
+                  wx.setNavigationBarTitle({
+                      title: '绑定手机号'
+                  })
+              }else if (res.cancel){
+                  console.log('用户点击了取消')
+              }
+
+          }
+      })
+
   },
     //手机号登录
     getPhoneNumber:function(res){
@@ -207,14 +222,14 @@ Page({
                method : 'POST',
                data : {
                    data : encStr,
-                   user_id : userid ,
-                   nanny_type : 0 ,
-                   city : city ,
+                   user_id : userid,
+                   nanny_type : 0,
+                   city : city,
                },
                success:function(res){
                    console.log('登录',res)
+                   wx.hideLoading()
                    if (res.data.code === 1){
-                       wx.hideLoading()
                        app.globalData.hasLogin = true;
                        wx.setNavigationBarTitle({
                            title: '个人中心'
@@ -231,7 +246,6 @@ Page({
                        that.getInfo();
                        wx.setStorageSync('login', login)
                    }else {
-                       wx.hideLoading()
                        toast.toast('登录失败，请稍后重试', 'none')
                    }
                }

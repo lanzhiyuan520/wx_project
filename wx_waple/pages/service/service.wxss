@@ -3,6 +3,7 @@
     height: 300rpx;
 }
 .button{
+    position: static;
     width: 268rpx;
     height: 72rpx;
     border-radius: 50rpx;

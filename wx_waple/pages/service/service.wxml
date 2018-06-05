@@ -10,5 +10,8 @@
         <view class="button ipone" bindtap="call">
             <text>客服电话</text>
         </view>
+        <button class="button ipone" open-type="contact">
+            <text>意见反馈</text>
+        </button>
     </view>
 </view>
