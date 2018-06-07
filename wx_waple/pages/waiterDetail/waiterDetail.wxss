@@ -14,6 +14,24 @@
 .nanny-info-box{
   display: flex;
   flex-direction: row;
+  position: relative;
+}
+.share{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  line-height: 40rpx;
+}
+.share::after{
+  border: none;
+  border-radius: 0;
+}
+.share image{
+  width: 41rpx;
+  height: 39rpx;
 }
 .nanny-info{
   display: flex;

@@ -23,6 +23,10 @@ Component({
         order_type:{
             type : String,
             value : ''
+        },
+        order_text:{
+            type : String,
+            value : ''
         }
     },
     data: {

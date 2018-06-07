@@ -66,6 +66,6 @@
     </view>
     <view>
         <!--<template is="consult"></template>-->
-        <consult flag="{{true}}" order_type="0"></consult>
+        <consult flag="{{true}}" order_type="0" order_text="我要预约"></consult>
     </view>
 </view>

@@ -1,34 +1,38 @@
 <view wx:if="{{!hasLogin}}" class='contain'>
-   <form bindsubmit='searchBox'>
-     <view class="section mb-60">
-      <view class='mb-30' wx:if="{{hasWarn}}">
-       <label class='fs-22 pink-text'>*请输入正确的手机号</label>
-     </view> 
-      <view class="phone-titles fs-32">手机号</view>
-      <input type="text" name='phone'  bindinput="voteTitle" maxlength='11' class='phone' placeholder-class='fs-30 text-gray' placeholder="手机号" />
-      </view>
-      <view class="section">
-      <view class="phone-titles fs-32">验证码</view>
-      <input type="text" name='code' class='code' placeholder-class='fs-30 text-gray' maxlength='4' placeholder="4位数字" />
-      <button disabled='{{focus}}' class='evaluate-item code-btn' bindtap='codeBtn'>
-        <text wx:if="{{again}}"  class='fs-30 text-gradient'>重新发送</text>
-        <text wx:else class='fs-30 text-gradient'>{{code_test}}</text>
-      </button>
-      </view>
-      <text class='fs-20 deep-gray-color'>*首次登陆即默认注册</text>
-      <button class='sub-btn fs-32' form-type='submit'>登录</button>
-   </form>
-    <view class="wechat_login">
-        <!--<view class="level"></view>-->
-        <!--<view class="login-text">使用第三方登录</view>-->
-        <!--<view class="level"></view>-->
+    <view class="login-banner">
+        <image src="http://cdn.ayi800.com/image/png/xiaochengxu_login_bannerlogin-banner.png"></image>
     </view>
-    <view class="wechat_icon">
-        <button class="wechat_btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
-            <image src="http://cdn.ayi800.com/image/png/xiaochengxu_wechat_icon%E5%BE%AE%E4%BF%A1@2x.png"></image>
-        </button>
-        <text class="wechat_text">微信登录</text>
-    </view>
+    <button class="wechat_login_btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信一键登录</button>
+   <!--<form bindsubmit='searchBox'>-->
+     <!--<view class="section mb-60">-->
+      <!--<view class='mb-30' wx:if="{{hasWarn}}">-->
+       <!--<label class='fs-22 pink-text'>*请输入正确的手机号</label>-->
+     <!--</view> -->
+      <!--<view class="phone-titles fs-32">手机号</view>-->
+      <!--<input type="text" name='phone'  bindinput="voteTitle" maxlength='11' class='phone' placeholder-class='fs-30 text-gray' placeholder="手机号" />-->
+      <!--</view>-->
+      <!--<view class="section">-->
+      <!--<view class="phone-titles fs-32">验证码</view>-->
+      <!--<input type="text" name='code' class='code' placeholder-class='fs-30 text-gray' maxlength='4' placeholder="4位数字" />-->
+      <!--<button disabled='{{focus}}' class='evaluate-item code-btn' bindtap='codeBtn'>-->
+        <!--<text wx:if="{{again}}"  class='fs-30 text-gradient'>重新发送</text>-->
+        <!--<text wx:else class='fs-30 text-gradient'>{{code_test}}</text>-->
+      <!--</button>-->
+      <!--</view>-->
+      <!--<text class='fs-20 deep-gray-color'>*首次登陆即默认注册</text>-->
+      <!--<button class='sub-btn fs-32' form-type='submit'>登录</button>-->
+   <!--</form>-->
+    <!--<view class="wechat_login">-->
+        <!--&lt;!&ndash;<view class="level"></view>&ndash;&gt;-->
+        <!--&lt;!&ndash;<view class="login-text">使用第三方登录</view>&ndash;&gt;-->
+        <!--&lt;!&ndash;<view class="level"></view>&ndash;&gt;-->
+    <!--</view>-->
+    <!--<view class="wechat_icon">-->
+        <!--<button class="wechat_btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">-->
+            <!--<image src="http://cdn.ayi800.com/image/png/xiaochengxu_wechat_icon%E5%BE%AE%E4%BF%A1@2x.png"></image>-->
+        <!--</button>-->
+        <!--<text class="wechat_text">微信登录</text>-->
+    <!--</view>-->
 </view>
 
 <view wx:else>
@@ -73,4 +77,18 @@
         <view class='fs-34'>退出登录</view>
       </view>
    </view>
+    <view class="reduced-wrap" hidden="{{reduced_model}}">
+        <view class="reduced-model">
+            <view class="reduced-text">
+                <view class="reduced-price">200元</view>
+                <view class="waiter-reduced">月嫂优惠券</view>
+            </view>
+            <view class="go-reduced" bindtap="reduced">
+                去"优惠券"查看
+            </view>
+            <view class="close" bindtap="close_reduced">
+                <image src="http://cdn.ayi800.com/image/png/xiaochengxu_reduced_model_closeclose.png"></image>
+            </view>
+        </view>
+    </view>
 </view>

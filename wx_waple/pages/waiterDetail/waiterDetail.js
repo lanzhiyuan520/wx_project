@@ -95,6 +95,10 @@ Page({
         }
 
     },
+    //服务员分享
+    share_waiter:function(){
+
+    },
   //服务员资料
   waiter_detail: function () {
     var url = `${URL}/detail/${this.data.waiter_id}`

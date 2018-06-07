@@ -7,6 +7,9 @@
       <text class='fs-28'>{{waiter_info.price}}元／26天</text>
       <text class='fs-28'>{{waiter_info.age}}岁 来自{{waiter_info.city}}</text>
     </view>
+    <button class="share" open-type="share">
+        <image src="http://cdn.ayi800.com/image/png/xiaochengxu_waiter_detail_shareshare.png"></image>
+    </button>
   </view>
   <view class='intro'>
    <text class='fs-26 extend' wx:if="{{isFold}}">自我简介：{{less_content}}</text>
@@ -102,4 +105,4 @@
    </swiper>
  <!-- </view> -->
  </view>
- <consult flag="{{false}}" waiter_info="{{waiter_info}}" order_type="0"></consult>
+ <consult flag="{{false}}" waiter_info="{{waiter_info}}" order_type="0" order_text="预约面试"></consult>

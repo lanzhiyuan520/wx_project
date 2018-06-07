@@ -15,7 +15,8 @@ Page({
     code_test:'验证码',
     focus: false,
     again:false,
-    phoneNum:''
+    phoneNum:'',
+    reduced_model:true
   },
 
   onLoad: function () {
@@ -96,7 +97,6 @@ Page({
         }
       })
     }
-    
   },
   // 验证手机号
   testPhone: function (phone){
@@ -196,6 +196,21 @@ Page({
       })
 
   },
+    //跳转优惠券
+    reduced:function(){
+        this.setData({
+            reduced_model : true
+        })
+        wx.navigateTo({
+            url : `../myTicket/myTicket`
+        })
+    },
+    //关闭优惠券弹框
+    close_reduced:function(){
+        this.setData({
+            reduced_model : true
+        })
+    },
     //手机号登录
     getPhoneNumber:function(res){
        if (res.detail.errMsg === "getPhoneNumber:ok"){
@@ -230,6 +245,11 @@ Page({
                    console.log('登录',res)
                    wx.hideLoading()
                    if (res.data.code === 1){
+                       if (res.data.msg.is_new){
+                           that.setData({
+                               reduced_model : false
+                           })
+                       }
                        app.globalData.hasLogin = true;
                        wx.setNavigationBarTitle({
                            title: '个人中心'

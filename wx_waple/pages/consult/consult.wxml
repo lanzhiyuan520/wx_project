@@ -8,7 +8,7 @@
         </view>
     </view>
     <view class="right" bindtap='order'>
-        <text>我要预约</text>
+        <text>{{order_text}}</text>
     </view>
 </view>
 <view  class="user_info" style="transform: translateY({{offset}}%);" catchtouchmove='true' >

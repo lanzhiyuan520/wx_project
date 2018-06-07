@@ -67,7 +67,6 @@
 }
 .model-box{
   width: 450rpx;
-  height: 290rpx;
   background: #ffffff;
   border-radius: 20rpx;
   text-align: center;
