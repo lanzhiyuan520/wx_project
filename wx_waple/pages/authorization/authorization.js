@@ -51,7 +51,11 @@ Page({
                     that.setData({
                         hidden : true
                     })
+                    wx.switchTab({
+                        url: '/pages/index/index'
+                    })
                 }else{
+                    console.log('没获取')
                     that.setData({
                         hidden : false
                     })
