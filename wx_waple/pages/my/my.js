@@ -233,7 +233,7 @@ Page({
            console.log(data)
            var encStr = rsa.sign(data)
            wx.request({
-               url : `http://test.weixin.api.ayi800.com/api/wap/login?login_type=Authlogin`,
+               url : `${URL}/login?login_type=Authlogin`,
                method : 'POST',
                data : {
                    data : encStr,

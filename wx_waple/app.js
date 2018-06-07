@@ -73,5 +73,6 @@ App({
     openId : null,
     session_key : null,
     URL: 'https://wx.youfumama.com/api/wap'
+    //URL: 'http://test.weixin.api.ayi800.com/api/wap'
   }
 })
