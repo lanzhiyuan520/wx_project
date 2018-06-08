@@ -13,7 +13,18 @@
     box-shadow: 0 0 5rpx #f7614a ;
     background: linear-gradient(to right,#ff85a9,#ffa189);
 }
-.button text{
+.call-phone,.btn{
+    position: static;
+    width: 268rpx;
+    height: 72rpx;
+    border-radius: 50rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5rpx #f7614a ;
+    background: linear-gradient(to right,#ff85a9,#ffa189);
+}
+.call-phone text{
     font-size: 30rpx;
     color: #fff;
 }
@@ -24,4 +35,20 @@
 }
 .ipone{
     margin: 0 70rpx 0 74rpx;
+}
+.btn-option{
+    position: relative;
+    color: #fff;
+    width: 268rpx;
+    height: 72rpx;
+    font-size: 30rpx;
+    border-radius: 50rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5rpx #f7614a ;
+    background: linear-gradient(to right,#ff85a9,#ffa189);
+}
+.btn-option::after{
+    border: none;
 }

@@ -12,8 +12,9 @@ Page({
         ]
     },
     call:function(){
+        console.log('111')
         wx.makePhoneCall({
-            phoneNumber: '4006625800' //仅为示例，并非真实的电话号码
+            phoneNumber: '4006625800' 
         })
     },
     opinion:function(){
