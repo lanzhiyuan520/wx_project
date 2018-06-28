@@ -21,13 +21,46 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "扫描二维码",
+					"pathName": "pages/waiterDetail/waiterDetail",
+					"query": "id=113114",
+					"scene": "1047"
+				},
+				{
+					"id": 1,
+					"name": "扫描二维码",
+					"pathName": "pages/waiterDetail/waiterDetail",
+					"query": "id=109135",
+					"scene": "1047"
+				},
+				{
+					"id": 2,
+					"name": "长按二维码",
+					"pathName": "pages/waiterDetail/waiterDetail",
+					"query": "scene=id%20%3D%20109135",
+					"scene": "1048"
+				},
+				{
+					"id": -1,
+					"name": "长按二维码",
+					"pathName": "pages/waiterDetail/waiterDetail",
+					"query": "scene=id%20%3D%20109135",
+					"scene": "1047"
+				}
+			]
 		}
 	}
 }

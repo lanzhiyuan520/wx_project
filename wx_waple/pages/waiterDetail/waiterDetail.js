@@ -104,6 +104,7 @@ Page({
     var url = `${URL}/detail/${this.data.waiter_id}`
     request.request(url, 'GET', {})
       .then((res) => {
+        console.log('服务员',res)
         if (res.data.code === 1) {
           var waiter = res.data.data
           var lessLabel = waiter.tags.slice(0, 6);
@@ -149,13 +150,22 @@ Page({
       })
   },
   onLoad: function (res) {
+     if (!res.id){
+       var id = parseInt(decodeURIComponent(res.scene).split('=')[1])
+       this.setData({
+         waiter_id: id
+       })
+     }else{
+       this.setData({
+         waiter_id: res.id
+       })
+     }
+     console.log(id)
       wx.showLoading({
           title: '加载中',
           mask : true
       })
-    this.setData({
-      waiter_id: res.id
-    })
+    
     
     //月嫂详情资料
     this.waiter_detail()
